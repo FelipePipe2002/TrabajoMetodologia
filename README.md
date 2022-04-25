@@ -7,14 +7,14 @@
 El problema de el proceso de sacar turnos de manera presencial afecta a pacientes cuyo impacto es tedioso y costoso para determinados pacientes una solucion exitosa permitiria mejorar la eficiencia y organizacion, agilizando el registro de un turno y permitiria mayor cantidad atendidos
 #### Product Statement
 Para **medicos, secretarios, pacientes y administradores** quienes atienden, organizan, asisten o administran el sitio web.
-El sistema de administracion de turnos es una herramienta que permite el registro on-line de turnos mediante un calendario, acceso a la informacion de los horarios a atender y disponibilidad.
+El sistema de administracion de turnos es una herramienta que permite el registro on-line de turnos mediante un calendario, acceso a la informacion de los horarios a atender y disponibilidad. \
 A diferencia de el sistema de obtencion de turno obsoleto existente, nuestro producto proporciona mas informacion sobre el paciente, mayor comodidad para los mismos y mejor organizacion en cuanto a la hora de obtener un turno y darlos
 ### 2. Target Group
 #### Stakeholders Summary
 ~~Responsable administrador~~ representa a....
 Medico representa a medico el cual sus responsabilidades seran seguimiento del proyecto.....\
 Secretario/a representa a medico el cual sus responsabilidades seran administrar \
-Paciente representa a paciente el cual sus responsabilidades seran asegurar que el sistema satisfaga las necesidades de los pacientes. \
+Paciente representa a paciente el cual sus responsabilidades seran asegurar que el sistema satisfaga las necesidades de los pacientes.
 #### User summary
 ~~Responsable administrador~~ gestiona la pagina web, controlando imperfecciones y generando usuarios de medicos y secretarias. Se autorepresenta.\
 Medico podra ver los pacientes que debera a atender y si lo desea podra eliminar un turno deseado. Se autorepresenta. \
