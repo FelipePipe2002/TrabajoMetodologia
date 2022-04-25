@@ -1,5 +1,6 @@
 # Vision
-![turnoFacil](/sites/default/files/paisaje_jujuy.jpg)
+<!-- Ponemos un fondo? -->
+![turnoFacil](https://p0.piqsels.com/preview/460/190/356/medical-senior-health-doctor.jpg)
 
 ### 1. Vision Statement
 ####  Problem Statement
@@ -11,14 +12,14 @@ A diferencia de el sistema de obtencion de turno obsoleto existente, nuestro pro
 ### 2. Target Group
 #### Stakeholders Summary
 ~~Responsable administrador~~ representa a....
-Medico representa a medico el cual sus responsabilidades seran seguimiento del proyecto.....
-Secretario/a representa a medico el cual sus responsabilidades seran administrar 
-Paciente representa a paciente el cual sus responsabilidades seran asegurar que el sistema satisfaga las necesidades de los pacientes. 
+Medico representa a medico el cual sus responsabilidades seran seguimiento del proyecto.....\
+Secretario/a representa a medico el cual sus responsabilidades seran administrar \
+Paciente representa a paciente el cual sus responsabilidades seran asegurar que el sistema satisfaga las necesidades de los pacientes. \
 #### User summary
-~~Responsable administrador~~ gestiona la pagina web, controlando imperfecciones y generando usuarios de medicos y secretarias. Se autorepresenta.
-Medico podra ver los pacientes que debera a atender y si lo desea podra eliminar un turno deseado. Se autorepresenta.
-Secretario/a podra ver los horarios disponibles, ocupados y asignar nuevos. Se autorepresenta.
-Paciente obtendra un turno, informacion sobre turnos disponibles y consultar sus resultados(?).
+~~Responsable administrador~~ gestiona la pagina web, controlando imperfecciones y generando usuarios de medicos y secretarias. Se autorepresenta.\
+Medico podra ver los pacientes que debera a atender y si lo desea podra eliminar un turno deseado. Se autorepresenta. \
+Secretario/a podra ver los horarios disponibles, ocupados y asignar nuevos. Se autorepresenta. \
+Paciente obtendra un turno, informacion sobre turnos disponibles y consultar sus resultados(?). 
 ### 3. Needs
 - Sacar turnos. Prioridad alta, la obtencion de turnos de manera presencial es lenta e ineficiente. La solucion actual es que los pacientes deben ir de manera presencial,... 
 - Visualizar turnos. Prioridad alta
