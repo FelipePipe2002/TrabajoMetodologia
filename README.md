@@ -15,14 +15,14 @@ El sistema de administracion de turnos es una herramienta que permite el registr
 A diferencia del sistema de obtencion de turno existente, nuestro producto proporciona mas informacion tanto a las instituciones sobre los pacientes, como a los usuarios la disponibilidad de turnos; una mayor comodidad para los mismos y mejor organizacion en cuanto a la hora de obtenerlos y proveerlos.
 ### 2. Target Group
 #### Stakeholders Summary
-El responsable Turnofacil representa a las instituciones, este tiene la responsabilidad de proveer el servicio de turnos a las mismas. \
+El responsable Turnofacil representa a las instituciones, este tiene la responsabilidad de proveer el servicio de turnos a las mismas. 
 
 
 
 
 
 #### User summary
-El responsable de la institucion medica gestiona y representa a los usuarios de medicos y secretarias ademas de asignar a cada secretaria el grupo de medicos con los que trabaja. \
+El responsable de la institucion medica gestiona y representa a los usuarios de medicos y secretarias, ademas de asignar a cada secretaria el grupo de medicos con los que trabaja.
 El medico es el encargado del listado de sus turnos venideros, el cual se autorepresenta. \
 La secretaria sera la encargada de administrar los turnos, se representa asi misma. \ <!-- Representacion secretaria -->
 El paciente debera realizar tanto la carga de sus datos como la adquisicion de sus turnos. Se autorepresenta.
