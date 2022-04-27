@@ -25,7 +25,6 @@ El responsable Turnofacil representa a las instituciones, este tiene la responsa
 El responsable de la institucion medica gestiona y representa a los usuarios de medicos y secretarias, ademas de asignar a cada secretaria el grupo de medicos con los que trabaja.
 El medico es el encargado del listado de sus turnos venideros, el cual se autorepresenta. \
 La secretaria sera la encargada de administrar los turnos, se representa asi misma. <!-- Representacion secretaria -->
-
 El paciente debera realizar tanto la carga de sus datos como la adquisicion de sus turnos. Se autorepresenta.
 
 ### 3. Needs
