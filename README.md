@@ -1,11 +1,11 @@
 # TurnoFacil
-<!-- Ponemos un fondo? -->
 <!-- Responsable TURNOFACIL? [2.1] -->
 <!-- Representacion secretaria [2.2] -->
 <!-- -->
+Este proyecto provee una solucion a una problematica planteada por Turno Facil, la cuál permitira sacar turnos para médicos mediante una aplicación web. Esta misma se comercializara a distintas instituciones médicas como clínicas y consultorios por lo que deberá ser fácilmente instanciable para cada una de ellas.
 
 <a href="https://miro.com/welcomeonboard/bWNHbHFPWmRTUTF1clBsWEFiNEV2T3VPelpRbVNjcmY3ZXI0WlpSNndLaTRtVFN0ODFrZXlzUkVxc0FyUDA2ZXwzMDc0NDU3MzY2NTM4MTc3MjY4?share_link_id=481042348205">
-  <img src="https://p0.piqsels.com/preview/460/190/356/medical-senior-health-doctor.jpg"
+  <img width="720" src="https://p0.piqsels.com/preview/460/190/356/medical-senior-health-doctor.jpg"
        alt="Turno facil">
 </a>
 
@@ -39,17 +39,17 @@ El paciente debera realizar tanto la carga de sus datos como la adquisicion de s
 - Consultar expediente. Prioridad baja
 
 ### 4. Product
-- Login: Pacientes solo deberan presentar su dni, secretarios y medicos deberan proporcionar una identificacion y contraseña validas para ingresar al sistema
+- Login: Pacientes solo deberan ingresar su dni, secretarias y medicos deberan proporcionar una identificacion y contraseña validas para ingresar al sistema.
 - Registrar: Si el paciente no se encuentra registrado debera hacerlo proporcionando sus datos personales, tales ...
 - Ver calendario:
-- Ver expediente:
-- Informar sobre expediente:
+
 
 ### 5. Business goals
 Este proyecto generara un nuevo sistema de registracion de turnos de manera on-line que permitira la obtencion de los mismos mediante dispositivos con conexion online
 
 El sistema de turnos actual carece de eficiencia a la hora de tomar turnos rápidamente.
 
-El nuevo sistema llevara a las instituciones a la 
+El nuevo sistema llevara a las instituciones a la mejor organizacion en el mismo 
 
 ## Criterio de DONE
+ 
