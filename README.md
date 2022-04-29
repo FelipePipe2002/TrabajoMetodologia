@@ -44,6 +44,6 @@ El paciente debera realizar tanto la carga de sus datos como la adquisicion de s
 ### 5. Business Goals
 Este proyecto generara un nuevo sistema de registracion de turnos de manera on-line que permitira la obtencion de los mismos mediante dispositivos con conexion online
 
-El sistema de turnos actual carece 
+El sistema de turnos actual carece de eficiencia a la hora de tomar turnos rápidamente.
 
 El nuevo sistema llevara a las instituciones a la 
