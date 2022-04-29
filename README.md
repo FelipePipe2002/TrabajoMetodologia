@@ -11,9 +11,9 @@ Este proyecto provee una solucion a una problematica planteada por Turno Facil, 
 
 ## Vision
 ### 1. Vision Statement
-####  Problem statement
+####  Problem Statement
 El problema del proceso de sacar turnos de manera presencial afecta tanto a pacientes como a las instituciones cuyo impacto en los pacientes es la movilidad y la demora al momento de pedir el turno, a su vez, las instituciones tienen una sobrecarga de pacientes a la hora de pedir estos turnos y cargar los datos de los mismos. Una solucion exitosa permitiria mejorar la eficiencia y organizacion, agilizando el registro de un turno y permitiria mayor cantidad de atendidos.
-#### Product statement
+#### Product Statement
 Para **medicos, secretarios, pacientes y administradores** quienes atienden, organizan, asisten o administran el sitio web.
 El sistema de administracion de turnos es una herramienta que permite el registro on-line de turnos mediante un calendario, acceso a la informacion de los horarios a atender y disponibilidad. \
 A diferencia del sistema de obtencion de turno existente, nuestro producto proporciona mas informacion tanto a las instituciones sobre los pacientes, como a los usuarios la disponibilidad de turnos; una mayor comodidad para los mismos y mejor organizacion en cuanto a la hora de obtenerlos y proveerlos.
@@ -31,7 +31,7 @@ El medico es el encargado del listado de sus turnos venideros, el cual se autore
 La secretaria sera la encargada de administrar los turnos, se representa asi misma. <!-- Representacion secretaria --> \
 El paciente debera realizar tanto la carga de sus datos como la adquisicion de sus turnos. Se autorepresenta.
 
-### 3. Necessities
+### 3. Needs
 - Sacar turnos. Prioridad alta, la obtencion de turnos de manera presencial es lenta e ineficiente. La solucion actual es que los pacientes deben ir de manera presencial.
 - Visualizar turnos. Prioridad media
 - Cancelar turnos. Prioridad media
