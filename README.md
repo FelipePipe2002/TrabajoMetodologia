@@ -32,11 +32,21 @@ La secretaria sera la encargada de administrar los turnos, se representa asi mis
 El paciente debera realizar tanto la carga de sus datos como la adquisicion de sus turnos. Se autorepresenta.
 
 ### 3. Needs
-- Sacar turnos. Prioridad alta, la obtencion de turnos de manera presencial es lenta e ineficiente. La solucion actual es que los pacientes deben ir de manera presencial.
-- Visualizar turnos. Prioridad media
-- Cancelar turnos. Prioridad media
+- **Sacar turnos.** Prioridad alta, la obtención de turnos de manera presencial es lenta e ineficiente. La solucion actual es que los pacientes deben ir de manera presencial. \
+  La posible solución sería que los pacientes desearían tener una forma de obtener turnos de manera on-line para ahorrar tiempos y comodidad.
+- **Creación de cuentas del personal.** Prioridad alta, el registro del personal de forma escrita es improductivo. En la solución actual (**SE ASUME**) se registra el personal médico a través de carpetas y de manera física. \
+  La posibible solución sería crear cuentas de todo el personal, y asignándoles su respectiva secretaria a los médicos.
+- **Administrar cuentas del personal.** (**SE ASUME**) Prioridad alta, gestionar información del personal mediante documentación física no es eficiente. La solución actual es registrar la información a través de carpetas y papeles difíciles de organizar. \
+  La posible solución sería registrar todo en un sistema que organice la información automáticamente y facilite la búsqueda.
+- **LOGIN.** Prioridad alta, el registro de pacientes 
+- **Sacar turno.**
+- **Asignar cronograma.**
+- **Visualizar turnos**. Prioridad media, tener que preguntar información sobre los turnos es ineficaz. La solución actual es que hay que consultarle personalmente a la secretaria de manera verbal. \
+   La posible solución sería darle una opción al paciente para que visualice por su cuenta la información de los turnos de manera virtual. 
+- **Cancelar turnos**. Prioridad media
 - Administrar turnos. Prioridad media
-- Consultar expediente. Prioridad baja
+
+
 
 ### 4. Product
 - Login: Pacientes solo deberan ingresar su dni, secretarias y medicos deberan proporcionar una identificacion y contraseña validas para ingresar al sistema.
