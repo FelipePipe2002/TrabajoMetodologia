@@ -63,3 +63,15 @@ El nuevo sistema llevara a las instituciones a la mejor organizacion en el mismo
 
 ## Criterio de DONE
  
+Equipo Scrum, los miembros deben tener un entendimiento compartido de lo que medios para completar el trabajo
+  • "DONE" = Liberable
+  La DoD (Definition of Done) consta de 3 componentes principales:
+    • Requisitos de negocio o funcionales: requisitos funcionales estándar.
+    • Calidad: asegurar que el producto sea de la máxima calidad (ej. Codificación estándares, TDD, cobertura de prueba, índice de mantenibilidad, principios de           diseño, etc.)
+    • Requerimientos No Funcionales: características que podrían no agregar valor comercial pero sin el cual su Producto no puede moverse (por ejemplo, Disponibilidad,     rendimiento, mantenibilidad, seguridad, escalabilidad, etc.).
+  El DoD siempre está en el nivel de Producto
+    • Las historias de usuario deben cumplir con el DoD del Producto
+    • Lo mismo para las tareas
+    • Un DoD por proyecto
+
+
