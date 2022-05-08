@@ -65,7 +65,23 @@ El sistema de administración de turnos es una herramienta que permite el regist
 - El **paciente** deberá realizar tanto la carga de sus datos como la adquisición de sus turnos y podrá consultar los turnos . Se autorepresenta.
 
 ### 3. Needs
+ 
+- **Sacar turnos.** *Prioridad alta*, la obtención de turnos de manera presencial es lenta e ineficiente. La solución actual implica que los pacientes deben ir de manera presencial. \
+&#8195;Esta nueva solución implica que los pacientes tienen una forma de obtener turnos de manera on-line para ahorrar tiempos y tener una mayor comodidad.
+- **Creación de cuentas del personal.** *Prioridad alta*, el registro del personal de forma escrita es improductivo. En la solución actual (**se asume**) se registra el personal médico a través de carpetas y de manera física. \
+  &#8195;Nuestra solución es crear cuentas en nuestro sistema a todo el personal, y asignado a las secretarias los médicos con los que trabaja.
+- **Administrar cuentas del personal.** (**se asume**) *Prioridad alta*, gestionar información del personal mediante documentación física no es eficiente. La solución actual es registrar la información a través de carpetas y papeles difíciles de organizar. \
+  &#8195;La posible solución sería registrar todo en un sistema que organice la información automáticamente y facilite la búsqueda.
+- **Sacar turno.** *Prioridad alta*, el sistema actual (**se asume**) se realiza mediante la asistencia física a la institución o por un llamado telefónico.  \
+&#8195;Nuestra solución implica añadir a la solución existente (ya que estos métodos se van a poder seguir utilizando dada la capacidad de la secretaría para poder crear cuentas y asignar turnos) la capacidad de hacerlo de forma on-line realizado por el paciente permitiéndole buscar tanto por especialidad, obra social y horario.
+- **Visualizar turnos**. *Prioridad media*, tener que preguntar información sobre los turnos es ineficaz. La solución actual es una consulta personal a la secretaria. \
+&#8195;Nosotros damos la opción al paciente para que visualice por su cuenta la información de los turnos de manera virtual.
+- **Cancelar turnos**. *Prioridad media*, En la actualidad (**se asume**) la cancelación de turno se hace mediante la comunicación(de forma presencial o por llamado). También la secretaria tiene que avisar a los pacientes manualmente si el médico tiene una urgencia. \
+&#8195;Nosotros le damos la posibilidad al paciente de poder cancelarlo on-line, permitiendo que el  sistema haga disponible el turno recién recién liberado. Y también les avisa automáticamente (por el medio de preferencia) a los pacientes si sus turnos fueron modificados o reasignados por la secretaría.
+- **Administrar turnos**. *Prioridad media*, dado que en la actualidad (**se asume**) el método de organización es mediante carpetas, nuestro sistema propone una organización digital, que aparte de ser más seguro y ordenado, permite cualquier tipo de modificación sin perjudicar a la prolijidad.
 
+
+<<<<<<< HEAD
 - **Sacar turnos.** Prioridad alta, la obtención de turnos de manera presencial es lenta e ineficiente. La solución actual es que los pacientes deben ir de manera presencial. La posible solución sería que los pacientes desearían tener una forma de obtener turnos de manera on-line para ahorrar tiempos y comodidad.
 - **Creación de cuentas del personal.** Prioridad alta, el registro del personal de forma escrita es improductivo. En la solución actual (**SE ASUME**) se registra el personal médico a través de carpetas y de manera física. 
   La posible solución sería crear cuentas de todo el personal, y asignándoles su respectiva secretaria a los médicos.
@@ -77,12 +93,21 @@ El sistema de administración de turnos es una herramienta que permite el regist
 - **Visualizar turnos**. Prioridad media, tener que preguntar información sobre los turnos es ineficaz. La solución actual es que hay que consultarle personalmente a la secretaria de manera verbal. La posible solución sería darle una opción al paciente para que visualice por su cuenta la información de los turnos de manera virtual.
 - **Cancelar turnos**. Prioridad media
 - Administrar turnos. Prioridad media
+=======
+>>>>>>> 1884adcf1c721a7bb5021d62d59297c8925daa7b
 
 ### 4. Product
 
+<<<<<<< HEAD
 - Login: Pacientes solo deberán ingresar su dni, secretarias y medicos deberán proporcionar una identificación y contraseña validas para ingresar al sistema.
 - Registrar: Si el paciente no se encuentra registrado deberá hacerlo proporcionando sus datos personales, tales ...
 - Ver calendario:
+=======
+- Login: Facil acceso para pacientes, medicos y secretarias proviendo una mayor accesibilidad
+- Administracion: Provee a las instituciones opciones para una mayor eficiacia en sus responsabilidades
+- Ver calendario: Da una imagen visual, tanto a los pacientes como a los medicos y las secretarias que es amigable con ellos.
+- Reservar Turno: Permite reservar turno teniendo en cuenta la disponibilidad de los medicos y la preferencia de los pacientes.
+>>>>>>> 1884adcf1c721a7bb5021d62d59297c8925daa7b
 
 ### 5. Business goals
 
@@ -90,9 +115,13 @@ Este proyecto generara un nuevo sistema de reservación de turnos de manera virt
 
 El sistema de turnos actual carece de eficiencia a la hora de obtener turnos rápidamente. El sistema actual es de manera presencial o consultando mediante llamadas telefónicas, las cuales son obsoletas porque propagan errores y confusiones . El nuevo sistema permitirá obtenerlos a través de Internet.
 
+<<<<<<< HEAD
 El nuevo sistema llevara a las instituciones correspondientes a mejor organización en los sistemas de registro de pacientes, medicos y secretarias haciendo mas eficientes las funciones administrativas. brindando a los pacientes una mejor comodidad a la hora de tener que reservar un turno evitando llamadas ocupadas o filas innecesarias para la obtención del mismo.
 
 ## Definition of DONE
+=======
+El nuevo sistema llevara a las instituciones correspondientes a mejor organizacion en los sistemas de registro de pacientes, medicos y secretarias haciendo mas eficientes las funciones administrativas. brindando a los pacientes una mejor comodidad a la hora de tener que reservar un turno evitando llamadas ocupadas o filas innecesarias para la obtencion del mismo, y ganando por lo tanto pacientes que buscan facilidad y sencillez en el sistema.
+>>>>>>> 1884adcf1c721a7bb5021d62d59297c8925daa7b
 
 El equipo tiene en cuenta los siguientes puntos para evaluar cuándo se ha completado el trabajo sobre el incremento de producto.
 
