@@ -10,28 +10,33 @@ Este proyecto provee una solucion a una problematica planteada por Turno Facil, 
 
 ## Indice 
 
-  - Backlog
-  - User Story Mapping
-  -
-  -
+  - [Backlog](#backlog)
+  - [User Story Mapping](#user-story-mapping)
+  - [Vision](#vision)
+  - [Criterio de DONE](#criterio-de-done)
+  - [Especificación de casos de usos](#especificación-de-casos-de-usos)
 
 ## Backlog
+
 
 <a href="https://felipe123.atlassian.net/jira/software/projects/TPMT/boards/3/backlog">
   <img width="720" src="https://www.soldevelo.com/blog/wp-content/uploads/Scrum-board-scaled.jpeg"
        alt="Bklog">
 </a> 
 
->Click en la imagen para acceder al jira
+_Para acceder al backlog haga click en la imagen que se encuentra a continuacion._
+
 
 ##  User Story Mapping
+
 
 <a href="https://miro.com/welcomeonboard/bWNHbHFPWmRTUTF1clBsWEFiNEV2T3VPelpRbVNjcmY3ZXI0WlpSNndLaTRtVFN0ODFrZXlzUkVxc0FyUDA2ZXwzMDc0NDU3MzY2NTM4MTc3MjY4?share_link_id=481042348205">
   <img width="720" src="https://serving.photos.photobox.com/78001070b160c65cdb737690cce66484945398de95fb18ddd114a7ada2e17045da72a7a3.jpg"
        alt="USM">
 </a>
 
->Click en la imagen para acceder al miro 
+_Para acceder al User Story Mapping haga click en la imagen que se encuentra a continuacion._
+
 
 ## Vision
 ### 1. Vision Statement
@@ -99,3 +104,4 @@ Equipo Scrum, los miembros deben tener un entendimiento compartido de lo que med
     • Un DoD por proyecto
 
 
+## Especificación de casos de usos
