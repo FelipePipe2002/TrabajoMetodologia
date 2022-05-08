@@ -67,13 +67,6 @@ El sistema de administración de turnos es una herramienta que permite el regist
 - La **secretaria**
 - El **paciente**
 
-####  User summary
-
-- El **responsable de la institución medica** gestiona y representa a los usuarios de medicos y secretarias, además de asignar a cada secretaria el grupo de medicos con los que trabaja y que secretaria le corresponde a cada medico.
-- El **medico** es el encargado del listado de sus turnos venideros, el cual se autorepresenta. 
-- La **secretaria** será la encargada de ver pacientes  turnos y se representa a los medicos.
-- El **paciente** deberá realizar tanto la carga de sus datos como la adquisición de sus turnos y podrá consultar los turnos . Se autorepresenta.
-
 ### 3. Needs
 
 - **Sacar turnos.** *Prioridad alta*, la obtención de turnos de manera presencial es lenta e ineficiente. La solución actual implica que los pacientes deben ir de manera presencial. \
