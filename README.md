@@ -185,9 +185,9 @@ El caso de uso comienza cuando el Paciente quiere sacar un turno con determinado
 
 ### 6. Extension Points
 &#8195; El CU que extiende es Pedir datos personales.
-## 7. Finalization of the use case
+### 7. Finalization of the use case
 
-- Termina por que se registra el turno (13.).
+- Termina porque se registra el turno (13).
 - El paciente no quiere modificar el filtrado (4.3.2.2).
 - El paciente no quiere sacar un turno con un médico que no esté en una obra social o que tenga un diferencial con la obra social (10.3.2.2).
 - Cancela la acción.
