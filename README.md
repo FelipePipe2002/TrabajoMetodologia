@@ -1,4 +1,3 @@
-Esto es una prueba
 # TurnoFacil
 <!-- Responsable TURNOFACIL? [2.1] -->
 <!-- Representacion secretaria [2.2] -->
@@ -88,9 +87,10 @@ El paciente debera realizar tanto la carga de sus datos como la adquisicion de s
 
 ### 4. Product
 
-- Login: Pacientes solo deberan ingresar su dni, secretarias y medicos deberan proporcionar una identificacion y contraseña validas para ingresar al sistema.
-- Registrar: Si el paciente no se encuentra registrado debera hacerlo proporcionando sus datos personales, tales ...
-- Ver calendario:
+- Login: Facil acceso para pacientes, medicos y secretarias proviendo una mayor accesibilidad
+- Administracion: Provee a las instituciones opciones para una mayor eficiacia en sus responsabilidades
+- Ver calendario: Da una imagen visual, tanto a los pacientes como a los medicos y las secretarias que es amigable con ellos.
+- Reservar Turno: Permite reservar turno teniendo en cuenta la disponibilidad de los medicos y la preferencia de los pacientes.
 
 
 ### 5. Business goals
