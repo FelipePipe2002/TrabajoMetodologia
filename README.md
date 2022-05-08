@@ -6,7 +6,6 @@
 
 Este proyecto provee una solución a una problemática planteada por TurnoFacil, la cuál permitirá sacar turnos para médicos mediante una aplicación web. Esta misma se comercializara a distintas instituciones médicas como clínicas y consultorios por lo que deberá ser fácilmente instanciable para cada una de ellas.
 
-JIRA: https://felipe123.atlassian.net/jira/software/projects/TPMT/boards/3/backlog
 ![TurnoFacil](https://p0.piqsels.com/preview/460/190/356/medical-senior-health-doctor.jpg)
 
 ## Indice
