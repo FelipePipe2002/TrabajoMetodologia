@@ -99,7 +99,7 @@ Este proyecto generara un nuevo sistema de reservacion de turnos de manera virtu
 
 El sistema de turnos actual carece de eficiencia a la hora de obtener turnos rápidamente. El sistema actual es de manera presencial o consultando mediante llamadas telefonicas, las cuales son obsoletas porque propagan errores y confusiones . El nuevo sistema permitira obtenerlos a través de Internet. 
 
-El nuevo sistema llevara a las instituciones correspondientes a mejor organizacion en los sistemas de registro de pacientes, medicos y secretarias haciendo mas eficientes las funciones administrativas. brindando a los pacientes una mejor comodidad a la hora de tener que reservar un turno evitando llamadas ocupadas o filas innecesarias para la obtencion del mismo.
+El nuevo sistema llevara a las instituciones correspondientes a mejor organizacion en los sistemas de registro de pacientes, medicos y secretarias haciendo mas eficientes las funciones administrativas. brindando a los pacientes una mejor comodidad a la hora de tener que reservar un turno evitando llamadas ocupadas o filas innecesarias para la obtencion del mismo, y ganando por lo tanto pacientes que buscan facilidad y sencillez en el sistema.
 
 ## Criterio de DONE
  
