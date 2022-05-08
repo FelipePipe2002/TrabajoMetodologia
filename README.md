@@ -56,16 +56,11 @@ El sistema de administración de turnos es una herramienta que permite el regist
 - El **paciente** representa a los pacientes y su responsabilidad es asegurar que el sistema satisfaga las necesidades de los pacientes.
  
 ####  User summary
- 
+- El **responsable IT** representa a la dirección de IT de la empresa TurnoFacil , este tiene la responsabilidad de promover los requerimientos del proyecto y seguimiento del mismo. 
 - El **responsable de la institución médica** gestiona y representa a los usuarios de médicos y secretarias, además de asignar a cada secretaría el grupo de médicos con los que trabaja y que secretaría le corresponde a cada médico.
 - El **médico** es el encargado del listado de sus turnos venideros, el cual se autorepresenta.
 - La **secretaria** será la encargada de ver pacientes los turnos y representar a los médicos.
 - El **paciente** deberá realizar tanto la carga de sus datos como la adquisición de sus turnos y podrá consultar los turnos. Se autorepresenta.
-- El **responsable IT** representa a la dirección de IT de la empresa TurnoFacil , este tiene la responsabilidad de promover los requerimientos del proyecto y seguimiento del mismo. 
-- El **responsable de la institución medica** 
-- El **medico** 
-- La **secretaria**
-- El **paciente**
 
 ### 3. Needs
 
@@ -82,23 +77,8 @@ El sistema de administración de turnos es una herramienta que permite el regist
 - **Cancelar turnos**. *Prioridad media*, En la actualidad (**se asume**) la cancelación de turno se hace mediante la comunicación(de forma presencial o por llamado). También la secretaria tiene que avisar a los pacientes manualmente si el médico tiene una urgencia. \
 &#8195;Nosotros le damos la posibilidad al paciente de poder cancelarlo on-line, permitiendo que el  sistema haga disponible el turno recién recién liberado. Y también les avisa automáticamente (por el medio de preferencia) a los pacientes si sus turnos fueron modificados o reasignados por la secretaría.
 - **Administrar turnos**. *Prioridad media*, dado que en la actualidad (**se asume**) el método de organización es mediante carpetas, nuestro sistema propone una organización digital, que aparte de ser más seguro y ordenado, permite cualquier tipo de modificación sin perjudicar a la prolijidad.
-- **Sacar turnos.** Prioridad alta, la obtención de turnos de manera presencial es lenta e ineficiente. La solución actual es que los pacientes deben ir de manera presencial. La posible solución sería que los pacientes desearían tener una forma de obtener turnos de manera on-line para ahorrar tiempos y comodidad.
-- **Creación de cuentas del personal.** Prioridad alta, el registro del personal de forma escrita es improductivo. En la solución actual (**SE ASUME**) se registra el personal médico a través de carpetas y de manera física. 
-  La posible solución sería crear cuentas de todo el personal, y asignándoles su respectiva secretaria a los médicos.
-- **Administrar cuentas del personal.** (**SE ASUME**) Prioridad alta, gestionar información del personal mediante documentación física no es eficiente. La solución actual es registrar la información a través de carpetas y papeles difíciles de organizar. 
-  La posible solución sería registrar todo en un sistema que organice la información automáticamente y facilite la búsqueda.
-- **LOGIN.** Prioridad alta, el registro de pacientes
-- **Sacar turno.**
-- **Asignar cronograma.**
-- **Visualizar turnos**. Prioridad media, tener que preguntar información sobre los turnos es ineficaz. La solución actual es que hay que consultarle personalmente a la secretaria de manera verbal. La posible solución sería darle una opción al paciente para que visualice por su cuenta la información de los turnos de manera virtual.
-- **Cancelar turnos**. Prioridad media
-- Administrar turnos. Prioridad media
 
 ### 4. Product
-- Login: Pacientes solo deberán ingresar su dni, secretarias y medicos deberán proporcionar una identificación y contraseña validas para ingresar al sistema.
-- Registrar: Si el paciente no se encuentra registrado deberá hacerlo proporcionando sus datos personales, tales ...
-- Ver calendario:
-=======
 - Login: Facil acceso para pacientes, medicos y secretarias proviendo una mayor accesibilidad
 - Administracion: Provee a las instituciones opciones para una mayor eficiacia en sus responsabilidades
 - Ver calendario: Da una imagen visual, tanto a los pacientes como a los medicos y las secretarias que es amigable con ellos.
