@@ -4,10 +4,34 @@
 <!-- -->
 Este proyecto provee una solucion a una problematica planteada por Turno Facil, la cuál permitira sacar turnos para médicos mediante una aplicación web. Esta misma se comercializara a distintas instituciones médicas como clínicas y consultorios por lo que deberá ser fácilmente instanciable para cada una de ellas.
 
+
+![TurnoFacil](https://p0.piqsels.com/preview/460/190/356/medical-senior-health-doctor.jpg)
+
+
+## Indice 
+
+  - Backlog
+  - User Story Mapping
+  -
+  -
+
+## Backlog
+
+<a href="https://felipe123.atlassian.net/jira/software/projects/TPMT/boards/3/backlog">
+  <img width="720" src="https://www.soldevelo.com/blog/wp-content/uploads/Scrum-board-scaled.jpeg"
+       alt="Bklog">
+</a> 
+
+>Click en la imagen para acceder al jira
+
+##  User Story Mapping
+
 <a href="https://miro.com/welcomeonboard/bWNHbHFPWmRTUTF1clBsWEFiNEV2T3VPelpRbVNjcmY3ZXI0WlpSNndLaTRtVFN0ODFrZXlzUkVxc0FyUDA2ZXwzMDc0NDU3MzY2NTM4MTc3MjY4?share_link_id=481042348205">
-  <img width="720" src="https://p0.piqsels.com/preview/460/190/356/medical-senior-health-doctor.jpg"
-       alt="Turno facil">
+  <img width="720" src="https://serving.photos.photobox.com/78001070b160c65cdb737690cce66484945398de95fb18ddd114a7ada2e17045da72a7a3.jpg"
+       alt="USM">
 </a>
+
+>Click en la imagen para acceder al miro 
 
 ## Vision
 ### 1. Vision Statement
