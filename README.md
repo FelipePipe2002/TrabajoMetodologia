@@ -101,3 +101,6 @@ El equipo tuve en cuenta los siguientes puntos para evaluar cuándo se ha comple
 
 
 ## Especificación de casos de usos
+
+![image](https://user-images.githubusercontent.com/104372420/167311773-c0303663-b46d-44d3-957d-87102d87cfe5.png)
+
