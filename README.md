@@ -68,20 +68,22 @@ La secretaria sera la encargada de administrar los turnos, se representa asi mis
 El paciente debera realizar tanto la carga de sus datos como la adquisicion de sus turnos. Se autorepresenta.
 
 ### 3. Needs
+ 
+- **Sacar turnos.** *Prioridad alta*, la obtención de turnos de manera presencial es lenta e ineficiente. La solución actual implica que los pacientes deben ir de manera presencial. \
+&#8195;Esta nueva solución implica que los pacientes tienen una forma de obtener turnos de manera on-line para ahorrar tiempos y tener una mayor comodidad.
+- **Creación de cuentas del personal.** *Prioridad alta*, el registro del personal de forma escrita es improductivo. En la solución actual (**se asume**) se registra el personal médico a través de carpetas y de manera física. \
+  &#8195;Nuestra solución es crear cuentas en nuestro sistema a todo el personal, y asignado a las secretarias los médicos con los que trabaja.
+- **Administrar cuentas del personal.** (**se asume**) *Prioridad alta*, gestionar información del personal mediante documentación física no es eficiente. La solución actual es registrar la información a través de carpetas y papeles difíciles de organizar. \
+  &#8195;La posible solución sería registrar todo en un sistema que organice la información automáticamente y facilite la búsqueda.
+- **Sacar turno.** *Prioridad alta*, el sistema actual (**se asume**) se realiza mediante la asistencia física a la institución o por un llamado telefónico.  \
+&#8195;Nuestra solución implica añadir a la solución existente (ya que estos métodos se van a poder seguir utilizando dada la capacidad de la secretaría para poder crear cuentas y asignar turnos) la capacidad de hacerlo de forma on-line realizado por el paciente permitiéndole buscar tanto por especialidad, obra social y horario.
+- **Visualizar turnos**. *Prioridad media*, tener que preguntar información sobre los turnos es ineficaz. La solución actual es una consulta personal a la secretaria. \
+&#8195;Nosotros damos la opción al paciente para que visualice por su cuenta la información de los turnos de manera virtual.
+- **Cancelar turnos**. *Prioridad media*, En la actualidad (**se asume**) la cancelación de turno se hace mediante la comunicación(de forma presencial o por llamado). También la secretaria tiene que avisar a los pacientes manualmente si el médico tiene una urgencia. \
+&#8195;Nosotros le damos la posibilidad al paciente de poder cancelarlo on-line, permitiendo que el  sistema haga disponible el turno recién recién liberado. Y también les avisa automáticamente (por el medio de preferencia) a los pacientes si sus turnos fueron modificados o reasignados por la secretaría.
+- **Administrar turnos**. *Prioridad media*, dado que en la actualidad (**se asume**) el método de organización es mediante carpetas, nuestro sistema propone una organización digital, que aparte de ser más seguro y ordenado, permite cualquier tipo de modificación sin perjudicar a la prolijidad.
 
-- **Sacar turnos.** Prioridad alta, la obtención de turnos de manera presencial es lenta e ineficiente. La solucion actual es que los pacientes deben ir de manera presencial. \
-  La posible solución sería que los pacientes desearían tener una forma de obtener turnos de manera on-line para ahorrar tiempos y comodidad.
-- **Creación de cuentas del personal.** Prioridad alta, el registro del personal de forma escrita es improductivo. En la solución actual (**SE ASUME**) se registra el personal médico a través de carpetas y de manera física. \
-  La posibible solución sería crear cuentas de todo el personal, y asignándoles su respectiva secretaria a los médicos.
-- **Administrar cuentas del personal.** (**SE ASUME**) Prioridad alta, gestionar información del personal mediante documentación física no es eficiente. La solución actual es registrar la información a través de carpetas y papeles difíciles de organizar. \
-  La posible solución sería registrar todo en un sistema que organice la información automáticamente y facilite la búsqueda.
-- **LOGIN.** Prioridad alta, el registro de pacientes 
-- **Sacar turno.**
-- **Asignar cronograma.**
-- **Visualizar turnos**. Prioridad media, tener que preguntar información sobre los turnos es ineficaz. La solución actual es que hay que consultarle personalmente a la secretaria de manera verbal. \
-   La posible solución sería darle una opción al paciente para que visualice por su cuenta la información de los turnos de manera virtual. 
-- **Cancelar turnos**. Prioridad media
-- Administrar turnos. Prioridad media
+
 
 
 
