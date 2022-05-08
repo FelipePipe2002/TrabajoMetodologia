@@ -67,13 +67,6 @@ A diferencia del sistema de obtencion de turno existente, nuestro producto propo
 - La **secretaria** será la encargada de ver pacientes los turnos y representar a los médicos.
 - El **paciente** deberá realizar tanto la carga de sus datos como la adquisición de sus turnos y podrá consultar los turnos. Se autorepresenta.
 
-#### User summary
-
-El responsable de la institucion medica gestiona y representa a los usuarios de medicos y secretarias, ademas de asignar a cada secretaria el grupo de medicos con los que trabaja.
-El medico es el encargado del listado de sus turnos venideros, el cual se autorepresenta. \
-La secretaria sera la encargada de administrar los turnos, se representa asi misma. <!-- Representacion secretaria --> \
-El paciente debera realizar tanto la carga de sus datos como la adquisicion de sus turnos. Se autorepresenta.
-
 ### 3. Needs
 
 - **Sacar turnos.** Prioridad alta, la obtención de turnos de manera presencial es lenta e ineficiente. La solucion actual es que los pacientes deben ir de manera presencial. \
