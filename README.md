@@ -110,6 +110,8 @@ El equipo tiene en cuenta los siguientes puntos para evaluar cuándo se ha compl
 
 ### **<Use-Case Reservar Turno\>**
 
+![UC1](https://i.ibb.co/qrtjLfV/UC-RTpng.png)
+
 ### 1. Brief Description
 
 &#8195; El paciente debe poder seleccionar un turno que haya disponible.
