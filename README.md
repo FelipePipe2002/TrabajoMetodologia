@@ -110,7 +110,7 @@ El equipo tiene en cuenta los siguientes puntos para evaluar cuándo se ha compl
 
 ### **<Use-Case Reservar Turno\>**
 
-![UC1](https://i.ibb.co/qrtjLfV/UC-RTpng.png)
+![image](https://user-images.githubusercontent.com/64708520/167685430-13ff9253-a649-446d-9417-4cbfec8da51b.png)
 
 ### 1. Brief Description
 
