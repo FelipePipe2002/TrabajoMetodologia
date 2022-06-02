@@ -1,7 +1,7 @@
 23/5/2022
 
 # Temas
-	Los temas a tratar en esta reunión son el **diagrama de clases** y la **división de tareas**.
+Los temas a tratar en esta reunión son el **diagrama de clases** y la **división de tareas**.
 
 ## Diagrama de Clases
 	Decidimos crear las siguientes clases:	
