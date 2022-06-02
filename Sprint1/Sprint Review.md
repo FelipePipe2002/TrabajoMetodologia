@@ -1,7 +1,7 @@
 23/5/2022
 
 # Temas
-	Los temas a tratar en esta reunión son el diagrama de clases y la división de tareas.
+	Los temas a tratar en esta reunión son el **diagrama de clases** y la **división de tareas**.
 
 ## Diagrama de Clases
 	Decidimos crear las siguientes clases:	
@@ -14,8 +14,7 @@
  - Filtro
  - Clínica
  
-	Se habló de que usuario es una clase abstracta con el método abstracto Visualizar_Turno.
-	
+	Se habló de que usuario es una clase abstracta con el método abstracto Visualizar_Turno.	\
 	Se contempló la idea de crear la clase Personal, de la que heredarán Secretaria y Médico, para poder abstraer la funcionalidad de visualizar turno, ya que ambos deben poder filtrarlos por turno (manana, tarde) y rango de días. Pero se desechó la idea ya que no consideramos que se copiara tanto código.
 
 ## To do’s
