@@ -11,6 +11,10 @@ public class Main {
 		ReadSecretaria secretarias = new ReadSecretaria();
 		ReadTurnos turnos = new ReadTurnos();
 		
+		//Codigo
+		System.out.println("Secretaria:");
+		System.out.println(clinica.getSecretaria());
+		
 		//Guardado de datos
 		WriteCSV archivoPacientes = new WritePacientes(clinica);
 		archivoPacientes.generarArchivoCSV(pacientes.getCsvFile());
