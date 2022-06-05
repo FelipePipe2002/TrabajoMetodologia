@@ -11,6 +11,7 @@ public class Main {
 		ReadSecretaria secretarias = new ReadSecretaria();
 		ReadTurnos turnos = new ReadTurnos();
 		
+		
 		//Guardado de datos
 		WriteCSV archivoPacientes = new WritePacientes(clinica);
 		archivoPacientes.generarArchivoCSV(pacientes.getCsvFile());
