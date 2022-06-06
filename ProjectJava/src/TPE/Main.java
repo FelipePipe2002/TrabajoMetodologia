@@ -4,16 +4,13 @@ package TPE;
 public class Main {
 
 	public static void main(String[] args) {
-		
+		 
+    Clinica clinica = new Clinica();
 		// Inicializacion de archivos
 		ReadPacientes pacientes = new ReadPacientes();
 		ReadMedico medicos = new ReadMedico();
 		ReadSecretaria secretarias = new ReadSecretaria();
 		ReadTurnos turnos = new ReadTurnos();
-		
-		//Codigo
-		System.out.println("Secretaria:");
-		System.out.println(clinica.getSecretaria());
 		
 		//Guardado de datos
 		WriteCSV archivoPacientes = new WritePacientes(clinica);
