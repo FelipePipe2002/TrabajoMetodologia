@@ -50,11 +50,21 @@ public class Medico extends Usuario{
 		return aux;
 	}
 
+	public ArrayList<String> getEspecialidades() {
+		ArrayList<String> aux = new ArrayList<>(this.especialidades);
+		return aux;
+	}
+	
+	public ArrayList<String> getObrasSociales() {
+		ArrayList<String> aux = new ArrayList<>(this.obrasSociales);
+		return aux;
+	}
+	
 	public void addTurno(Turno turno) {
 		this.turnos.add(turno);
 	}
 
-	private String devolverEspecialidades() {
+	private String devolverEspecialidades() { 
 		String aux = new String();
 		for (int i = 0; i < this.especialidades.size(); i++) {
 			if (i == this.especialidades.size() - 1)
@@ -75,6 +85,8 @@ public class Medico extends Usuario{
 		}
 		return aux;
 	}
+	
+	
 	
 	@Override
 	public String toString() {
