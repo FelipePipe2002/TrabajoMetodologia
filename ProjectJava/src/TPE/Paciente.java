@@ -1,3 +1,4 @@
+package TPE;
 import java.util.ArrayList;
 
 public class Paciente extends Usuario {
@@ -45,6 +46,11 @@ public class Paciente extends Usuario {
 		return aux;
 	}
 
+	public void addTurno(Turno turno) {
+		this.turnos.add(turno);
+	}
+	
+	
 	@Override
 	public String toString() {
 		return  super.toString() + "," + direccion.toString() + "," + telefono + "," + email + "," + obraSocial + "," + nroAfiliado;

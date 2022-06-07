@@ -14,6 +14,7 @@ public class ReadTurnos extends ReadCSV{
 		if (items[0].equals("false")) {
 			Paciente paciente = clinica.getPaciente(items[2]);
 			turno.asignarPaciente(paciente);
+			paciente.addTurno(turno);
 		}
 		medico.addTurno(turno);
 	}
