@@ -61,10 +61,17 @@ public class Login () {
     }
 
     private void loguearPaciente(Usuario u, Clinica c) {
-        
-        	Paciente p = clinica.getPaciente(dni);
+
+            int dni;
+            Scanner read = new Scanner(System.in);
+            
+            System.out.print("Por favor, ingrese su DNI: ");
+		    dni = read.nextInt();
+
+        	Paciente p = c.getPaciente(dni);
 			
-			if ( p != null ) { //Parte de verificar si existe paciente 
+            //Parte de verificar si existe paciente
+			if ( p != null ) {  
 				u = new Paciente(p); 
 			} else {
 				System.out.println("Usted no se encuentra en el sistema.");
@@ -80,7 +87,6 @@ public class Login () {
     public static void loguear(Usuario u, Clinica c){
         
         int option;
-		String dni; 
 		Scanner read = new Scanner(System.in);
 
 		System.out.print("Por favor, ingrese en que forma quiere ingresar al sistema: ");
@@ -93,10 +99,12 @@ public class Login () {
 
         if( option == "0" ){ 
 
-			this.logearPaciente(usuario, clinica);
+			this.loguearPaciente(usuario, clinica);
 
 		} else {
+
 			//Parte de los medicos y secretarias
+
 		}
     }
 
