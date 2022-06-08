@@ -5,8 +5,6 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Usuario u;
-
 		Clinica clinica = new Clinica();
 
 		// Inicializacion de archivos
@@ -29,9 +27,6 @@ public class Main {
 		System.out.println("Turnos:");
 		System.out.println(clinica.getTurnos());
 		
-		// Login
-		Login.loguear(usuario, clinica);
-
 		//Guardado de datos
 		WriteCSV archivoPacientes = new WritePacientes(clinica);
 		archivoPacientes.generarArchivoCSV(pacientes.getCsvFile());
