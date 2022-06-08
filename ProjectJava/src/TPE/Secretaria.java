@@ -1,8 +1,6 @@
 package TPE;
 import java.util.ArrayList;
 
-import Usuario;
-
 public class Secretaria extends Usuario {
 	private String nombreUsuario;
 	private String contrasenia;

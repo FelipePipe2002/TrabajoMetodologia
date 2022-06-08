@@ -75,4 +75,13 @@ public class Clinica {
 		return aux;
 	}
 	
+	public ArrayList<Medico> buscarMedicos(FiltroDeBusqueda filtro) {
+		ArrayList<Medico> aux = new ArrayList<>();
+		for (Medico m:medicos) {
+			if(filtro.filtrar(m))
+				aux.add(m);
+		}
+		return aux;
+	}
+	
 }
