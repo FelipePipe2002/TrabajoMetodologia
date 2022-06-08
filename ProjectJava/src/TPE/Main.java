@@ -4,14 +4,20 @@ package TPE;
 public class Main {
 
 	public static void main(String[] args) {
-		 
-    Clinica clinica = new Clinica();
+		
+		Usuario usuario;
+
+    	Clinica clinica = new Clinica();
+
 		// Inicializacion de archivos
 		ReadPacientes pacientes = new ReadPacientes();
 		ReadMedico medicos = new ReadMedico();
 		ReadSecretaria secretarias = new ReadSecretaria();
 		ReadTurnos turnos = new ReadTurnos();
-		
+
+		// Logueo de usuario
+		Login.loguear(usuario, clinica);
+
 		//Guardado de datos
 		WriteCSV archivoPacientes = new WritePacientes(clinica);
 		archivoPacientes.generarArchivoCSV(pacientes.getCsvFile());
@@ -21,5 +27,6 @@ public class Main {
 		archivoSecretarias.generarArchivoCSV(secretarias.getCsvFile());
 		WriteCSV archivoTurnos = new WriteTurnos(clinica);
 		archivoTurnos.generarArchivoCSV(turnos.getCsvFile());
+
 	}
 }
