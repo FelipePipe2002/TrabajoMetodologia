@@ -5,7 +5,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		Usuario usuario;
+		Usuario usuario = null;
 
     	Clinica clinica = new Clinica();
 
@@ -14,9 +14,6 @@ public class Main {
 		ReadMedico medicos = new ReadMedico();
 		ReadSecretaria secretarias = new ReadSecretaria();
 		ReadTurnos turnos = new ReadTurnos();
-
-		// Logueo de usuario
-		Login.loguear(usuario, clinica);
 
 		pacientes.agregarClinica(clinica); //lee el archivo que guarda la info. de pacientes
 		medicos.agregarClinica(clinica); //lee el archivo que guarda la info. de medicos
@@ -32,6 +29,9 @@ public class Main {
 		System.out.println(clinica.getSecretaria());
 		System.out.println("Turnos:");
 		System.out.println(clinica.getTurnos());
+		
+		// Logueo de usuario
+		Login.loguear(usuario, clinica);
 		
 		//Guardado de datos
 		WriteCSV archivoPacientes = new WritePacientes(clinica);
