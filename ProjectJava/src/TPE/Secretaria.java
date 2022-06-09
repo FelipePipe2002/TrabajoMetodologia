@@ -52,7 +52,6 @@ public class Secretaria extends Usuario {
 		return aux;
 	}
 
-	
 	@Override
 	public String toString() {
 		return super.toString() + "," + nombreUsuario + "," + contrasenia + "," + devolverDniMedicos();

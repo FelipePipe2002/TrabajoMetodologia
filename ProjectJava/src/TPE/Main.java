@@ -4,14 +4,20 @@ package TPE;
 public class Main {
 
 	public static void main(String[] args) {
+		
+		Usuario usuario;
 
-		Clinica clinica = new Clinica();
+    	Clinica clinica = new Clinica();
 
 		// Inicializacion de archivos
 		ReadPacientes pacientes = new ReadPacientes();
 		ReadMedico medicos = new ReadMedico();
 		ReadSecretaria secretarias = new ReadSecretaria();
 		ReadTurnos turnos = new ReadTurnos();
+
+		// Logueo de usuario
+		Login.loguear(usuario, clinica);
+
 		pacientes.agregarClinica(clinica); //lee el archivo que guarda la info. de pacientes
 		medicos.agregarClinica(clinica); //lee el archivo que guarda la info. de medicos
 		secretarias.agregarClinica(clinica); //lee el archivo que guarda la info. de secretarias
