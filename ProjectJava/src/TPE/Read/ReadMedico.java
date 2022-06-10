@@ -1,4 +1,6 @@
-package TPE;
+package TPE.Read;
+
+import TPE.*;
 
 public class ReadMedico extends ReadCSV{
 	public ReadMedico() {

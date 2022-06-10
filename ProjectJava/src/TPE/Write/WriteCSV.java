@@ -1,8 +1,10 @@
-package TPE;
+package TPE.Write;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import TPE.*;
 
 public abstract class WriteCSV {
 

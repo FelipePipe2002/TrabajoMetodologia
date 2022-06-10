@@ -1,4 +1,6 @@
-package TPE;
+package TPE.Read;
+
+import TPE.*;
 
 public class ReadSecretaria extends ReadCSV{
 	public ReadSecretaria() {
