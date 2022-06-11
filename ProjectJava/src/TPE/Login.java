@@ -113,7 +113,7 @@ public class Login {
         return dp;
     }
 
-    private static void loguearPaciente(Usuario u, Clinica c) {
+    public static void loguearPaciente(Usuario u, Clinica c) {
 
     		System.out.println('\n' + " Ha ingresado como paciente.");
     	

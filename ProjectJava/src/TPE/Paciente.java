@@ -54,7 +54,34 @@ public class Paciente extends Usuario {
 	
 	public ArrayList<Turno> DevolverTurnosPorFiltro(Clinica c) {
 		
-		ArrayList<Medico> MedicosFiltrados=c.FiltrarMedicos();
+		ArrayList<Medico> MedicosFiltrados= c.FiltrarMedicos();
+		
+		if (MedicosFiltrados.size()<0) {
+			System.out.println("No hay medicos que cumplan esa condicion");
+		} else {
+			System.out.println(MedicosFiltrados);
+			
+			Scanner read = new Scanner(System.in);  
+			String DNI;
+			System.out.println("Cargue el DNI del Medico con el que quiera sacar turno");
+			DNI = read.nextLine();
+			
+			int dni = Integer.parseInt(DNI);
+			Medico Seleccionado = null;
+			for(Medico m: MedicosFiltrados) {
+				if (m.dni.equals(dni))
+					Seleccionado = m;
+			}
+			
+			return c.DevolverTurnosMedico(Seleccionado);
+		}
+			
+		return null;		
+	}
+	
+	public ArrayList<Turno> DevolverTurnosPorFiltro(Clinica c, ArrayList<Medico> medicos) {	//Con algunos medicos predefinidos
+		
+		ArrayList<Medico> MedicosFiltrados= c.FiltrarMedicos(medicos);
 		
 		if (MedicosFiltrados.size()<0) {
 			System.out.println("No hay medicos que cumplan esa condicion");
