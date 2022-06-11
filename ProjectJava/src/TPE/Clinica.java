@@ -155,9 +155,9 @@ public class Clinica {
 				CriterioTurnos R = new CriterioTurnosRango(FechaIni,FechaFinal);
 				CriterioTurnos H;
 				if (horario == "t")
-					H = new CriterioTurnosNot(new CriterioTurnosMañana());
+					H = new CriterioTurnosNot(new CriterioTurnosManiana());
 				else
-					H = new CriterioTurnosMañana();
+					H = new CriterioTurnosManiana();
 				
 				CriterioGeneral = new CriterioTurnosAnd(R,H);
 			} else
