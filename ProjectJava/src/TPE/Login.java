@@ -34,7 +34,7 @@ public class Login {
 		return false;
 	}
 	
-	private static boolean verificarCampoNotificacion(String t, String e) {
+	public static boolean verificarCampoNotificacion(String t, String e) {
 		
 		Pattern patternEmail = Pattern.compile("[a-z0-9]+@[a-z]+\\.[a-z]{2,3}", Pattern.CASE_INSENSITIVE);
 		Matcher matcherEmail = patternEmail.matcher(e);

@@ -28,6 +28,22 @@ public class Direccion {
 	public String getDepto() {
 		return depto;
 	}
+	
+	public void setCalle(String calle) {
+		this.calle = calle;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	public void setPiso(int piso) {
+		this.piso = piso;
+	}
+
+	public void setDepto(String depto) {
+		this.depto = depto;
+	}
 
 	@Override
 	public String toString() {
