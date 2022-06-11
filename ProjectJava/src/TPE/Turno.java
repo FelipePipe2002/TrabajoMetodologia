@@ -1,5 +1,7 @@
 package TPE;
+
 import java.time.LocalDateTime;
+import TPE.CriterioTurnos.*;
 
 public class Turno {
 	private boolean disponible;
@@ -37,7 +39,10 @@ public class Turno {
 	public LocalDateTime getFecha() {
 		return fecha;
 	}
-
+	
+	public boolean cumple(CriterioTurnos f) {
+		return f.cumple(this.getFecha());
+	}
 	@Override
 	public String toString() {
 		if (disponible == true)

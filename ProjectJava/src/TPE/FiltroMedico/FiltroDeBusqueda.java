@@ -1,4 +1,6 @@
-package TPE;
+package TPE.FiltroMedico;
+
+import TPE.*;
 
 public abstract class FiltroDeBusqueda {
 
