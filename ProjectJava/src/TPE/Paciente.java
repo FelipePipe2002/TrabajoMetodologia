@@ -1,5 +1,7 @@
 package TPE;
+
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Paciente extends Usuario {
 	private Direccion direccion;
@@ -50,6 +52,32 @@ public class Paciente extends Usuario {
 		this.turnos.add(turno);
 	}
 	
+	public ArrayList<Turno> DevolverTurnosPorFiltro(Clinica c) {
+		
+		ArrayList<Medico> MedicosFiltrados=c.FiltrarMedicos();
+		
+		if (MedicosFiltrados.size()<0) {
+			System.out.println("No hay medicos que cumplan esa condicion");
+		} else {
+			System.out.println(MedicosFiltrados);
+			
+			Scanner read = new Scanner(System.in);  
+			String DNI;
+			System.out.println("Cargue el DNI del Medico con el que quiera sacar turno");
+			DNI = read.nextLine();
+			
+			int dni = Integer.parseInt(DNI);
+			Medico Seleccionado = null;
+			for(Medico m: MedicosFiltrados) {
+				if (m.dni.equals(dni))
+					Seleccionado = m;
+			}
+			
+			return c.DevolverTurnosMedico(Seleccionado);
+		}
+			
+		return null;		
+	}
 	
 	@Override
 	public String toString() {
