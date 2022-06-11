@@ -1,9 +1,54 @@
 package TPE;
+
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Login {
+	
+	private static boolean verificarExistencia(Clinica c, String dni, String nroAfiliado) {	
+		
+		if(c.getPaciente(dni) != null) {
+			return true;
+		}
+		
+		for(Paciente p: c.getPacientes()){
+			if(p.getNroAfiliado().equals(nroAfiliado)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	private static boolean verificarCampos(String [] dp) {
 
-    private static String[] getDatosPersonales(){
+		Pattern pattern = Pattern.compile("[\\s]");
+		
+		for( int i = 0 ; i < dp.length ; i++ ) {
+			Matcher matcher = pattern.matcher(dp[i]);
+			if( matcher.find() )
+				return true;
+		}
+		
+		return false;
+	}
+	
+	private static boolean verificarCampoNotificacion(String t, String e) {
+		
+		Pattern patternEmail = Pattern.compile("[a-z0-9]+@[a-z]+\\.[a-z]{2,3}", Pattern.CASE_INSENSITIVE);
+		Matcher matcherEmail = patternEmail.matcher(e);
+		
+		Pattern patternTelefono = Pattern.compile("/\\(?([0-9]{3})\\)?([ .-]?)([0-9]{3})\\2([0-9]{4})/");
+		Matcher matcherTelefono = patternTelefono.matcher(t);
+		
+		if(matcherEmail.find() || matcherTelefono.find())
+			return true;
+		
+		return false;
+	}
+	
+    private static String[] getDatosPersonales(Clinica c){
 
     /* 
         Datos que el usuario debera ingresar
@@ -62,6 +107,9 @@ public class Login {
         System.out.print(" >>> Por favor, ingrese su nroAfiliado: ");
 		dp[10] = read.nextLine();
 
+		if(  verificarExistencia(c, dp[2] ,dp[10]) || !verificarCampoNotificacion(dp[7], dp[8]) || verificarCampos(dp) )
+			return null;
+		
         return dp;
     }
 
@@ -79,8 +127,9 @@ public class Login {
         	
             //Parte de verificar si existe paciente
 			if ( p != null ) {  
-				
-				System.out.print('\n' +" Bienvenido al sistema. " + p.getNombre() + ", " + p.getApellido());
+
+				System.out.print('\n' +" Bienvenido al sistema " + p.getApellido() + ", " + p.getNombre());
+        
 				u = p; 
 				
 			} else {
@@ -90,18 +139,40 @@ public class Login {
 				System.out.print(" >>> Desea registrarse? (y/n) : ");
 				option = read.nextLine();
 				
-				
 				if ( option.equals("y") ) {
+					
+					boolean bucle = true;
+					
+					while(bucle) {
+						
+						String items [] = getDatosPersonales(c);
+						
+						if( items != null) {
+							
+							System.out.print('\n' + " Se ha registrado con exito. ");
+							
+							u = new Paciente(items[0],items[1],items[2], new Direccion(items[3], items[4], items[5], items[6]), items[7],items[8],items[9], items[10]);
+							c.addPaciente((Paciente) u);
 
-					System.out.print('\n' + " Se ha registrado con exito. ");
-					
-					String items [] = getDatosPersonales();
-					u = new Paciente(items[0],items[1],items[2], new Direccion(items[3], items[4], items[5], items[6]), items[7],items[8],items[9], items[10]);
-					c.addPaciente((Paciente) u);
-					
+							bucle = false;	
+						}
+						else {
+							
+							System.out.print('\n' + " El dni ingresado o numero de afiliado ya pertenece al sistema. ");
+							System.out.print('\n' + " O bien, usted a ingresado los campos de forma incorrecta. ");
+							
+							System.out.print('\n' + " >>> Desea registrarse nuevamente? (y/n) : ");
+								option = read.nextLine();
+								
+							if( !option.equals("y") )
+								bucle = false;
+						}
+					}
 				}
 				
 			}
+			
+			System.out.println('\n' + " Fin del logueo. ");
     }
 
     public static void loguear(Usuario u, Clinica c){
