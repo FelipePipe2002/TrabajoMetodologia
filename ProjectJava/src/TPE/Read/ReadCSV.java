@@ -1,7 +1,9 @@
-package TPE;
+package TPE.Read;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import TPE.*;
 
 public abstract class ReadCSV {
 

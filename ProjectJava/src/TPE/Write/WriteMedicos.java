@@ -1,18 +1,20 @@
-package TPE;
+package TPE.Write;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import TPE.*;
 
-public class WriteSecretarias extends WriteCSV{
+public class WriteMedicos extends WriteCSV{
 	
-	public WriteSecretarias(Clinica clinica) {
+	public WriteMedicos(Clinica clinica) {
 		super(clinica);
 	}
 
 	public void WriteUsuario(BufferedWriter bw) {
 		try {
-			ArrayList<Secretaria> secretarias = clinica.getSecretaria();
-			for(Secretaria u:secretarias) {
+			ArrayList<Medico> medicos = clinica.getMedico();
+			for(Medico u:medicos) {
 				bw.write(u.toString());
 				bw.newLine();
 			}

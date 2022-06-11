@@ -1,5 +1,7 @@
-package TPE;
+package TPE.Read;
+
 import java.time.LocalDateTime;
+import TPE.*;
 
 public class ReadTurnos extends ReadCSV{
 	public ReadTurnos() {

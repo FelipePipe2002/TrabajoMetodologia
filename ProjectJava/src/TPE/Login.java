@@ -5,7 +5,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Login {
-
 	
 	private static boolean verificarExistencia(Clinica c, String dni, String nroAfiliado) {	
 		
@@ -55,7 +54,7 @@ public class Login {
         Datos que el usuario debera ingresar
 
         [0] String nombre
-        [1] String apellidoq
+        [1] String apellido
         [2] String dni
         (
         [3] String calle
@@ -128,8 +127,9 @@ public class Login {
         	
             //Parte de verificar si existe paciente
 			if ( p != null ) {  
-				
+
 				System.out.print('\n' +" Bienvenido al sistema " + p.getApellido() + ", " + p.getNombre());
+        
 				u = p; 
 				
 			} else {
