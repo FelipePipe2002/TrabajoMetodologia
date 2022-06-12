@@ -46,4 +46,6 @@ public abstract class Usuario {
 		Usuario other = (Usuario) obj;
 		return Objects.equals(dni, other.dni);
 	}
+	
+	
 }
