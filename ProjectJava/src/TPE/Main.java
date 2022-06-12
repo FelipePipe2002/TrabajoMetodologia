@@ -1,6 +1,7 @@
 package TPE;
-//import java.util.ArrayList;//import java.time.LocalDateTime;
 
+//import java.util.ArrayList;//import java.time.LocalDateTime;
+import Interfaz.*;
 import TPE.Read.*;
 import TPE.Write.*;
 
@@ -12,6 +13,8 @@ public class Main {
 
     	Clinica clinica = new Clinica();
 
+    	VentanaLogin login = new VentanaLogin();
+    	
 		// Inicializacion de archivos
 		ReadPacientes pacientes = new ReadPacientes();
 		ReadMedico medicos = new ReadMedico();
@@ -32,6 +35,7 @@ public class Main {
 		System.out.println(clinica.getSecretaria());
 		System.out.println("Turnos:");
 		System.out.println(clinica.getTurnos());
+		login.setVisible(true);
 		
 		// Logueo de usuario
 		Login.loguear(usuario, clinica);
