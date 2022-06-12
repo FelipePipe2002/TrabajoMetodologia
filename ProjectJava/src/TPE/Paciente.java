@@ -56,7 +56,7 @@ public class Paciente extends Usuario {
 		return this.turnos.remove(turno);
 	}
 	
-	public ArrayList<Turno> DevolverTurnosPorFiltro(Clinica c) {
+	public ArrayList<Turno> devolverTurnosPorFiltro(Clinica c) {
 		
 		ArrayList<Medico> MedicosFiltrados= c.FiltrarMedicos();
 		
@@ -83,7 +83,7 @@ public class Paciente extends Usuario {
 		return null;		
 	}
 	
-	public ArrayList<Turno> DevolverTurnosPorFiltro(Clinica c, ArrayList<Medico> medicos) {	//Con algunos medicos predefinidos
+	public ArrayList<Turno> devolverTurnosPorFiltro(Clinica c, ArrayList<Medico> medicos) {	//Con algunos medicos predefinidos
 		
 		ArrayList<Medico> MedicosFiltrados= c.FiltrarMedicos(medicos);
 		
@@ -269,7 +269,7 @@ public class Paciente extends Usuario {
 			return false;
 	}
 	
-	public void SeleccionarTurno(ArrayList<Turno> turnos) {
+	public void seleccionarTurno(ArrayList<Turno> turnos) {
 		if(!turnos.isEmpty()) {
 			System.out.println(turnos);
 			System.out.print("Seleccione turno: ");

@@ -92,7 +92,7 @@ public class Clinica {
 		return aux;
 	}
 	
-	public ArrayList<Medico> FiltrarMedicos(){
+	public ArrayList<Medico> filtrarMedicos(){
 		FiltroDeBusqueda filtro;
 		
 		Scanner read = new Scanner(System.in);  
@@ -120,7 +120,7 @@ public class Clinica {
 		return buscarMedicos(filtro);
 	}
 	
-	public ArrayList<Medico> FiltrarMedicos(ArrayList<Medico> medicos_disponibles){	//Para los medicos con los que trabaja la secretaria
+	public ArrayList<Medico> filtrarMedicos(ArrayList<Medico> medicos_disponibles){	//Para los medicos con los que trabaja la secretaria
 		
 		FiltroDeBusqueda filtro = new FiltroPorMedico(medicos_disponibles);
 		
@@ -181,7 +181,7 @@ public class Clinica {
 		return lista;
 	}
 	
- 	public ArrayList<Turno> DevolverTurnosMedico(Medico m) {
+ 	public ArrayList<Turno> devolverTurnosMedico(Medico m) {
 		Scanner read = new Scanner(System.in);  
 		
 		String opcion;

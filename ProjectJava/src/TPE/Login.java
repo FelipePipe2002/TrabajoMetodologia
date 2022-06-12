@@ -49,26 +49,7 @@ public class Login {
 	}
 	
     private static String[] getDatosPersonales(Clinica c){
-
-    /* 
-        Datos que el usuario debera ingresar
-
-        [0] String nombre
-        [1] String apellido
-        [2] String dni
-        (
-        [3] String calle
-        [4]  String numero
-        [5]  String piso
-        [6] String depto
-        )
-        [7]  String telefono
-        [8]  String email
-        [9]  String obraSocial
-        [10]  String nroAfiliado
-
-    */
-
+    	
         String [] dp = {"", "", "", "", "", "", "", "", "", "", ""};
         Scanner read = new Scanner(System.in);   
 
