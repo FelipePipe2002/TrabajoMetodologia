@@ -26,7 +26,7 @@ El Development Team decidió que el funcionamiento fue correcto en cuanto al des
 
 ## 4. What could be improved?
 
-El equipo tuvo en cuenta que se podría la interfaz del sistema dándole mas énfasis al agrado visual de los usuarios, también la organización y asignación de los PBIs para cada uno de los miembros del Development Team. 
+El equipo tuvo en cuenta que se podría mejorar la interfaz del sistema dándole mas énfasis al agrado visual de los usuarios, también la organización y asignación de los PBIs para cada uno de los miembros del Development Team. 
 
 ## 5. What will we commit to doing in the next Sprint?
 
