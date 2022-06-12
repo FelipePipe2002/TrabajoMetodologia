@@ -14,8 +14,6 @@ public class Main {
 		Usuario usuario = null;
 
     	Clinica clinica = new Clinica();
-
-    	VentanaLogin login = new VentanaLogin();
     	
 		// Inicializacion de archivos
 		ReadPacientes pacientes = new ReadPacientes();
@@ -29,6 +27,9 @@ public class Main {
 		turnos.agregarClinica(clinica); // lee el archivo que guarda la info. de turnos
 			
 		//Codigo
+		VentanaLogin login = new VentanaLogin(clinica);
+		login.setVisible(true);
+		
 		System.out.println("Pacientes:");
 		System.out.println(clinica.getPacientes());
 		System.out.println("Medico:");
@@ -37,22 +38,18 @@ public class Main {
 		System.out.println(clinica.getSecretaria());
 		System.out.println("Turnos:");
 		System.out.println(clinica.getTurnos());
-		login.setVisible(true);
-		ArrayList<String> aux = new ArrayList();
-		aux.addAll(clinica.listarObraSocial());
-		System.out.println(aux);
-		// Logueo de usuario
-		Login.loguear(usuario, clinica);
+		
+		System.out.println(clinica.listarObraSocial());
 		
 		//Guardado de datos
-		WriteCSV archivoPacientes = new WritePacientes(clinica);
-		archivoPacientes.generarArchivoCSV(pacientes.getCsvFile());
-		WriteCSV archivoMedicos = new WriteMedicos(clinica);
-		archivoMedicos.generarArchivoCSV(medicos.getCsvFile());
-		WriteCSV archivoSecretarias = new WriteSecretarias(clinica);
-		archivoSecretarias.generarArchivoCSV(secretarias.getCsvFile());
-		WriteCSV archivoTurnos = new WriteTurnos(clinica);
-		archivoTurnos.generarArchivoCSV(turnos.getCsvFile());
-
+//		WriteCSV archivoPacientes = new WritePacientes(clinica);
+//		archivoPacientes.generarArchivoCSV(pacientes.getCsvFile());
+//		WriteCSV archivoMedicos = new WriteMedicos(clinica);
+//		archivoMedicos.generarArchivoCSV(medicos.getCsvFile());
+//		WriteCSV archivoSecretarias = new WriteSecretarias(clinica);
+//		archivoSecretarias.generarArchivoCSV(secretarias.getCsvFile());
+//		WriteCSV archivoTurnos = new WriteTurnos(clinica);
+//		archivoTurnos.generarArchivoCSV(turnos.getCsvFile());
+		System.out.println("Holaaa");
 	}
 }

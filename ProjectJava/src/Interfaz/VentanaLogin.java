@@ -1,5 +1,7 @@
 package Interfaz;
 
+import TPE.*;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -7,6 +9,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,8 +22,12 @@ import javax.swing.WindowConstants;
 
 public class VentanaLogin extends JFrame {
 	
-    public VentanaLogin() {
-        initComponents();
+	Clinica clinica;
+	JTextField CajaTextoLogin = new JTextField();
+	
+    public VentanaLogin(Clinica clinica) {
+        this.clinica = clinica;
+    	initComponents();
         this.setLocationRelativeTo(null);
     }
     
@@ -29,7 +36,6 @@ public class VentanaLogin extends JFrame {
     	FondoPanel panelLogin = new FondoPanel("/FondoLogin.jpg");
     	JLabel EtiBienvenido = new JLabel();
     	JLabel EtiIngreseSuDNI = new JLabel();
-    	JTextField CajaTextoLogin = new JTextField();
     	JButton BotonIngresar = new JButton();
     	JLabel EtiDesign = new JLabel();
 
@@ -39,6 +45,7 @@ public class VentanaLogin extends JFrame {
         setPreferredSize(new Dimension(1200, 800));
         setResizable(false);
 
+        panelLogin.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         panelLogin.setMaximumSize(new Dimension(1200, 800));
         panelLogin.setMinimumSize(new Dimension(800, 600));
 
@@ -66,10 +73,10 @@ public class VentanaLogin extends JFrame {
         panelLoginLayout.setHorizontalGroup(
             panelLoginLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(panelLoginLayout.createSequentialGroup()
-                .addContainerGap(798, Short.MAX_VALUE)
+                .addContainerGap(796, Short.MAX_VALUE)
                 .addGroup(panelLoginLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(GroupLayout.Alignment.TRAILING, panelLoginLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(EtiBienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(EtiBienvenido, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE)
                         .addGroup(panelLoginLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addGroup(GroupLayout.Alignment.TRAILING, panelLoginLayout.createSequentialGroup()
                                 .addComponent(EtiIngreseSuDNI)
@@ -96,7 +103,7 @@ public class VentanaLogin extends JFrame {
                 .addComponent(CajaTextoLogin, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(BotonIngresar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 321, Short.MAX_VALUE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 319, Short.MAX_VALUE)
                 .addComponent(EtiDesign, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -108,7 +115,7 @@ public class VentanaLogin extends JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -121,14 +128,19 @@ public class VentanaLogin extends JFrame {
     private void BotonIngresarActionPerformed(ActionEvent evt) {                                              
         
         //logica para validar DNI
-        
+    	String dni = CajaTextoLogin.getText();
         //Si esta registrado
-    		VentanaPortalPacientes ventanaPortalPaciente = new VentanaPortalPacientes();
-            ventanaPortalPaciente.setVisible(true);
-            this.dispose();
-        //Si no esta registrado
-//            VentanaRegistro ventanaRegistro = new VentanaRegistro();
-//            ventanaRegistro.setVisible(true);
-//            this.dispose();
+	    if (Login.verificarDNI(dni)) {
+	    	if (clinica.getPaciente(dni) != null) {
+	    		VentanaPortalPacientes ventanaPortalPaciente = new VentanaPortalPacientes(this.clinica, dni);
+	            ventanaPortalPaciente.setVisible(true);
+	            this.dispose();
+	        //Si no esta registrado
+	    	} else {
+	    		VentanaRegistro ventanaRegistro = new VentanaRegistro(this.clinica, dni);
+	    		ventanaRegistro.setVisible(true);
+	    		this.dispose();
+	    	}  
+	    }
     }   
 }
