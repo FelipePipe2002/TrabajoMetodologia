@@ -49,6 +49,7 @@ public class Login {
 		return false;
 	}
 	
+
 	public static boolean verificarDNI(String dni) {
 
         Pattern pattern = Pattern.compile("^[\\d]{1,3}.?[\\d]{3,3}.?[\\d]{3,3}$");
