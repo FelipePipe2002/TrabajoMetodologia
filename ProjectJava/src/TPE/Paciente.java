@@ -52,6 +52,10 @@ public class Paciente extends Usuario {
 		this.turnos.add(turno);
 	}
 	
+	public boolean eliminarTurno(Turno turno) {
+		return this.turnos.remove(turno);
+	}
+	
 	public ArrayList<Turno> DevolverTurnosPorFiltro(Clinica c) {
 		
 		ArrayList<Medico> MedicosFiltrados= c.FiltrarMedicos();

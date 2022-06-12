@@ -91,4 +91,5 @@ public class Medico extends Usuario{
 		return  super.toString() + "," + nombreUsuario + "," + contrasenia + "," + devolverEspecialidades() + "," + devolverObrasSociales();
 	}
 	
+	
 }

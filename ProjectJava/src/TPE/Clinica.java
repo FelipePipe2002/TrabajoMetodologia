@@ -2,7 +2,10 @@ package TPE;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
+
 import TPE.FiltroMedico.*;
 import TPE.CriterioTurnos.*;
 
@@ -149,9 +152,36 @@ public class Clinica {
 		return buscarMedicos(filtro);
 	}
 		
+	public ArrayList<String> listarEspecialidades(){
+		
+		ArrayList<String> lista = new ArrayList<>();
+		
+		for (Medico m: this.medicos){
+			lista.addAll(m.getEspecialidades());
+		}
+		
+		Set<String> sinRepetir = new HashSet<String>(lista);
+		lista.clear();
+		lista.addAll(sinRepetir);
+		
+		return lista;
+	}
 	
+	public ArrayList<String> listarObraSocial(){
+		ArrayList<String> lista = new ArrayList<>();
 
-	public ArrayList<Turno> DevolverTurnosMedico(Medico m) {
+		for (Medico m: this.medicos){
+			lista.addAll(m.getObrasSociales());
+		}
+		
+		Set<String> sinRepetir = new HashSet<String>(lista);
+		lista.clear();
+		lista.addAll(sinRepetir);
+		
+		return lista;
+	}
+	
+ 	public ArrayList<Turno> DevolverTurnosMedico(Medico m) {
 		Scanner read = new Scanner(System.in);  
 		
 		String opcion;

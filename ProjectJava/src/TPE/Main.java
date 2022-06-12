@@ -1,5 +1,7 @@
 package TPE;
 
+import java.util.ArrayList;
+
 //import java.util.ArrayList;//import java.time.LocalDateTime;
 import Interfaz.*;
 import TPE.Read.*;
@@ -36,7 +38,9 @@ public class Main {
 		System.out.println("Turnos:");
 		System.out.println(clinica.getTurnos());
 		login.setVisible(true);
-		
+		ArrayList<String> aux = new ArrayList();
+		aux.addAll(clinica.listarObraSocial());
+		System.out.println(aux);
 		// Logueo de usuario
 		Login.loguear(usuario, clinica);
 		
