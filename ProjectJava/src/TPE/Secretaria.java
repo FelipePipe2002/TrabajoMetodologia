@@ -51,6 +51,12 @@ public class Secretaria extends Usuario {
 		}
 		return aux;
 	}
+	
+	public void sacarTurnoAPaciente(Clinica c) {
+		Paciente usuario = null;
+		Login.loguearPaciente(usuario, c);
+		usuario.SeleccionarTurno(usuario.DevolverTurnosPorFiltro(c, c.FiltrarMedicos(this.medicos)));
+	}
 
 	@Override
 	public String toString() {

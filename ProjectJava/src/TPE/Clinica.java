@@ -114,10 +114,41 @@ public class Clinica {
 			FiltroDeBusqueda filtroo = new FiltroPorObraSocial(obrasocial);
 			filtro = new FiltroDeBusquedaAnd(filtroe,filtroo);
 		}
-			
-		
 		return buscarMedicos(filtro);
 	}
+	
+	public ArrayList<Medico> FiltrarMedicos(ArrayList<Medico> medicos_disponibles){	//Para los medicos con los que trabaja la secretaria
+		
+		FiltroDeBusqueda filtro = new FiltroPorMedico(medicos_disponibles);
+		
+		Scanner read = new Scanner(System.in);  
+		
+		String especialidad;
+		String obrasocial;
+		
+		System.out.println("Cargue las opciones de busqueda");
+		
+		System.out.println("Cargue especialidad si quiere buscar por especialidad:");
+		especialidad = read.nextLine();
+		
+		System.out.println("Cargue especialidad si quiere buscar por Obra Social:");
+		obrasocial = read.nextLine();
+		
+		if (obrasocial == "" && especialidad != "")
+			filtro = new FiltroDeBusquedaAnd(filtro, new FiltroPorEspecialidad(especialidad));
+		else if (obrasocial != "" && especialidad == "")
+			filtro = new FiltroDeBusquedaAnd(filtro, new FiltroPorObraSocial(especialidad));
+		else {
+			FiltroDeBusqueda filtroe = new FiltroPorEspecialidad(especialidad);
+			FiltroDeBusqueda filtroo = new FiltroPorObraSocial(obrasocial);
+			FiltroDeBusqueda aux = new FiltroDeBusquedaAnd(filtroe,filtroo);
+			filtro = new FiltroDeBusquedaAnd(filtro, aux);
+		}
+		
+	
+		return buscarMedicos(filtro);
+	}
+		
 	
 
 	public ArrayList<Turno> DevolverTurnosMedico(Medico m) {
