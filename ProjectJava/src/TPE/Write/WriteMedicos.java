@@ -13,7 +13,7 @@ public class WriteMedicos extends WriteCSV{
 
 	public void WriteUsuario(BufferedWriter bw) {
 		try {
-			ArrayList<Medico> medicos = clinica.getMedico();
+			ArrayList<Medico> medicos = clinica.getMedicos();
 			for(Medico u:medicos) {
 				bw.write(u.toString());
 				bw.newLine();

@@ -48,7 +48,7 @@ public class Clinica {
 		return null;
 	}
 
-	public ArrayList<Medico> getMedico() {
+	public ArrayList<Medico> getMedicos() {
 		ArrayList<Medico> aux = new ArrayList<>(this.medicos);
 		return aux;
 	}
@@ -61,7 +61,7 @@ public class Clinica {
 		return null;
 	}
 		
-	public ArrayList<Secretaria> getSecretaria() {
+	public ArrayList<Secretaria> getSecretarias() {
 		ArrayList<Secretaria> aux = new ArrayList<>(this.secretarias);
 		return aux;
 		
@@ -152,31 +152,38 @@ public class Clinica {
 		return buscarMedicos(filtro);
 	}
 		
-	public ArrayList<String> listarEspecialidades(){
+	public String[] listarEspecialidades(){
 		
-		ArrayList<String> lista = new ArrayList<>();
-		
+		ArrayList<String> aux = new ArrayList<>();
+		aux.add("");
 		for (Medico m: this.medicos){
-			lista.addAll(m.getEspecialidades());
+			aux.addAll(m.getEspecialidades());
 		}
 		
-		Set<String> sinRepetir = new HashSet<String>(lista);
-		lista.clear();
-		lista.addAll(sinRepetir);
+		Set<String> sinRepetir = new HashSet<String>(aux);
+		aux.clear();
+		aux.addAll(sinRepetir);
+		
+		String[] lista = new String[aux.size()];
+		lista = aux.toArray(lista);
 		
 		return lista;
 	}
 	
-	public ArrayList<String> listarObraSocial(){
-		ArrayList<String> lista = new ArrayList<>();
-
+	public String[] listarObraSocial(){
+		
+		ArrayList<String> aux = new ArrayList<>();
+		aux.add("");
 		for (Medico m: this.medicos){
-			lista.addAll(m.getObrasSociales());
+			aux.addAll(m.getObrasSociales());
 		}
 		
-		Set<String> sinRepetir = new HashSet<String>(lista);
-		lista.clear();
-		lista.addAll(sinRepetir);
+		Set<String> sinRepetir = new HashSet<String>(aux);
+		aux.clear();
+		aux.addAll(sinRepetir);
+		
+		String[] lista = new String[aux.size()];
+		lista = aux.toArray(lista);
 		
 		return lista;
 	}

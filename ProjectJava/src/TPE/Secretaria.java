@@ -54,7 +54,7 @@ public class Secretaria extends Usuario {
 	
 	public void sacarTurnoAPaciente(Clinica c) {
 		Paciente usuario = null;
-		Login.loguearPaciente(usuario, c);
+		//Login.loguearPaciente(usuario, c);
 		usuario.seleccionarTurno(usuario.devolverTurnosPorFiltro(c, c.filtrarMedicos(this.medicos)));
 	}
 

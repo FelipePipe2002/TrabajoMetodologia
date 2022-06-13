@@ -33,9 +33,9 @@ public class Main {
 		System.out.println("Pacientes:");
 		System.out.println(clinica.getPacientes());
 		System.out.println("Medico:");
-		System.out.println(clinica.getMedico());
+		System.out.println(clinica.getMedicos());
 		System.out.println("Secretaria:");
-		System.out.println(clinica.getSecretaria());
+		System.out.println(clinica.getSecretarias());
 		System.out.println("Turnos:");
 		System.out.println(clinica.getTurnos());
 		

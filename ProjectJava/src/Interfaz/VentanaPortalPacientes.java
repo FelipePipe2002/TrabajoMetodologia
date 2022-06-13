@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
@@ -51,8 +53,8 @@ public class VentanaPortalPacientes extends JFrame {
 	private void initComponents() {
 		JTabbedPane tablaPortal = new JTabbedPane();
 		FondoPanel panelSacarTurno = new FondoPanel("/FondoLogin1.jpg");
-		JComboBox boxObrasSociales = new JComboBox<>();
-		JComboBox boxEspecialidades = new JComboBox<>();
+		JComboBox boxObrasSociales = new JComboBox(clinica.listarObraSocial());
+		JComboBox boxEspecialidades = new JComboBox(clinica.listarEspecialidades());
 		JButton botonBuscar = new JButton();
 		JPanel heap1 = new JPanel();
 		JLabel etiNombreClinica1 = new JLabel();
@@ -75,32 +77,30 @@ public class VentanaPortalPacientes extends JFrame {
 
         panelSacarTurno.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
 
-        boxObrasSociales.setFont(new Font("Book Antiqua", 0, 14)); // NOI18N
-        boxObrasSociales.setModel(new DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        boxObrasSociales.setFont(new Font("Book Antiqua", 0, 14));
         boxObrasSociales.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 boxObrasSocialesActionPerformed(evt);
             }
         });
 
-        boxEspecialidades.setFont(new Font("Book Antiqua", 0, 14)); // NOI18N
-        boxEspecialidades.setModel(new DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        boxEspecialidades.setFont(new Font("Book Antiqua", 0, 14));
         boxEspecialidades.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 boxEspecialidadesActionPerformed(evt);
             }
         });
 
-        botonBuscar.setFont(new Font("Book Antiqua", 0, 14)); // NOI18N
+        botonBuscar.setFont(new Font("Book Antiqua", 0, 14));
         botonBuscar.setText("Buscar");
 
         heap1.setBackground(new Color(3, 123, 139));
         heap1.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0, 0, 0)));
 
-        etiNombreClinica1.setFont(new Font("Book Antiqua", 1, 36)); // NOI18N
+        etiNombreClinica1.setFont(new Font("Book Antiqua", 1, 36));
         etiNombreClinica1.setText("Nombre Clinica");
 
-        botonCerrarSesion1.setFont(new Font("Book Antiqua", 1, 18)); // NOI18N
+        botonCerrarSesion1.setFont(new Font("Book Antiqua", 1, 18));
         botonCerrarSesion1.setText("Cerrar Sesion >>");
         botonCerrarSesion1.setBorderPainted(false);
         botonCerrarSesion1.setContentAreaFilled(false);
@@ -143,30 +143,15 @@ public class VentanaPortalPacientes extends JFrame {
             PieDePagina1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 183, Short.MAX_VALUE)
         );
-
-        tablaDeMedicos.setModel(new DefaultTableModel(
-            new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-            },
-            new String [] {
-                "Medico"
-            }
-        ));
+        //Tabla de medicos
+        DefaultTableModel modeloTablaMedicos = new DefaultTableModel();
+        modeloTablaMedicos.addColumn("Nombre");
+        modeloTablaMedicos.addColumn("Apellido");
+        modeloTablaMedicos.addColumn("Dni");
+        for (Medico m: clinica.getMedicos())
+        	modeloTablaMedicos.addRow(new Object[] {m.getNombre(),m.getApellido(),m.getDni()});
+        tablaDeMedicos.setModel(modeloTablaMedicos);
+        
         tablaDeMedicos.setToolTipText("");
         tablaMedicos.setViewportView(tablaDeMedicos);
 
@@ -211,10 +196,10 @@ public class VentanaPortalPacientes extends JFrame {
         heap2.setBackground(new Color(3, 123, 139));
         heap2.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0, 0, 0)));
 
-        etiNombreClinica2.setFont(new Font("Book Antiqua", 1, 36)); // NOI18N
+        etiNombreClinica2.setFont(new Font("Book Antiqua", 1, 36));
         etiNombreClinica2.setText("Nombre Clinica");
 
-        botonCerrarSesion2.setFont(new Font("Book Antiqua", 1, 18)); // NOI18N
+        botonCerrarSesion2.setFont(new Font("Book Antiqua", 1, 18));
         botonCerrarSesion2.setText("Cerrar Sesion >>");
         botonCerrarSesion2.setBorderPainted(false);
         botonCerrarSesion2.setContentAreaFilled(false);
@@ -257,33 +242,20 @@ public class VentanaPortalPacientes extends JFrame {
             PieDePagina2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 183, Short.MAX_VALUE)
         );
-
-        tablaDeTurnos.setFont(new Font("Book Antiqua", 0, 14)); // NOI18N
-        tablaDeTurnos.setModel(new DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                },
-            new String [] {
-                "Medico", "Dia", "Horario"
-            }
-        ));
+        
+        tablaDeTurnos.setFont(new Font("Book Antiqua", 0, 14));
+        //Tabla de turnos
+        ArrayList<Turno> turnos = new ArrayList<>();
+        turnos = clinica.getPaciente(this.dni).getTurnos();
+        
+        DefaultTableModel modeloTablaTurnos = new DefaultTableModel();
+        modeloTablaTurnos.addColumn("Medico");
+        modeloTablaTurnos.addColumn("Dia");
+        modeloTablaTurnos.addColumn("Hora");
+        for (Turno t: turnos)
+        	modeloTablaTurnos.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getDayOfMonth() + "/" + t.getFecha().getMonthValue(),t.getFecha().getHour() + ":" + t.getFecha().getMinute()});
+        tablaDeTurnos.setModel(modeloTablaTurnos);
+        
         tablaDeTurnos.setMaximumSize(new Dimension(225, 600));
         tablaTurno.setViewportView(tablaDeTurnos);
 

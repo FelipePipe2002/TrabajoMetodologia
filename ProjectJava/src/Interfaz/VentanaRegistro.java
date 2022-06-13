@@ -255,7 +255,7 @@ public class VentanaRegistro extends JFrame {
             ventanaPortalPaciente.setVisible(true);
             this.dispose();
     	} else {
-    		System.out.println("Mallllll");
+    		System.out.println("Los campos no son correctos");
     	}
 			
     }
