@@ -1,5 +1,6 @@
 package TPE;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 //import java.util.ArrayList;//import java.time.LocalDateTime;
@@ -28,7 +29,7 @@ public class Main {
 			
 		//Codigo
 		VentanaLogin login = new VentanaLogin(clinica);
-		login.setVisible(true);
+		login.setVisible(false);
 		
 		System.out.println("Pacientes:");
 		System.out.println(clinica.getPacientes());
@@ -50,6 +51,6 @@ public class Main {
 //		archivoSecretarias.generarArchivoCSV(secretarias.getCsvFile());
 //		WriteCSV archivoTurnos = new WriteTurnos(clinica);
 //		archivoTurnos.generarArchivoCSV(turnos.getCsvFile());
-		System.out.println("Holaaa");
+
 	}
 }

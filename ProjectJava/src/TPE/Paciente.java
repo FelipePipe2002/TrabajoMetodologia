@@ -275,12 +275,30 @@ public class Paciente extends Usuario {
 			System.out.print("Seleccione turno: ");
 			Scanner index = new Scanner(System.in);
 			
-			if(confirmarTurno(turnos.get(Integer.parseInt(index.nextLine())))) {
-				turnos.get(Integer.parseInt(index.nextLine())).asignarPaciente(this);
-				this.addTurno(turnos.get(Integer.parseInt(index.nextLine())));
+			Turno t = turnos.get(Integer.parseInt(index.nextLine()));
+			
+			if(confirmarTurno(t)) {
+				System.out.println("Hola");
+				t.asignarPaciente(this);
+				this.addTurno(t);
+				
+				String doctor = "Dr. " + t.getMedico().getApellido() + " " + t.getMedico().getApellido() ;
+				String paciente = this.getApellido() + " " + this.getNombre();
+				
 				//Enviar mail de confirmacion al paciente
-				System.out.println(turnos.get(Integer.parseInt(index.nextLine())));
-			}else
+				if( Login.verificarCampoNotificacion("", email) ) {
+			 
+					String subject = "  ¡Confirmado! Turno con " + doctor ;
+					String msg = " El turno de " + paciente + " con " + doctor + " está confirmado " + '\n';
+						   msg += "Los datos del turno son " + t.getFecha() + '\n';
+						   msg += "¿Necesitás cancelar el turno? Por favor hacerlo con anticipacion.";
+					SendEmail.send(this.getEmail(), subject, msg);
+				}
+				//else
+					//Futura implementacion de enviar por telefono
+	
+				
+			} else
 				System.out.println("No se reservo ningun turno");
 		}		
 	}
