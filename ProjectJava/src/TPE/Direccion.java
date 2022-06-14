@@ -2,14 +2,14 @@ package TPE;
 
 public class Direccion {
 	private String calle;
-	private int numero;
-	private int piso;
+	private String numero;
+	private String piso;
 	private String depto;
 	
 	public Direccion(String calle, String numero, String piso, String depto) {
 		this.calle = calle;
-		this.numero = Integer.parseInt(numero);
-		this.piso = Integer.parseInt(piso);
+		this.numero = numero;
+		this.piso = piso;
 		this.depto = depto;
 	}
 
@@ -17,11 +17,11 @@ public class Direccion {
 		return calle;
 	}
 
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public int getPiso() {
+	public String getPiso() {
 		return piso;
 	}
 
@@ -33,11 +33,11 @@ public class Direccion {
 		this.calle = calle;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
-	public void setPiso(int piso) {
+	public void setPiso(String piso) {
 		this.piso = piso;
 	}
 

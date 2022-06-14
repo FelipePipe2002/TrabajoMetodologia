@@ -1,9 +1,8 @@
 package Interfaz;
 
 import TPE.*;
-import TPE.Read.ReadPacientes;
-import TPE.Write.WriteCSV;
-import TPE.Write.WritePacientes;
+import TPE.Read.*;
+import TPE.Write.*;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -15,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
@@ -23,6 +23,8 @@ import javax.swing.WindowConstants;
 public class VentanaRegistro extends JFrame {
 	
 	Clinica clinica;
+	String funcion; //Registrar o Confirmar Datos
+	Turno turno;
 	JTextField cajaTextoNombre;
 	JTextField cajaTextoApellido;
 	String dni;
@@ -35,36 +37,58 @@ public class VentanaRegistro extends JFrame {
 	JTextField cajaTextoObraSocial;
 	JTextField cajaTextoNroAfiliado;
 	
-	public VentanaRegistro(Clinica clinica, String dni) {
+	public VentanaRegistro(Clinica clinica, String dni, String funcion) {
         
 		this.clinica = clinica;
+		this.funcion = funcion;
+		this.turno = null;
 		this.dni = dni;
+		this.cajaTextoNombre = new JTextField("");
+        this.cajaTextoApellido = new JTextField("");
+        this.cajaTextoCalle = new JTextField("");
+        this.cajaTextoNumero = new JTextField("");
+        this.cajaTextoPiso = new JTextField("");
+        this.cajaTextoDepto = new JTextField("");
+        this.cajaTextoTelefono = new JTextField("");
+        this.cajaTextoEmail = new JTextField("");
+        this.cajaTextoObraSocial = new JTextField("");
+        this.cajaTextoNroAfiliado = new JTextField("");
+		initComponents();
+        this.setLocationRelativeTo(null);
+    }
+	
+	public VentanaRegistro(Clinica clinica, Paciente paciente, Turno turno,String funcion) {
+        
+		this.clinica = clinica;
+		this.funcion = funcion;
+		this.turno = turno;
+		this.cajaTextoNombre = new JTextField(paciente.getNombre());
+        this.cajaTextoApellido = new JTextField(paciente.getApellido());
+        this.dni = paciente.getDni();
+        this.cajaTextoCalle = new JTextField(paciente.getDireccion().getCalle());
+        this.cajaTextoNumero = new JTextField(paciente.getDireccion().getNumero());
+        this.cajaTextoPiso = new JTextField(paciente.getDireccion().getPiso());
+        this.cajaTextoDepto = new JTextField(paciente.getDireccion().getDepto());
+        this.cajaTextoTelefono = new JTextField(paciente.getTelefono());
+        this.cajaTextoEmail = new JTextField(paciente.getEmail());
+        this.cajaTextoObraSocial = new JTextField(paciente.getObraSocial());
+        this.cajaTextoNroAfiliado = new JTextField(paciente.getObraSocial());
 		initComponents();
         this.setLocationRelativeTo(null);
     }
 	
 	private void initComponents() {
-		FondoPanel panelRegistro = new FondoPanel("/FondoRegistro.jpg");
+		FondoPanel panelRegistro = new FondoPanel("/FondoDatosPaciente.jpg");
 		JLabel etiNombre = new JLabel();
-		this.cajaTextoNombre = new JTextField();
         JLabel etiApellido = new JLabel();
-        this.cajaTextoApellido = new JTextField();
         JLabel etiCalle = new JLabel();
-        this.cajaTextoCalle = new JTextField();
         JLabel etiNumero = new JLabel();
-        this.cajaTextoNumero = new JTextField();
         JLabel etiPiso = new JLabel();
-        this.cajaTextoPiso = new JTextField();
         JLabel etiDepto = new JLabel();
-        this.cajaTextoDepto = new JTextField();
         JLabel etiTelefono = new JLabel();
-        this.cajaTextoTelefono = new JTextField();
         JLabel etiEmail = new JLabel();
-        this.cajaTextoEmail = new JTextField();
         JLabel etiObraSocial = new JLabel();
-        this.cajaTextoObraSocial = new JTextField();
         JLabel etiNroAfiliado = new JLabel();
-        this.cajaTextoNroAfiliado = new JTextField();
         JLabel etiRegistrar = new JLabel();
         JButton botonRegistrar = new JButton();
 
@@ -114,10 +138,15 @@ public class VentanaRegistro extends JFrame {
         
         etiRegistrar.setFont(new Font("Book Antiqua", 1, 48));
         etiRegistrar.setHorizontalAlignment(SwingConstants.CENTER);
-        etiRegistrar.setText("Registrar");
+        if (this.funcion.equals("Registrar")) {
+        	etiRegistrar.setText(this.funcion);
+        	botonRegistrar.setIcon(new ImageIcon(getClass().getResource("/BotonRegistrar.png")));
+        } else {
+        	etiRegistrar.setText("Confirmar Datos");
+        	botonRegistrar.setIcon(new ImageIcon(getClass().getResource("/BotonConfirmar.png")));
+        }
         etiRegistrar.setHorizontalTextPosition(SwingConstants.CENTER);
 
-        botonRegistrar.setIcon(new ImageIcon(getClass().getResource("/BotonRegistrar.png")));
         botonRegistrar.setBorderPainted(false);
         botonRegistrar.setContentAreaFilled(false);
         botonRegistrar.addActionListener(new ActionListener() {
@@ -229,7 +258,7 @@ public class VentanaRegistro extends JFrame {
         pack();
     }                    
 
-    private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {                                               
+    private void botonRegistrarActionPerformed(ActionEvent evt) {                                               
     	
     	String [] dp = {"", "", "", "", "", "", "", "", "", "", ""};
     	
@@ -246,16 +275,31 @@ public class VentanaRegistro extends JFrame {
     	dp[10] = this.cajaTextoNroAfiliado.getText();
     	
     	if( !Login.verificarExistencia(this.clinica, dp[2] ,dp[10]) && Login.verificarCampoNotificacion(dp[7], dp[8]) || Login.verificarCampos(dp) ) {
-    		Paciente paciente = new Paciente(dp[0],dp[1],dp[2], new Direccion(dp[3], dp[4], dp[5], dp[6]), dp[7],dp[8],dp[9],dp[10]);
-    		this.clinica.addPaciente(paciente);
+    		if (turno == null) {
+    			Paciente paciente = new Paciente(dp[0],dp[1],dp[2], new Direccion(dp[3], dp[4], dp[5], dp[6]), dp[7],dp[8],dp[9],dp[10]);
+    			this.clinica.addPaciente(paciente);
+    		} else {
+    			Paciente paciente = clinica.getPaciente(dni);
+    			paciente.setNombre(dp[0]);
+    			paciente.setApellido(dp[1]);
+    			paciente.setDireccion(new Direccion(dp[3], dp[4], dp[5], dp[6]));
+    			paciente.setTelefono(dp[7]);
+    			paciente.setEmail(dp[8]);
+    			paciente.setObraSocial(dp[9]);
+    			paciente.setNroAfiliado(dp[10]);
+    			paciente.addTurno(turno);
+    		}
     		ReadPacientes pacientes = new ReadPacientes();
-    		WriteCSV archivoPacientes = new WritePacientes(clinica);
+    		WriteCSV archivoPacientes = new WritePacientes(this.clinica);
     		archivoPacientes.generarArchivoCSV(pacientes.getCsvFile());
+    		ReadTurnos turnos = new ReadTurnos();
+    		WriteCSV archivoTurnos = new WriteTurnos(clinica);
+    		archivoTurnos.generarArchivoCSV(turnos.getCsvFile());
     		VentanaPortalPacientes ventanaPortalPaciente = new VentanaPortalPacientes(this.clinica, this.dni);
             ventanaPortalPaciente.setVisible(true);
             this.dispose();
     	} else {
-    		System.out.println("Los campos no son correctos");
+    		JOptionPane.showMessageDialog(null, "Los campos no son correctos");
     	}
 			
     }

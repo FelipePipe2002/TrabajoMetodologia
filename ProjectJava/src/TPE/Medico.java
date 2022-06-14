@@ -1,4 +1,5 @@
 package TPE;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Medico extends Usuario{
@@ -49,7 +50,16 @@ public class Medico extends Usuario{
 		ArrayList<Turno> aux = new ArrayList<>(this.turnos);
 		return aux;
 	}
-
+	
+	public ArrayList<Turno> getTurnosDisponibles() {
+		ArrayList<Turno> aux = new ArrayList<>();
+		for (Turno turno:this.turnos) {
+			if (turno.isDisponible() && turno.getFecha().isAfter(LocalDateTime.now()))
+				aux.add(turno);
+		}
+		return aux;
+	}
+	
 	public ArrayList<String> getEspecialidades() {
 		ArrayList<String> aux = new ArrayList<>(this.especialidades);
 		return aux;

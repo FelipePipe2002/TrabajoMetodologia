@@ -1,13 +1,18 @@
 package Interfaz;
 
 import TPE.*;
+import TPE.Read.ReadPacientes;
+import TPE.Read.ReadTurnos;
+import TPE.Write.*;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
@@ -30,7 +35,13 @@ import javax.swing.table.DefaultTableModel;
 public class VentanaPortalPacientes extends JFrame {
 
 	Clinica clinica;
-	String dni;
+	Paciente paciente;
+	JTable tablaDeMedicos;
+	DefaultTableModel modeloTablaMedicos;
+	JTable tablaDeTurnos;
+	DefaultTableModel modeloTablaTurnos;
+	JComboBox boxObrasSociales;
+	JComboBox boxEspecialidades;
 	
 	public VentanaPortalPacientes(Clinica clinica, String dni) {
 		try {
@@ -45,7 +56,7 @@ public class VentanaPortalPacientes extends JFrame {
 			e.printStackTrace();
 		}
 		this.clinica = clinica;
-		this.dni = dni;
+		this.paciente = clinica.getPaciente(dni);
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -53,23 +64,23 @@ public class VentanaPortalPacientes extends JFrame {
 	private void initComponents() {
 		JTabbedPane tablaPortal = new JTabbedPane();
 		FondoPanel panelSacarTurno = new FondoPanel("/FondoLogin1.jpg");
-		JComboBox boxObrasSociales = new JComboBox(clinica.listarObraSocial());
-		JComboBox boxEspecialidades = new JComboBox(clinica.listarEspecialidades());
 		JButton botonBuscar = new JButton();
 		JPanel heap1 = new JPanel();
 		JLabel etiNombreClinica1 = new JLabel();
 		JButton botonCerrarSesion1 = new JButton();
 		JPanel pieDePagina1 = new JPanel();
 		JScrollPane tablaMedicos = new JScrollPane();
-		JTable tablaDeMedicos = new JTable();
 		FondoPanel panelVerProximosTurnos = new FondoPanel("/FondoLogin1.jpg");
         JPanel heap2 = new JPanel();
         JLabel etiNombreClinica2 = new JLabel();
         JButton botonCerrarSesion2 = new JButton();
         JPanel pieDePagina2 = new JPanel();
         JScrollPane tablaTurno = new JScrollPane();
-        JTable tablaDeTurnos = new JTable();
         JButton botonCancelarTurno = new JButton();
+        boxObrasSociales = new JComboBox(this.clinica.listarObraSocial());
+        boxEspecialidades = new JComboBox(this.clinica.listarEspecialidades());
+        tablaDeMedicos = new JTable();
+        tablaDeTurnos = new JTable();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new Dimension(1200, 800));
@@ -78,22 +89,12 @@ public class VentanaPortalPacientes extends JFrame {
         panelSacarTurno.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
 
         boxObrasSociales.setFont(new Font("Book Antiqua", 0, 14));
-        boxObrasSociales.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                boxObrasSocialesActionPerformed(evt);
-            }
-        });
-
         boxEspecialidades.setFont(new Font("Book Antiqua", 0, 14));
-        boxEspecialidades.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                boxEspecialidadesActionPerformed(evt);
-            }
-        });
 
         botonBuscar.setFont(new Font("Book Antiqua", 0, 14));
         botonBuscar.setText("Buscar");
-
+        botonBuscar.addActionListener(new ActionListener() {public void actionPerformed(ActionEvent evt) {BotonBuscarActionPerformed(evt);}});
+        
         heap1.setBackground(new Color(3, 123, 139));
         heap1.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0, 0, 0)));
 
@@ -144,16 +145,26 @@ public class VentanaPortalPacientes extends JFrame {
             .addGap(0, 183, Short.MAX_VALUE)
         );
         //Tabla de medicos
-        DefaultTableModel modeloTablaMedicos = new DefaultTableModel();
-        modeloTablaMedicos.addColumn("Nombre");
-        modeloTablaMedicos.addColumn("Apellido");
-        modeloTablaMedicos.addColumn("Dni");
-        for (Medico m: clinica.getMedicos())
+        this.tablaDeMedicos.setFont(new Font("Book Antiqua", 0, 14));
+        this.modeloTablaMedicos = new DefaultTableModel() {
+        	public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        this.modeloTablaMedicos.addColumn("Nombre");
+        this.modeloTablaMedicos.addColumn("Apellido");
+        this.modeloTablaMedicos.addColumn("Dni");
+        for (Medico m: this.clinica.getMedicos())
         	modeloTablaMedicos.addRow(new Object[] {m.getNombre(),m.getApellido(),m.getDni()});
-        tablaDeMedicos.setModel(modeloTablaMedicos);
+        this.tablaDeMedicos.setModel(modeloTablaMedicos);
         
-        tablaDeMedicos.setToolTipText("");
-        tablaMedicos.setViewportView(tablaDeMedicos);
+        this.tablaDeMedicos.setToolTipText("");
+        tablaDeMedicos.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                TablaDeMedicosMouseClicked(evt);
+            }
+        });
+        tablaMedicos.setViewportView(this.tablaDeMedicos);
 
         GroupLayout PanelSacarTurnoLayout = new GroupLayout(panelSacarTurno);
         panelSacarTurno.setLayout(PanelSacarTurnoLayout);
@@ -243,21 +254,26 @@ public class VentanaPortalPacientes extends JFrame {
             .addGap(0, 183, Short.MAX_VALUE)
         );
         
-        tablaDeTurnos.setFont(new Font("Book Antiqua", 0, 14));
         //Tabla de turnos
+        this.tablaDeTurnos.setFont(new Font("Book Antiqua", 0, 14));
         ArrayList<Turno> turnos = new ArrayList<>();
-        turnos = clinica.getPaciente(this.dni).getTurnos();
+        turnos = paciente.getTurnos();
         
-        DefaultTableModel modeloTablaTurnos = new DefaultTableModel();
+        DefaultTableModel modeloTablaTurnos = new DefaultTableModel() {
+        	public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        
         modeloTablaTurnos.addColumn("Medico");
         modeloTablaTurnos.addColumn("Dia");
         modeloTablaTurnos.addColumn("Hora");
         for (Turno t: turnos)
-        	modeloTablaTurnos.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getDayOfMonth() + "/" + t.getFecha().getMonthValue(),t.getFecha().getHour() + ":" + t.getFecha().getMinute()});
-        tablaDeTurnos.setModel(modeloTablaTurnos);
+        	modeloTablaTurnos.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getDayOfMonth() + "/" + t.getFecha().getMonthValue() + "/" + t.getFecha().getYear(),t.getFecha().getHour() + ":" + t.getFecha().getMinute()});
+        this.tablaDeTurnos.setModel(modeloTablaTurnos);
         
-        tablaDeTurnos.setMaximumSize(new Dimension(225, 600));
-        tablaTurno.setViewportView(tablaDeTurnos);
+        this.tablaDeTurnos.setMaximumSize(new Dimension(225, 600));
+        tablaTurno.setViewportView(this.tablaDeTurnos);
 
         botonCancelarTurno.setText("Cancelar Turno");
         botonCancelarTurno.addActionListener(new ActionListener() {
@@ -315,22 +331,53 @@ public class VentanaPortalPacientes extends JFrame {
         ventanaLogin.setVisible(true);
         this.dispose();
     }                                                  
+    
+    private void BotonBuscarActionPerformed(ActionEvent evt) {                                            
+    	String especialidad = boxEspecialidades.getSelectedItem().toString();
+    	String obrasSocial = boxObrasSociales.getSelectedItem().toString();
 
+    	int rowCount = modeloTablaMedicos.getRowCount();
+    	for (int i = rowCount - 1; i >= 0; i--) {
+    		modeloTablaMedicos.removeRow(i);
+    	}
+    	ArrayList<Medico> MedicosFiltrados = this.clinica.filtrarMedicos(especialidad, obrasSocial);
+    	modeloTablaMedicos.setRowCount(0);
+    	for (Medico m: MedicosFiltrados) {
+    		modeloTablaMedicos.addRow(new Object[] {m.getNombre(),m.getApellido(),m.getDni()});
+    	}
+        this.tablaDeMedicos.setModel(modeloTablaMedicos);
+    }  
+    
+    private void TablaDeMedicosMouseClicked(MouseEvent evt) {                                            
+    	int fila = this.tablaDeMedicos.getSelectedRow();
+        String dni = (String) this.tablaDeMedicos.getValueAt(fila, 2);
+    	Medico medico = this.clinica.getMedico(dni);
+    	System.out.println(medico.getTurnos());
+    	VentanaTurnosMedico ventanaTurno = new VentanaTurnosMedico(this.clinica,medico,this.paciente);
+    	ventanaTurno.setVisible(true);
+    }
+    
     private void botonCerrarSesion2ActionPerformed(ActionEvent evt) {                                                   
     	VentanaLogin ventanaLogin = new VentanaLogin(this.clinica);
-        ventanaLogin.setVisible(true);
-        this.dispose();
+    	ventanaLogin.setVisible(true);
+    	this.dispose();
     }                                                  
-
+    
     private void botonCancelarTurnoActionPerformed(ActionEvent evt) {                                                   
-        //Debe borrar el turno seleccionado
-    }                                                  
-
-    private void boxEspecialidadesActionPerformed(ActionEvent evt) {                                                  
-        
-    }                                                 
-
-    private void boxObrasSocialesActionPerformed(ActionEvent evt) {                                                 
-        
+    	int fila = this.tablaDeTurnos.getSelectedRow();	
+    	if (fila != -1) {
+	    	paciente.eliminarTurno(this.paciente.getTurnos().get(fila));
+	    	modeloTablaMedicos.removeRow(fila);
+	    	this.tablaDeMedicos.setModel(modeloTablaMedicos);
+	    	ReadPacientes pacientes = new ReadPacientes();
+	    	ReadTurnos turnos = new ReadTurnos();
+	    	WriteCSV archivoPacientes = new WritePacientes(clinica);
+			archivoPacientes.generarArchivoCSV(pacientes.getCsvFile());
+			WriteCSV archivoTurnos = new WriteTurnos(clinica);
+			archivoTurnos.generarArchivoCSV(turnos.getCsvFile());
+			VentanaPortalPacientes ventanaPortalPacientes = new VentanaPortalPacientes(this.clinica, this.paciente.getDni());
+			ventanaPortalPacientes.setVisible(true);
+	    	this.dispose();
+    	}
     }
 }
