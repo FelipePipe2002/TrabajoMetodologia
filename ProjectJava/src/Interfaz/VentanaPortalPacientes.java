@@ -259,17 +259,17 @@ public class VentanaPortalPacientes extends JFrame {
         ArrayList<Turno> turnos = new ArrayList<>();
         turnos = paciente.getTurnos();
         
-        DefaultTableModel modeloTablaTurnos = new DefaultTableModel() {
+        this.modeloTablaTurnos = new DefaultTableModel() {
         	public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
         
-        modeloTablaTurnos.addColumn("Medico");
-        modeloTablaTurnos.addColumn("Dia");
-        modeloTablaTurnos.addColumn("Hora");
+        this.modeloTablaTurnos.addColumn("Medico");
+        this.modeloTablaTurnos.addColumn("Dia");
+        this.modeloTablaTurnos.addColumn("Hora");
         for (Turno t: turnos)
-        	modeloTablaTurnos.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getDayOfMonth() + "/" + t.getFecha().getMonthValue() + "/" + t.getFecha().getYear(),t.getFecha().getHour() + ":" + t.getFecha().getMinute()});
+        	this.modeloTablaTurnos.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getDayOfMonth() + "/" + t.getFecha().getMonthValue() + "/" + t.getFecha().getYear(),t.getFecha().getHour() + ":" + t.getFecha().getMinute()});
         this.tablaDeTurnos.setModel(modeloTablaTurnos);
         
         this.tablaDeTurnos.setMaximumSize(new Dimension(225, 600));
@@ -354,7 +354,7 @@ public class VentanaPortalPacientes extends JFrame {
         String dni = (String) this.tablaDeMedicos.getValueAt(fila, 2);
     	Medico medico = this.clinica.getMedico(dni);
     	System.out.println(medico.getTurnos());
-    	VentanaTurnosMedico ventanaTurno = new VentanaTurnosMedico(this.clinica,medico,this.paciente);
+    	VentanaTurnosMedico ventanaTurno = new VentanaTurnosMedico(this.clinica,medico,this.paciente, this);
     	ventanaTurno.setVisible(true);
     }
     
@@ -368,8 +368,9 @@ public class VentanaPortalPacientes extends JFrame {
     	int fila = this.tablaDeTurnos.getSelectedRow();	
     	if (fila != -1) {
 	    	paciente.eliminarTurno(this.paciente.getTurnos().get(fila));
-	    	modeloTablaMedicos.removeRow(fila);
-	    	this.tablaDeMedicos.setModel(modeloTablaMedicos);
+	    	System.out.println(modeloTablaTurnos.getRowCount()); //Error >> Muestra la tabla completa pero no reconoce el valor total del turnos del paciente
+	    	this.modeloTablaTurnos.removeRow(fila);
+	    	this.tablaDeTurnos.setModel(modeloTablaTurnos);
 	    	ReadPacientes pacientes = new ReadPacientes();
 	    	ReadTurnos turnos = new ReadTurnos();
 	    	WriteCSV archivoPacientes = new WritePacientes(clinica);

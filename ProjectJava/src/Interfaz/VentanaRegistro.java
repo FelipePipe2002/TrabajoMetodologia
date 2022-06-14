@@ -6,6 +6,8 @@ import TPE.Write.*;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Insets;
+import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
@@ -16,8 +18,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
@@ -92,7 +96,8 @@ public class VentanaRegistro extends JFrame {
         JLabel etiNroAfiliado = new JLabel();
         JLabel etiRegistrar = new JLabel();
         JButton botonRegistrar = new JButton();
-
+        JScrollPane jScrollPanel = new JScrollPane();
+        
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new Dimension(1200, 800));
         setMinimumSize(new Dimension(800, 600));
@@ -155,8 +160,9 @@ public class VentanaRegistro extends JFrame {
                 botonRegistrarActionPerformed(evt);
             }
         });
-
+        
         GroupLayout panelRegistroLayout = new GroupLayout(panelRegistro);
+        
         panelRegistro.setLayout(panelRegistroLayout);
         panelRegistroLayout.setHorizontalGroup(
             panelRegistroLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -245,17 +251,18 @@ public class VentanaRegistro extends JFrame {
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
+        jScrollPanel.setViewportView(panelRegistro);
+        
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(panelRegistro, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(panelRegistro, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
         pack();
     }                    
 

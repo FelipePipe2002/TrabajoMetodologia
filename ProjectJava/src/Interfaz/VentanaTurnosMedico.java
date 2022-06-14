@@ -28,11 +28,13 @@ public class VentanaTurnosMedico extends JFrame {
 	Clinica clinica;
 	Medico medico;
 	Paciente paciente;
+	VentanaPortalPacientes ventanaPaciente;
 	
-    public VentanaTurnosMedico(Clinica clinica, Medico medico, Paciente paciente) {
+    public VentanaTurnosMedico(Clinica clinica, Medico medico, Paciente paciente, VentanaPortalPacientes ventanaPaciente) {
         this.clinica = clinica;
         this.medico = medico;
         this.paciente = paciente;
+        this.ventanaPaciente = ventanaPaciente;
     	initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -149,6 +151,7 @@ public class VentanaTurnosMedico extends JFrame {
 	    	Turno turno = medico.getTurnosDisponibles().get(fila);
 	    	VentanaRegistro ventanaRegistro = new VentanaRegistro(this.clinica, this.paciente, turno, "Confirmar");
 	    	ventanaRegistro.setVisible(true);
+	    	this.ventanaPaciente.dispose();
 	        this.dispose();
     	}
     }   
