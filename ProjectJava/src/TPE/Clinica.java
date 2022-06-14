@@ -101,6 +101,9 @@ public class Clinica {
 	public ArrayList<Medico> filtrarMedicos(String especialidad, String obraSocial){
 		
 		FiltroDeBusqueda filtro;
+		if (obraSocial == "" && especialidad == "") {
+			return new ArrayList<>(this.medicos);
+		}
 		if (obraSocial == "" && especialidad != "")
 			filtro = new FiltroPorEspecialidad(especialidad);
 		else if (obraSocial != "" && especialidad == "")

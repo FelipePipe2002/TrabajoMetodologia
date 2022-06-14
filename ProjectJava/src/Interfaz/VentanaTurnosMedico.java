@@ -145,10 +145,12 @@ public class VentanaTurnosMedico extends JFrame {
     
     private void botConfirmarActionPerformed(ActionEvent evt) {                                             
     	int fila = tablaTurnos.getSelectedRow();
-    	Turno turno = medico.getTurnosDisponibles().get(fila);
-    	VentanaRegistro ventanaRegistro = new VentanaRegistro(this.clinica, this.paciente, turno, "Confirmar");
-    	ventanaRegistro.setVisible(true);
-        this.dispose();
+    	if (fila != -1) {
+	    	Turno turno = medico.getTurnosDisponibles().get(fila);
+	    	VentanaRegistro ventanaRegistro = new VentanaRegistro(this.clinica, this.paciente, turno, "Confirmar");
+	    	ventanaRegistro.setVisible(true);
+	        this.dispose();
+    	}
     }   
     
 }

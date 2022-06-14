@@ -99,7 +99,7 @@ public class VentanaPortalPacientes extends JFrame {
         heap1.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0, 0, 0)));
 
         etiNombreClinica1.setFont(new Font("Book Antiqua", 1, 36));
-        etiNombreClinica1.setText("Nombre Clinica");
+        etiNombreClinica1.setText(clinica.getNombre());
 
         botonCerrarSesion1.setFont(new Font("Book Antiqua", 1, 18));
         botonCerrarSesion1.setText("Cerrar Sesion >>");
@@ -208,7 +208,7 @@ public class VentanaPortalPacientes extends JFrame {
         heap2.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0, 0, 0)));
 
         etiNombreClinica2.setFont(new Font("Book Antiqua", 1, 36));
-        etiNombreClinica2.setText("Nombre Clinica");
+        etiNombreClinica2.setText(clinica.getNombre());
 
         botonCerrarSesion2.setFont(new Font("Book Antiqua", 1, 18));
         botonCerrarSesion2.setText("Cerrar Sesion >>");
@@ -332,7 +332,8 @@ public class VentanaPortalPacientes extends JFrame {
         this.dispose();
     }                                                  
     
-    private void BotonBuscarActionPerformed(ActionEvent evt) {                                            
+    private void BotonBuscarActionPerformed(ActionEvent evt) {
+
     	String especialidad = boxEspecialidades.getSelectedItem().toString();
     	String obrasSocial = boxObrasSociales.getSelectedItem().toString();
 

@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -260,6 +261,7 @@ public class VentanaRegistro extends JFrame {
 
     private void botonRegistrarActionPerformed(ActionEvent evt) {                                               
     	
+    	
     	String [] dp = {"", "", "", "", "", "", "", "", "", "", ""};
     	
     	dp[0] = this.cajaTextoNombre.getText();
@@ -288,6 +290,11 @@ public class VentanaRegistro extends JFrame {
     			paciente.setObraSocial(dp[9]);
     			paciente.setNroAfiliado(dp[10]);
     			paciente.addTurno(turno);
+    			
+    			String doctor = "Dr. " + turno.getMedico().getApellido() + " " + turno.getMedico().getNombre() ;
+    	        String p = paciente.getApellido() + " " + paciente.getNombre();
+    	        String t = turno.getFecha().toString();
+    			SendEmail.send(paciente.getEmail(), p, doctor, t);;
     		}
     		ReadPacientes pacientes = new ReadPacientes();
     		WriteCSV archivoPacientes = new WritePacientes(this.clinica);

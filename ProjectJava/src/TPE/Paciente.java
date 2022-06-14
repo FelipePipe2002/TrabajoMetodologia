@@ -270,41 +270,21 @@ public class Paciente extends Usuario {
 //			return false;
 //	}
 	
-
-	public void seleccionarTurno(ArrayList<Turno> turnos) {
-		if(!turnos.isEmpty()) {
-			System.out.println(turnos);
-			System.out.print("Seleccione turno: ");
-			Scanner index = new Scanner(System.in);
-			
-			Turno t = turnos.get(Integer.parseInt(index.nextLine()));
-			
-			if(confirmarTurno(t)) {
-				System.out.println("Hola");
-				t.asignarPaciente(this);
-				this.addTurno(t);
-				
-				String doctor = "Dr. " + t.getMedico().getApellido() + " " + t.getMedico().getApellido() ;
-				String paciente = this.getApellido() + " " + this.getNombre();
-				
-				//Enviar mail de confirmacion al paciente
-				if( Login.verificarCampoNotificacion("", email) ) {
-			 
-					String subject = "  �Confirmado! Turno con " + doctor ;
-					String msg = " El turno de " + paciente + " con " + doctor + " est� confirmado " + '\n';
-						   msg += "Los datos del turno son " + t.getFecha() + '\n';
-						   msg += "�Necesit�s cancelar el turno? Por favor hacerlo con anticipacion.";
-					SendEmail.send(this.getEmail(), subject, msg);
-				}
-				//else
-					//Futura implementacion de enviar por telefono
-	
-				
-			} else
-				System.out.println("No se reservo ningun turno");
-		}		
-	}
-
+//	public void seleccionarTurno(ArrayList<Turno> turnos) {
+//		if(!turnos.isEmpty()) {
+//			System.out.println(turnos);
+//			System.out.print("Seleccione turno: ");
+//			Scanner index = new Scanner(System.in);
+//			
+//			if(confirmarTurno(turnos.get(Integer.parseInt(index.nextLine())))) {
+//				turnos.get(Integer.parseInt(index.nextLine())).asignarPaciente(this);
+//				this.addTurno(turnos.get(Integer.parseInt(index.nextLine())));
+//				//Enviar mail de confirmacion al paciente
+//				System.out.println(turnos.get(Integer.parseInt(index.nextLine())));
+//			}else
+//				System.out.println("No se reservo ningun turno");
+//		}		
+//	}
 
 	@Override
 	public String toString() {
