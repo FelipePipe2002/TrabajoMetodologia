@@ -137,7 +137,7 @@ public class VentanaLogin extends JFrame {
 	            this.dispose();
 	        //Si no esta registrado
 	    	} else {
-	    		VentanaRegistro ventanaRegistro = new VentanaRegistro(this.clinica, dni);
+	    		VentanaRegistro ventanaRegistro = new VentanaRegistro(this.clinica, dni,"Registrar");
 	    		ventanaRegistro.setVisible(true);
 	    		this.dispose();
 	    	}  

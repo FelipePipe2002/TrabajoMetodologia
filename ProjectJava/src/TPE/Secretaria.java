@@ -52,11 +52,11 @@ public class Secretaria extends Usuario {
 		return aux;
 	}
 	
-	public void sacarTurnoAPaciente(Clinica c) {
-		Paciente usuario = null;
-		//Login.loguearPaciente(usuario, c);
-		usuario.seleccionarTurno(usuario.devolverTurnosPorFiltro(c, c.filtrarMedicos(this.medicos)));
-	}
+//	public void sacarTurnoAPaciente(Clinica c) {
+//		Paciente usuario = null;
+//		//Login.loguearPaciente(usuario, c);
+//		usuario.seleccionarTurno(usuario.devolverTurnosPorFiltro(c, c.filtrarMedicos(this.medicos)));
+//	}
 
 	@Override
 	public String toString() {

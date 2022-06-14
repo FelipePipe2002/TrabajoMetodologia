@@ -14,7 +14,7 @@ public class Main {
 		
 		Usuario usuario = null;
 
-    	Clinica clinica = new Clinica();
+    	Clinica clinica = new Clinica("Clinica Chacabuco");
     	
 		// Inicializacion de archivos
 		ReadPacientes pacientes = new ReadPacientes();
@@ -39,8 +39,6 @@ public class Main {
 		System.out.println(clinica.getSecretarias());
 		System.out.println("Turnos:");
 		System.out.println(clinica.getTurnos());
-		
-		System.out.println(clinica.listarObraSocial());
 		
 		//Guardado de datos
 //		WriteCSV archivoPacientes = new WritePacientes(clinica);
