@@ -4,6 +4,7 @@ import TPE.*;
 import TPE.Read.*;
 import TPE.Write.*;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
@@ -11,6 +12,8 @@ import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -104,46 +107,57 @@ public class VentanaRegistro extends JFrame {
 
         etiNombre.setFont(new Font("Book Antiqua", 0, 14));
         etiNombre.setText("Nombre:");
+        etiNombre.setForeground(Color.white);
         cajaTextoNombre.setFont(new Font("Book Antiqua", 0, 12));
         
         etiApellido.setFont(new Font("Book Antiqua", 0, 14));
         etiApellido.setText("Apellido:");
+        etiApellido.setForeground(Color.white);
         cajaTextoApellido.setFont(new Font("Book Antiqua", 0, 12));
         
         etiCalle.setFont(new Font("Book Antiqua", 0, 14));
         etiCalle.setText("Calle:");
+        etiCalle.setForeground(Color.white);
         cajaTextoCalle.setFont(new Font("Book Antiqua", 0, 12));
         
         etiNumero.setFont(new Font("Book Antiqua", 0, 14));
         etiNumero.setText("Numero:");
+        etiNumero.setForeground(Color.white);
         cajaTextoNumero.setFont(new Font("Book Antiqua", 0, 12));
         
         etiPiso.setFont(new Font("Book Antiqua", 0, 14));
         etiPiso.setText("Piso:");
+        etiPiso.setForeground(Color.white);
         cajaTextoPiso.setFont(new Font("Book Antiqua", 0, 12));
         
         etiDepto.setFont(new Font("Book Antiqua", 0, 14));
         etiDepto.setText("Depto:");
+        etiDepto.setForeground(Color.white);
         cajaTextoDepto.setFont(new Font("Book Antiqua", 0, 12));
         
         etiTelefono.setFont(new Font("Book Antiqua", 0, 14));
         etiTelefono.setText("Telefono:");
+        etiTelefono.setForeground(Color.white);
         cajaTextoTelefono.setFont(new Font("Book Antiqua", 0, 12));
         
         etiEmail.setFont(new Font("Book Antiqua", 0, 14));
         etiEmail.setText("Email:");
+        etiEmail.setForeground(Color.white);
         cajaTextoEmail.setFont(new Font("Book Antiqua", 0, 12));
         
         etiObraSocial.setFont(new Font("Book Antiqua", 0, 14));
         etiObraSocial.setText("ObraSocial:");
+        etiObraSocial.setForeground(Color.white);
         cajaTextoObraSocial.setFont(new Font("Book Antiqua", 0, 12));
         
         etiNroAfiliado.setFont(new Font("Book Antiqua", 0, 14));
         etiNroAfiliado.setText("NroAfiliado:");
+        etiNroAfiliado.setForeground(Color.white);
         cajaTextoNroAfiliado.setFont(new Font("Book Antiqua", 0, 12));
         
         etiRegistrar.setFont(new Font("Book Antiqua", 1, 48));
         etiRegistrar.setHorizontalAlignment(SwingConstants.CENTER);
+        etiRegistrar.setForeground(Color.white);
         if (this.funcion.equals("Registrar")) {
         	etiRegistrar.setText(this.funcion);
         	botonRegistrar.setIcon(new ImageIcon(getClass().getResource("/BotonRegistrar.png")));
@@ -299,9 +313,11 @@ public class VentanaRegistro extends JFrame {
     			paciente.addTurno(turno);
     			
     			String doctor = "Dr. " + turno.getMedico().getApellido() + " " + turno.getMedico().getNombre() ;
-    	        String p = paciente.getApellido() + " " + paciente.getNombre();
-    	        String t = turno.getFecha().toString();
-    			SendEmail.send(paciente.getEmail(), p, doctor, t);;
+    	        String pacient = paciente.getApellido() + " " + paciente.getNombre();
+    	        DateTimeFormatter formatoFecha = DateTimeFormatter .ofPattern("EEEE, dd 'de' MMMM 'de' yyyy 'a las' hh:mm:ss").withLocale(new Locale("es", "ES"));
+    	        String fecha = turno.getFecha().format(formatoFecha);
+    			SendEmail.send(paciente.getEmail(), pacient, doctor, fecha);
+    			JOptionPane.showMessageDialog(null, "Turno Confirmado");
     		}
     		ReadPacientes pacientes = new ReadPacientes();
     		WriteCSV archivoPacientes = new WritePacientes(this.clinica);

@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMessage;
 
 public class SendEmail {
 
-    public static void send(String to, String p, String d, String t) {
+    public static void send(String emailPaciente, String paciente, String doctor, String fecha) {
 
         String user = "turnofacilxd@gmail.com";
         String pass = "opndrdrigaapyqhq";
@@ -37,15 +37,10 @@ public class SendEmail {
 
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(user));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            message.setSubject(" ¡Confirmado! Turno con " + d);
-            message.setContent("<p> turno </p>", "text/html");
-            System.out.println("Sending message...");
-
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(emailPaciente));
+            message.setSubject(" ¡Turno confirmado! Turno con " + doctor);
+            message.setContent("<p> Usted tiene un turno el dia " + fecha + "</p>", "text/html");
             Transport.send(message);
-            
-            System.out.println("Sent message successfully....");
-            
         } catch (MessagingException mex) {
             mex.printStackTrace();
         }
