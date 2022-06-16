@@ -26,6 +26,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.WindowConstants;
@@ -70,6 +71,8 @@ public class VentanaPortalPacientes extends JFrame {
 		JButton botonCerrarSesion1 = new JButton();
 		JPanel pieDePagina1 = new JPanel();
 		JScrollPane tablaMedicos = new JScrollPane();
+		JLabel EtiEspecialidad = new JLabel();
+		JLabel EtiObraSocial = new JLabel();
 		FondoPanel panelVerProximosTurnos = new FondoPanel("/FondoLogin1.jpg");
         JPanel heap2 = new JPanel();
         JLabel etiNombreClinica2 = new JLabel();
@@ -77,10 +80,10 @@ public class VentanaPortalPacientes extends JFrame {
         JPanel pieDePagina2 = new JPanel();
         JScrollPane tablaTurno = new JScrollPane();
         JButton botonCancelarTurno = new JButton();
-        boxObrasSociales = new JComboBox(this.clinica.listarObraSocial());
-        boxEspecialidades = new JComboBox(this.clinica.listarEspecialidades());
-        tablaDeMedicos = new JTable();
-        tablaDeTurnos = new JTable();
+        this.boxObrasSociales = new JComboBox(this.clinica.listarObraSocial());
+        this.boxEspecialidades = new JComboBox(this.clinica.listarEspecialidades());
+        this.tablaDeMedicos = new JTable();
+        this.tablaDeTurnos = new JTable();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new Dimension(1200, 800));
@@ -88,8 +91,8 @@ public class VentanaPortalPacientes extends JFrame {
 
         panelSacarTurno.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
 
-        boxObrasSociales.setFont(new Font("Book Antiqua", 0, 14));
-        boxEspecialidades.setFont(new Font("Book Antiqua", 0, 14));
+        this.boxObrasSociales.setFont(new Font("Book Antiqua", 0, 14));
+        this.boxEspecialidades.setFont(new Font("Book Antiqua", 0, 14));
 
         botonBuscar.setFont(new Font("Book Antiqua", 0, 14));
         botonBuscar.setText("Buscar");
@@ -165,6 +168,14 @@ public class VentanaPortalPacientes extends JFrame {
             }
         });
         tablaMedicos.setViewportView(this.tablaDeMedicos);
+        
+        EtiEspecialidad.setFont(new Font("Book Antiqua", 0, 18));
+        EtiEspecialidad.setHorizontalAlignment(SwingConstants.CENTER);
+        EtiEspecialidad.setText("Especialidad:");
+
+        EtiObraSocial.setFont(new Font("Book Antiqua", 0, 18));
+        EtiObraSocial.setHorizontalAlignment(SwingConstants.CENTER);
+        EtiObraSocial.setText("Obra Social:");
 
         GroupLayout PanelSacarTurnoLayout = new GroupLayout(panelSacarTurno);
         panelSacarTurno.setLayout(PanelSacarTurnoLayout);
@@ -172,12 +183,16 @@ public class VentanaPortalPacientes extends JFrame {
             PanelSacarTurnoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(GroupLayout.Alignment.TRAILING, PanelSacarTurnoLayout.createSequentialGroup()
                 .addGap(257, 257, 257)
-                .addComponent(boxEspecialidades, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
+                .addGroup(PanelSacarTurnoLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                        .addComponent(EtiEspecialidad, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(this.boxEspecialidades, 0, 158, Short.MAX_VALUE))
                 .addGap(191, 191, 191)
                 .addComponent(botonBuscar)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
-                .addComponent(boxObrasSociales, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
-                .addGap(263, 263, 263))
+                .addGroup(PanelSacarTurnoLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                    .addComponent(this.boxObrasSociales, 0, 158, Short.MAX_VALUE)
+                    .addComponent(EtiObraSocial, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGap(263, 263, 263))
             .addComponent(heap1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pieDePagina1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(PanelSacarTurnoLayout.createSequentialGroup()
@@ -191,8 +206,11 @@ public class VentanaPortalPacientes extends JFrame {
                 .addComponent(heap1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(97, 97, 97)
                 .addGroup(PanelSacarTurnoLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(boxObrasSociales, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxEspecialidades, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(EtiObraSocial, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(EtiEspecialidad, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                .addGroup(PanelSacarTurnoLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(this.boxObrasSociales, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(this.boxEspecialidades, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonBuscar))
                 .addGap(42, 42, 42)
                 .addComponent(tablaMedicos, GroupLayout.PREFERRED_SIZE, 311, GroupLayout.PREFERRED_SIZE)
@@ -208,7 +226,7 @@ public class VentanaPortalPacientes extends JFrame {
         heap2.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0, 0, 0)));
 
         etiNombreClinica2.setFont(new Font("Book Antiqua", 1, 36));
-        etiNombreClinica2.setText(clinica.getNombre());
+        etiNombreClinica2.setText(this.clinica.getNombre());
 
         botonCerrarSesion2.setFont(new Font("Book Antiqua", 1, 18));
         botonCerrarSesion2.setText("Cerrar Sesion >>");
@@ -334,19 +352,19 @@ public class VentanaPortalPacientes extends JFrame {
     
     private void BotonBuscarActionPerformed(ActionEvent evt) {
 
-    	String especialidad = boxEspecialidades.getSelectedItem().toString();
-    	String obrasSocial = boxObrasSociales.getSelectedItem().toString();
+    	String especialidad = this.boxEspecialidades.getSelectedItem().toString();
+    	String obrasSocial = this.boxObrasSociales.getSelectedItem().toString();
 
-    	int rowCount = modeloTablaMedicos.getRowCount();
+    	int rowCount = this.modeloTablaMedicos.getRowCount();
     	for (int i = rowCount - 1; i >= 0; i--) {
-    		modeloTablaMedicos.removeRow(i);
+    		this.modeloTablaMedicos.removeRow(i);
     	}
     	ArrayList<Medico> MedicosFiltrados = this.clinica.filtrarMedicos(especialidad, obrasSocial);
-    	modeloTablaMedicos.setRowCount(0);
+    	this.modeloTablaMedicos.setRowCount(0);
     	for (Medico m: MedicosFiltrados) {
-    		modeloTablaMedicos.addRow(new Object[] {m.getNombre(),m.getApellido(),m.getDni()});
+    		this.modeloTablaMedicos.addRow(new Object[] {m.getNombre(),m.getApellido(),m.getDni()});
     	}
-        this.tablaDeMedicos.setModel(modeloTablaMedicos);
+        this.tablaDeMedicos.setModel(this.modeloTablaMedicos);
     }  
     
     private void TablaDeMedicosMouseClicked(MouseEvent evt) {                                            
@@ -367,15 +385,15 @@ public class VentanaPortalPacientes extends JFrame {
     private void botonCancelarTurnoActionPerformed(ActionEvent evt) {                                                   
     	int fila = this.tablaDeTurnos.getSelectedRow();	
     	if (fila != -1) {
-	    	paciente.eliminarTurno(this.paciente.getTurnos().get(fila));
-	    	System.out.println(modeloTablaTurnos.getRowCount()); //Error >> Muestra la tabla completa pero no reconoce el valor total del turnos del paciente
+    		this.paciente.eliminarTurno(this.paciente.getTurnos().get(fila));
+	    	System.out.println(this.modeloTablaTurnos.getRowCount()); //Error >> Muestra la tabla completa pero no reconoce el valor total del turnos del paciente
 	    	this.modeloTablaTurnos.removeRow(fila);
-	    	this.tablaDeTurnos.setModel(modeloTablaTurnos);
+	    	this.tablaDeTurnos.setModel(this.modeloTablaTurnos);
 	    	ReadPacientes pacientes = new ReadPacientes();
 	    	ReadTurnos turnos = new ReadTurnos();
-	    	WriteCSV archivoPacientes = new WritePacientes(clinica);
+	    	WriteCSV archivoPacientes = new WritePacientes(this.clinica);
 			archivoPacientes.generarArchivoCSV(pacientes.getCsvFile());
-			WriteCSV archivoTurnos = new WriteTurnos(clinica);
+			WriteCSV archivoTurnos = new WriteTurnos(this.clinica);
 			archivoTurnos.generarArchivoCSV(turnos.getCsvFile());
 			VentanaPortalPacientes ventanaPortalPacientes = new VentanaPortalPacientes(this.clinica, this.paciente.getDni());
 			ventanaPortalPacientes.setVisible(true);
