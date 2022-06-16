@@ -11,12 +11,14 @@ import TPE.CriterioTurnos.*;
 
 public class Clinica {
 	private String nombre;
+	private Direccion direccion;
 	private ArrayList<Paciente> pacientes;
 	private ArrayList<Medico> medicos;
 	private ArrayList<Secretaria> secretarias;
 
-	public Clinica(String nombre) {
+	public Clinica(String nombre, Direccion direccion) {
 		this.nombre = nombre;
+		this.direccion = direccion;
 		this.pacientes = new ArrayList<>();
 		this.medicos = new ArrayList<>();
 		this.secretarias = new ArrayList<>();
@@ -44,6 +46,10 @@ public class Clinica {
 	
 	public String getNombre() {
 		return this.nombre;
+	}
+	
+	public Direccion getDireccion() {
+		return this.direccion;
 	}
 
 	public Paciente getPaciente(String dni) {

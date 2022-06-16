@@ -12,6 +12,13 @@ public class Direccion {
 		this.piso = piso;
 		this.depto = depto;
 	}
+	
+	public Direccion(String calle, String numero) {
+		this.calle = calle;
+		this.numero = numero;
+		this.piso = null;
+		this.depto = null;
+	}
 
 	public String getCalle() {
 		return calle;
