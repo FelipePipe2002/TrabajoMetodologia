@@ -57,6 +57,7 @@ public class VentanaTurnosMedico extends JFrame {
     	JLabel etiHasta = new JLabel();
         JRadioButton radioBotManiana = new JRadioButton();
         JRadioButton radioBotTarde = new JRadioButton();
+        JButton botBuscar = new JButton();
     	this.tablaTurnos = new JTable();
 
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
@@ -94,9 +95,9 @@ public class VentanaTurnosMedico extends JFrame {
         });
         
         heap2.setBackground(new Color(3, 123, 139));
-        heap2.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        heap2.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0, 0, 0)));
 
-        etiNombreClinica2.setFont(new Font("Book Antiqua", 1, 36)); // NOI18N
+        etiNombreClinica2.setFont(new Font("Book Antiqua", 1, 36));
         etiNombreClinica2.setText(clinica.getNombre());
 
         GroupLayout Heap2Layout = new GroupLayout(heap2);
@@ -125,11 +126,11 @@ public class VentanaTurnosMedico extends JFrame {
             }
         });
 
-        etiDesde.setFont(new Font("Book Antiqua", 0, 14)); // NOI18N
+        etiDesde.setFont(new Font("Book Antiqua", 0, 14));
         etiDesde.setHorizontalAlignment(SwingConstants.RIGHT);
         etiDesde.setText("Desde:");
 
-        etiHasta.setFont(new Font("Book Antiqua", 0, 14)); // NOI18N
+        etiHasta.setFont(new Font("Book Antiqua", 0, 14));
         etiHasta.setHorizontalAlignment(SwingConstants.RIGHT);
         etiHasta.setText("Hasta:");
 
@@ -146,6 +147,13 @@ public class VentanaTurnosMedico extends JFrame {
                 radioBotTardeActionPerformed(evt);
             }
         });
+        
+        botBuscar.setText("Buscar");
+        botBuscar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                botBuscarActionPerformed(evt);
+            }
+        });
 
         GroupLayout panelTurnosLayout = new GroupLayout(panelTurnos);
         panelTurnos.setLayout(panelTurnosLayout);
@@ -160,50 +168,57 @@ public class VentanaTurnosMedico extends JFrame {
                     .addComponent(heap2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelTurnosLayout.createSequentialGroup()
                         .addGap(312, 312, 312)
-                        .addComponent(botConfirmar, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botConfirmar, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(panelTurnosLayout.createSequentialGroup()
                 .addGap(138, 138, 138)
                 .addGroup(panelTurnosLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                    .addComponent(etiDesde, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                    .addComponent(etiHasta, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelTurnosLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panelTurnosLayout.createSequentialGroup()
-                        .addComponent(cajaTextoFechaHasta, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(radioBotTarde, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelTurnosLayout.createSequentialGroup()
+                        .addComponent(etiDesde, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                        .addComponent(etiHasta, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(panelTurnosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addComponent(cajaTextoFechaDesde, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
-                        .addGap(147, 147, 147)
-                        .addComponent(radioBotManiana, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(cajaTextoFechaHasta, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
+                    .addGap(47, 47, 47)
+                    .addGroup(panelTurnosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(radioBotTarde, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelTurnosLayout.createSequentialGroup()
+                            .addComponent(radioBotManiana, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+                            .addGap(28, 28, 28)
+                            .addComponent(botBuscar)))
+                    .addGap(0, 163, Short.MAX_VALUE))
         );
         panelTurnosLayout.setVerticalGroup(
-            panelTurnosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(panelTurnosLayout.createSequentialGroup()
-                .addComponent(heap2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(panelTurnosLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(cajaTextoFechaDesde)
-                    .addComponent(etiDesde, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(radioBotManiana))
-                .addGap(18, 18, 18)
-                .addGroup(panelTurnosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(panelTurnosLayout.createSequentialGroup()
-                        .addGroup(panelTurnosLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(cajaTextoFechaHasta)
-                            .addComponent(etiHasta, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12))
-                    .addGroup(panelTurnosLayout.createSequentialGroup()
-                        .addComponent(radioBotTarde)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(botConfirmar, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
-        );
+                panelTurnosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(panelTurnosLayout.createSequentialGroup()
+                    .addGroup(panelTurnosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(panelTurnosLayout.createSequentialGroup()
+                            .addComponent(heap2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addGroup(panelTurnosLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(cajaTextoFechaDesde)
+                                .addComponent(etiDesde, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(radioBotManiana))
+                            .addGap(18, 18, 18))
+                        .addGroup(GroupLayout.Alignment.TRAILING, panelTurnosLayout.createSequentialGroup()
+                            .addGap(0, 0, Short.MAX_VALUE)
+                            .addComponent(botBuscar)
+                            .addGap(3, 3, 3)))
+                    .addGroup(panelTurnosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(panelTurnosLayout.createSequentialGroup()
+                            .addGroup(panelTurnosLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(cajaTextoFechaHasta)
+                                .addComponent(etiHasta, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE))
+                            .addGap(12, 12, 12))
+                        .addGroup(panelTurnosLayout.createSequentialGroup()
+                            .addComponent(radioBotTarde)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(botConfirmar, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+                    .addGap(23, 23, 23))
+            );
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -230,19 +245,23 @@ public class VentanaTurnosMedico extends JFrame {
     	}
     }                                           
 
-    private void cajaTextoFechaDesdeActionPerformed(ActionEvent evt) {                                                    
+    private void cajaTextoFechaDesdeActionPerformed(ActionEvent evt) {
         
-    }                                                   
+    }
 
-    private void cajaTextoFechaHastaActionPerformed(ActionEvent evt) {                                                    
+    private void cajaTextoFechaHastaActionPerformed(ActionEvent evt) {
         
-    }                                                   
+    }
 
-    private void radioBotManianaActionPerformed(ActionEvent evt) {                                                
+    private void radioBotManianaActionPerformed(ActionEvent evt) {
         
-    }                                               
+    }
 
-    private void radioBotTardeActionPerformed(ActionEvent evt) {                                              
+    private void radioBotTardeActionPerformed(ActionEvent evt) {
         
-    }         
+    }
+    
+    private void botBuscarActionPerformed(ActionEvent evt) {                                          
+        
+    } 
 }
