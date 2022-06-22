@@ -3,17 +3,17 @@ package TPE.CriterioTurnos;
 import java.time.LocalDateTime;
 
 public class CriterioTurnosRango extends CriterioTurnos {
-	LocalDateTime FechaInicio;
-	LocalDateTime FechaFinal;
+	CriterioTurnosMayor FechaInicio;
+	CriterioTurnosMenor FechaFinal;
 	
 	public CriterioTurnosRango(LocalDateTime fechaInicio, LocalDateTime fechaFinal) {
 		super();
-		FechaInicio = fechaInicio;
-		FechaFinal = fechaFinal;
+		FechaInicio = new CriterioTurnosMayor(fechaInicio);
+		FechaFinal = new CriterioTurnosMenor(fechaFinal);
 	}
 
 	@Override
 	public boolean cumple(LocalDateTime Fecha) {
-		return (FechaInicio.compareTo(Fecha)>=0 && FechaFinal.compareTo(Fecha)<=0);
+		return (FechaInicio.cumple(Fecha) && FechaFinal.cumple(Fecha));
 	}
 }

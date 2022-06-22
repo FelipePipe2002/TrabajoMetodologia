@@ -5,9 +5,13 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
@@ -25,6 +29,7 @@ import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
 import TPE.*;
+import TPE.CriterioTurnos.*;
 
 public class VentanaTurnosMedico extends JFrame {
 	
@@ -33,8 +38,14 @@ public class VentanaTurnosMedico extends JFrame {
 	Medico medico;
 	Paciente paciente;
 	VentanaPortalPacientes ventanaPaciente;
-	//atributos de fecha (desde, hasta) y filtro manana o tarde
-	
+	JRadioButton radioBotManiana;
+    JRadioButton radioBotTarde;
+    JTextField cajaTextoFechaDesde;
+	JTextField cajaTextoFechaHasta;
+	JButton botBuscar;
+	DefaultTableModel modeloTabla;
+	JScrollPane jScrollPane1;
+
     public VentanaTurnosMedico(Clinica clinica, Medico medico, Paciente paciente, VentanaPortalPacientes ventanaPaciente) {
         this.clinica = clinica;
         this.medico = medico;
@@ -51,19 +62,19 @@ public class VentanaTurnosMedico extends JFrame {
     	JButton botConfirmar = new JButton();
     	JPanel heap2 = new JPanel();
     	JLabel etiNombreClinica2 = new JLabel();
-    	JTextField cajaTextoFechaDesde = new JTextField();
-    	JTextField cajaTextoFechaHasta = new JTextField();
+    	this.cajaTextoFechaDesde = new JTextField();
+    	this.cajaTextoFechaHasta = new JTextField();
     	JLabel etiDesde = new JLabel();
     	JLabel etiHasta = new JLabel();
-        JRadioButton radioBotManiana = new JRadioButton();
-        JRadioButton radioBotTarde = new JRadioButton();
-        JButton botBuscar = new JButton();
+        this.radioBotManiana = new JRadioButton();
+        this.radioBotTarde = new JRadioButton();
+        this.botBuscar = new JButton();
     	this.tablaTurnos = new JTable();
 
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 
         this.tablaTurnos.setFont(new Font("Book Antiqua", 0, 14));
-        DefaultTableModel modeloTabla = new DefaultTableModel() {
+        this.modeloTabla = new DefaultTableModel() {
         	public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -76,7 +87,7 @@ public class VentanaTurnosMedico extends JFrame {
         modeloTabla.addColumn("Dia");
         modeloTabla.addColumn("Hora");
         for (Turno t: turnos) {
-        	modeloTabla.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getDayOfMonth() + "/" + t.getFecha().getMonthValue(),t.getFecha().getHour() + ":" + t.getFecha().getMinute()});
+        	modeloTabla.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getYear() + "-" + t.getFecha().getMonthValue() + "-" + t.getFecha().getDayOfMonth(),t.getFecha().getHour() + ":" + t.getFecha().getMinute()});
         }
         this.tablaTurnos.setModel(modeloTabla);
         
@@ -134,7 +145,7 @@ public class VentanaTurnosMedico extends JFrame {
         etiHasta.setHorizontalAlignment(SwingConstants.RIGHT);
         etiHasta.setText("Hasta:");
 
-        radioBotManiana.setText("Mañana");
+        radioBotManiana.setText("Maï¿½ana");
         radioBotManiana.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 radioBotManianaActionPerformed(evt);
@@ -254,14 +265,72 @@ public class VentanaTurnosMedico extends JFrame {
     }
 
     private void radioBotManianaActionPerformed(ActionEvent evt) {
-        
+    	 if (this.radioBotManiana.isSelected()) {
+         	this.radioBotTarde.setSelected(false);
+         }
     }
 
     private void radioBotTardeActionPerformed(ActionEvent evt) {
-        
+    	if (this.radioBotTarde.isSelected()) {
+        	this.radioBotManiana.setSelected(false);
+        }
     }
     
     private void botBuscarActionPerformed(ActionEvent evt) {                                          
+    	Pattern pattern = Pattern.compile("^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$"); // (2001-01-01)
+        Matcher matcher = pattern.matcher(this.cajaTextoFechaDesde.getText());
+        Matcher matcher2 = pattern.matcher(this.cajaTextoFechaHasta.getText());
         
+        int rowCount = this.modeloTabla.getRowCount();
+    	for (int i = rowCount - 1; i >= 0; i--) {
+    		this.modeloTabla.removeRow(i);
+    	}
+    	
+    	CriterioTurnos Fecha = new CriterioTurnosVerdadero();
+    	CriterioTurnos Horario = new CriterioTurnosVerdadero();
+    	
+    	boolean Desde = matcher.find();
+    	boolean Hasta = matcher2.find();
+    	
+    	if (Desde && Hasta) {
+        	String [] FechaDesde = this.cajaTextoFechaDesde.getText().split("-");
+        	LocalDateTime FechaDesdeL = LocalDateTime.of(Integer.parseInt(FechaDesde[0]),Integer.parseInt(FechaDesde[1]),Integer.parseInt(FechaDesde[2]),0,0);
+        	
+        	String [] FechaHasta = this.cajaTextoFechaHasta.getText().split("-");
+        	LocalDateTime FechaHastaL = LocalDateTime.of(Integer.parseInt(FechaHasta[0]),Integer.parseInt(FechaHasta[1]),Integer.parseInt(FechaHasta[2]),0,0);
+        	
+        	Fecha = new CriterioTurnosRango(FechaDesdeL,FechaHastaL);
+    		
+    	} else if (Desde && !Hasta) {
+    		String [] FechaDesde = this.cajaTextoFechaDesde.getText().split("-");
+        	LocalDateTime FechaDesdeL = LocalDateTime.of(Integer.parseInt(FechaDesde[0]),Integer.parseInt(FechaDesde[1]),Integer.parseInt(FechaDesde[2]),0,0);
+        	
+        	Fecha = new CriterioTurnosMayor(FechaDesdeL);
+    		
+    	} else if (!Desde && Hasta) {
+    		String [] FechaHasta = this.cajaTextoFechaHasta.getText().split("-");
+        	LocalDateTime FechaHastaL = LocalDateTime.of(Integer.parseInt(FechaHasta[0]),Integer.parseInt(FechaHasta[1]),Integer.parseInt(FechaHasta[2]),0,0);
+        	
+        	Fecha = new CriterioTurnosMenor(FechaHastaL);
+    		
+    	}
+    	
+    	if (this.radioBotManiana.isSelected()) {
+    		Horario = new CriterioTurnosManiana();
+    	} else if (this.radioBotTarde.isSelected()){
+    		Horario = new CriterioTurnosNot(new CriterioTurnosManiana());
+    	}
+    	
+    	CriterioTurnos general = new CriterioTurnosAnd(Fecha,Horario);
+    	
+    	ArrayList<Turno> turnos = this.clinica.devolverTurnosMedico(medico,general);
+    	this.modeloTabla.setRowCount(0);
+    	for (Turno t: turnos) {
+    		modeloTabla.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getYear() + "-" + t.getFecha().getMonthValue() + "-" + t.getFecha().getDayOfMonth() ,t.getFecha().getHour() + ":" + t.getFecha().getMinute()});
+        }
+    	this.tablaTurnos.setModel(modeloTabla);
+    	
+    	
+
     } 
 }

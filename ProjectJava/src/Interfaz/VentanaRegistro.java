@@ -313,12 +313,10 @@ public class VentanaRegistro extends JFrame {
     			paciente.addTurno(turno);
     			
     			String doctor = "Dr. " + turno.getMedico().getApellido() + " " + turno.getMedico().getNombre() ;
-    	        String pacient = paciente.getApellido() + " " + paciente.getNombre();   
-    	        DateTimeFormatter formatoFecha = DateTimeFormatter .ofPattern("EEEE dd 'de' MMMM 'de' yyyy 'a las' hh:mm:ss").withLocale(new Locale("es", "ES"));
+    	        String pacient = paciente.getApellido() + " " + paciente.getNombre();
+    	        DateTimeFormatter formatoFecha = DateTimeFormatter .ofPattern("EEEE, dd 'de' MMMM 'de' yyyy 'a las' hh:mm:ss").withLocale(new Locale("es", "ES"));
     	        String fecha = turno.getFecha().format(formatoFecha);
-    	        fecha = fecha.substring(0, 1).toUpperCase() + fecha.substring(1);
-    	        
-    			SendEmail.send(paciente.getEmail(), pacient, doctor, clinica.getDireccion(), fecha);
+    			SendEmail.send(paciente.getEmail(), pacient, doctor, fecha);
     			JOptionPane.showMessageDialog(null, "Turno Confirmado");
     		}
     		ReadPacientes pacientes = new ReadPacientes();

@@ -11,14 +11,12 @@ import TPE.CriterioTurnos.*;
 
 public class Clinica {
 	private String nombre;
-	private Direccion direccion;
 	private ArrayList<Paciente> pacientes;
 	private ArrayList<Medico> medicos;
 	private ArrayList<Secretaria> secretarias;
 
-	public Clinica(String nombre, Direccion direccion) {
+	public Clinica(String nombre) {
 		this.nombre = nombre;
-		this.direccion = direccion;
 		this.pacientes = new ArrayList<>();
 		this.medicos = new ArrayList<>();
 		this.secretarias = new ArrayList<>();
@@ -46,10 +44,6 @@ public class Clinica {
 	
 	public String getNombre() {
 		return this.nombre;
-	}
-	
-	public Direccion getDireccion() {
-		return this.direccion;
 	}
 
 	public Paciente getPaciente(String dni) {
@@ -190,54 +184,11 @@ public class Clinica {
 		return lista;
 	}
 	
- 	public ArrayList<Turno> devolverTurnosMedico(Medico m) {
-		Scanner read = new Scanner(System.in);  
-		
-		String opcion;
-		
-		System.out.println("Quiere filtrar turno por rango de fechas? s/n");
-		opcion = read.nextLine();
-		
-		CriterioTurnos CriterioGeneral = new CriterioTurnosVerdadero();
-		
-		if (opcion == "s") {
-			System.out.println("Cargue Primera fecha (aaaa-mm-dd) -> ej(2001-01-01): ");
-			String FechaInis = read.nextLine();
-			LocalDateTime FechaIni = LocalDateTime.of(Integer.parseInt(FechaInis.substring(0, 3)),Integer.parseInt(FechaInis.substring(5, 6)),Integer.parseInt(FechaInis.substring(8, 9)),0,0);
-			
-			System.out.println("Cargue Segunda fecha (aaaa-mm-dd) -> ej(2001-01-01): ");
-			String FechaFinals = read.nextLine();
-			LocalDateTime FechaFinal = LocalDateTime.of(Integer.parseInt(FechaFinals.substring(0, 3)),Integer.parseInt(FechaFinals.substring(5, 6)),Integer.parseInt(FechaFinals.substring(8, 9)),0,0);
-			
-			while (FechaFinal.compareTo(FechaIni)<0) {
-				System.out.println("Cargue Segunda fecha mayor que la primera (aaaa-mm-dd) -> ej(2001-01-01): ");
-				FechaFinals = read.nextLine();
-				FechaFinal = LocalDateTime.of(Integer.parseInt(FechaFinals.substring(0, 3)),Integer.parseInt(FechaFinals.substring(5, 6)),Integer.parseInt(FechaFinals.substring(8, 9)),0,0);
-			}
-			
-			System.out.println("Quiere filtrar turno por mañana o tarde? s/n");
-			String turnomt = read.nextLine();
-			
-			if (turnomt == "s") {
-				System.out.println("A que tiempo horario quiere el turno? m/t (mañana/tarde)");
-				String horario = read.nextLine();
-				
-				CriterioTurnos R = new CriterioTurnosRango(FechaIni,FechaFinal);
-				CriterioTurnos H;
-				if (horario == "t")
-					H = new CriterioTurnosNot(new CriterioTurnosManiana());
-				else
-					H = new CriterioTurnosManiana();
-				
-				CriterioGeneral = new CriterioTurnosAnd(R,H);
-			} else
-				CriterioGeneral = new CriterioTurnosRango(FechaIni,FechaFinal);
-		}
-		
-
-		ArrayList<Turno> turnosmedico = m.getTurnos();
-		for (Turno t : turnosmedico) {
-			if (t.cumple(CriterioGeneral))
+ 	public ArrayList<Turno> devolverTurnosMedico(Medico m,CriterioTurnos c) {
+ 		ArrayList<Turno> turnosmedico = new ArrayList<Turno>();
+ 		ArrayList<Turno> aux = m.getTurnos();
+		for (Turno t : aux) {
+			if (t.cumple(c) && t.getdisponible())
 				turnosmedico.add(t);
 		}
 		
