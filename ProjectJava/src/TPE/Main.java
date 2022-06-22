@@ -3,7 +3,6 @@ package TPE;
 //import java.util.ArrayList;//import java.time.LocalDateTime;
 import Interfaz.*;
 import TPE.Read.*;
-import TPE.Write.*;
 
 public class Main {
 
@@ -11,7 +10,7 @@ public class Main {
 		
 		Usuario usuario = null;
 
-    	Clinica clinica = new Clinica("Clinica Chacabuco", new Direccion("Chacabuco", "340"));
+		Clinica clinica = new Clinica("Clinica Chacabuco", new Direccion("Chacabuco", "340"));
     	
 		// Inicializacion de archivos
 		ReadPacientes pacientes = new ReadPacientes();
