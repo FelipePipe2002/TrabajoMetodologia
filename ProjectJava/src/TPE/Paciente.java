@@ -58,32 +58,6 @@ public class Paciente extends Usuario {
 		turno.setDisponible(true);
 	}
 	
-	public ArrayList<Turno> devolverTurnosPorFiltro(Clinica c, ArrayList<Medico> medicos) {	//Con algunos medicos predefinidos
-		
-		ArrayList<Medico> MedicosFiltrados= c.filtrarMedicos(medicos);
-		
-		if (MedicosFiltrados.size()<0) {
-			System.out.println("No hay medicos que cumplan esa condicion");
-		} else {
-			System.out.println(MedicosFiltrados);
-			
-			Scanner read = new Scanner(System.in);  
-			String dni;
-			System.out.println("Cargue el DNI del Medico con el que quiera sacar turno");
-			dni = read.nextLine();
-			
-			Medico Seleccionado = null;
-			for(Medico m: MedicosFiltrados) {
-				if (m.dni.equals(dni))
-					Seleccionado = m;
-			}
-			
-			return c.devolverTurnosMedico(Seleccionado);
-		}
-			
-		return null;		
-	}
-	
 	public void setDireccion(Direccion direccion) {
 		this.direccion = direccion;
 	}

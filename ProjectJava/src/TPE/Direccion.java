@@ -19,7 +19,7 @@ public class Direccion {
 		this.piso = null;
 		this.depto = null;
 	}
-
+	
 	public String getCalle() {
 		return calle;
 	}
