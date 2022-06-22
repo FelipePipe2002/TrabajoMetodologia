@@ -26,6 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import TPE.*;
@@ -124,18 +125,6 @@ public class VentanaTurnosMedico extends JFrame {
             Heap2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addComponent(etiNombreClinica2, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
         );
-
-        cajaTextoFechaDesde.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                cajaTextoFechaDesdeActionPerformed(evt);
-            }
-        });
-
-        cajaTextoFechaHasta.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                cajaTextoFechaHastaActionPerformed(evt);
-            }
-        });
 
         etiDesde.setFont(new Font("Book Antiqua", 0, 14));
         etiDesde.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -256,14 +245,6 @@ public class VentanaTurnosMedico extends JFrame {
     	}
     }                                           
 
-    private void cajaTextoFechaDesdeActionPerformed(ActionEvent evt) {
-        
-    }
-
-    private void cajaTextoFechaHastaActionPerformed(ActionEvent evt) {
-        
-    }
-
     private void radioBotManianaActionPerformed(ActionEvent evt) {
     	 if (this.radioBotManiana.isSelected()) {
          	this.radioBotTarde.setSelected(false);
@@ -277,7 +258,7 @@ public class VentanaTurnosMedico extends JFrame {
     }
     
     private void botBuscarActionPerformed(ActionEvent evt) {                                          
-    	Pattern pattern = Pattern.compile("^((19|2[0-9])[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$"); // (2001-01-01)
+    	Pattern pattern = Pattern.compile("^((20|2[0-9])[0-9]{2})-(0[1-9]|[1-9]|1[012])-(0[1-9]|[1-9]|[12][0-9]|3[01])$"); // (2001-01-01)
         Matcher matcher = pattern.matcher(this.cajaTextoFechaDesde.getText());
         Matcher matcher2 = pattern.matcher(this.cajaTextoFechaHasta.getText());
         
@@ -292,7 +273,17 @@ public class VentanaTurnosMedico extends JFrame {
     	boolean Desde = matcher.find();
     	boolean Hasta = matcher2.find();
     	
+    	System.out.println(Desde);
+    	
+    	if(!Desde && !this.cajaTextoFechaDesde.getText().isEmpty())
+    		this.cajaTextoFechaDesde.setBorder(new LineBorder(Color.RED));
+    	if(!Hasta && !this.cajaTextoFechaHasta.getText().isEmpty())
+    		this.cajaTextoFechaHasta.setBorder(new LineBorder(Color.RED));
+    	
+    	
     	if (Desde && Hasta) {
+    		this.cajaTextoFechaDesde.setBorder(new LineBorder(Color.black));
+    		this.cajaTextoFechaHasta.setBorder(new LineBorder(Color.black));
         	String [] FechaDesde = this.cajaTextoFechaDesde.getText().split("-");
         	LocalDateTime FechaDesdeL = LocalDateTime.of(Integer.parseInt(FechaDesde[0]),Integer.parseInt(FechaDesde[1]),Integer.parseInt(FechaDesde[2]),0,0);
         	
@@ -301,19 +292,22 @@ public class VentanaTurnosMedico extends JFrame {
         	
         	Fecha = new CriterioTurnosRango(FechaDesdeL,FechaHastaL);
     		
-    	} else if (Desde && !Hasta) {
+    	} else if (Desde && this.cajaTextoFechaHasta.getText().isEmpty()) {
+    		this.cajaTextoFechaDesde.setBorder(new LineBorder(Color.black));
     		String [] FechaDesde = this.cajaTextoFechaDesde.getText().split("-");
         	LocalDateTime FechaDesdeL = LocalDateTime.of(Integer.parseInt(FechaDesde[0]),Integer.parseInt(FechaDesde[1]),Integer.parseInt(FechaDesde[2]),0,0);
         	
         	Fecha = new CriterioTurnosMayor(FechaDesdeL);
     		
-    	} else if (!Desde && Hasta) {
+    	} else if (this.cajaTextoFechaDesde.getText().isEmpty() && Hasta) {
+    		this.cajaTextoFechaHasta.setBorder(new LineBorder(Color.black));
     		String [] FechaHasta = this.cajaTextoFechaHasta.getText().split("-");
         	LocalDateTime FechaHastaL = LocalDateTime.of(Integer.parseInt(FechaHasta[0]),Integer.parseInt(FechaHasta[1]),Integer.parseInt(FechaHasta[2]),0,0);
         	
         	Fecha = new CriterioTurnosMenor(FechaHastaL);
-    		
     	}
+    	
+    	
     	
     	if (this.radioBotManiana.isSelected()) {
     		Horario = new CriterioTurnosManiana();
