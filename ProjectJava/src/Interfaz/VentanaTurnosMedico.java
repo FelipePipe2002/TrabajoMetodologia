@@ -134,7 +134,7 @@ public class VentanaTurnosMedico extends JFrame {
         etiHasta.setHorizontalAlignment(SwingConstants.RIGHT);
         etiHasta.setText("Hasta:");
 
-        radioBotManiana.setText("Ma�ana");
+        radioBotManiana.setText("Maniana");
         radioBotManiana.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 radioBotManianaActionPerformed(evt);

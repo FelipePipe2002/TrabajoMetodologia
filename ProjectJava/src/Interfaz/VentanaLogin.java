@@ -39,6 +39,7 @@ public class VentanaLogin extends JFrame {
     	JButton BotonIngresar = new JButton();
     	JLabel EtiDesign = new JLabel();
     	JButton BotonLoginClinica = new JButton();
+    	this.CajaTextoLogin = new JTextField();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new Dimension(1300, 800));
@@ -166,5 +167,8 @@ public class VentanaLogin extends JFrame {
     
     private void BotonLoginClinicaActionPerformed(ActionEvent evt) {
     	//Login para medicos y secretarias
+    	VentanaLoginClinica ventanaLoginClinica = new VentanaLoginClinica(this.clinica);
+    	ventanaLoginClinica.setVisible(true);
+        this.dispose();
     }
 }

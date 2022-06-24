@@ -72,6 +72,14 @@ public class Clinica {
 		}
 		return null;
 	}
+	
+	public Medico getMedicoUsuario(String nombreUsuario) {
+		for (int i=0; i < this.medicos.size(); i++) {
+			if (this.medicos.get(i).getDni().equals(nombreUsuario))
+				return this.medicos.get(i);
+		}
+		return null;
+	}
 		
 	public ArrayList<Secretaria> getSecretarias() {
 		ArrayList<Secretaria> aux = new ArrayList<>(this.secretarias);
@@ -79,9 +87,9 @@ public class Clinica {
 		
 	}
 	
-	public Secretaria getSecretaria(String dni) {
+	public Secretaria getSecretariaUsuario(String nombreUsuario) {
 		for (int i=0; i < this.secretarias.size(); i++) {
-			if (this.secretarias.get(i).getDni().equals(dni))
+			if (this.secretarias.get(i).getNombreUsuario().equals(nombreUsuario))
 				return this.secretarias.get(i);
 		}
 		return null;

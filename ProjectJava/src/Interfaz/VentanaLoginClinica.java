@@ -11,15 +11,25 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
+import javax.swing.border.LineBorder;
+
+import TPE.Clinica;
+import TPE.Login;
 
 public class VentanaLoginClinica extends JFrame {
-
-	public VentanaLoginClinica() {
+	
+	Clinica clinica;
+	JTextField cajaTextoUsuario;
+	JPasswordField cajaTextoContrasenia;
+	
+	public VentanaLoginClinica(Clinica clinica) {
+		this.clinica = clinica;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -29,11 +39,11 @@ public class VentanaLoginClinica extends JFrame {
     	FondoPanel panelLogin = new FondoPanel("/FondoLogin.jpg");
     	JLabel EtiBienvenido = new JLabel();
         JLabel EtiUsuario = new JLabel();
-        JTextField CajaTextoUsuario = new JTextField();
         JButton BotonIngresar = new JButton();
         JLabel EtiDesign = new JLabel();
         JLabel EtiIngreseSuDNI1 = new JLabel();
-        JPasswordField CajaTextoContraseña = new JPasswordField();
+        this.cajaTextoUsuario = new JTextField();
+        this.cajaTextoContrasenia = new JPasswordField();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(800, 600));
@@ -67,12 +77,6 @@ public class VentanaLoginClinica extends JFrame {
         EtiIngreseSuDNI1.setHorizontalAlignment(SwingConstants.CENTER);
         EtiIngreseSuDNI1.setText("Contraseña:");
 
-        CajaTextoContraseña.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                CajaTextoContraseñaActionPerformed(evt);
-            }
-        });
-
         GroupLayout panelLoginLayout = new GroupLayout(panelLogin);
         panelLogin.setLayout(panelLoginLayout);
         panelLoginLayout.setHorizontalGroup(
@@ -91,8 +95,8 @@ public class VentanaLoginClinica extends JFrame {
                         .addGroup(panelLoginLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
                             .addComponent(EtiUsuario, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(EtiIngreseSuDNI1, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                            .addComponent(CajaTextoUsuario, GroupLayout.Alignment.LEADING))
-                        .addComponent(CajaTextoContraseña, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cajaTextoUsuario, GroupLayout.Alignment.LEADING))
+                        .addComponent(cajaTextoContrasenia, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE))
                     .addGroup(GroupLayout.Alignment.TRAILING, panelLoginLayout.createSequentialGroup()
                         .addComponent(BotonIngresar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGap(181, 181, 181))))
@@ -105,11 +109,11 @@ public class VentanaLoginClinica extends JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(EtiUsuario)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CajaTextoUsuario, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+                .addComponent(cajaTextoUsuario, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(EtiIngreseSuDNI1)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CajaTextoContraseña, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+                .addComponent(cajaTextoContrasenia, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BotonIngresar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
@@ -134,21 +138,22 @@ public class VentanaLoginClinica extends JFrame {
         pack();
     }
     
-    private void BotonIngresarActionPerformed(ActionEvent evt) {                                              
+    private void BotonIngresarActionPerformed(ActionEvent evt) {
         
-        //logica para validar DNI
-        
-        //Si esta registrado
-    	VentanaLoginClinica ventanaPortalClinica = new VentanaLoginClinica();
-            ventanaPortalClinica.setVisible(true);
+    	String nombreUsuario = this.cajaTextoUsuario.getText();
+    	String contrasenia = this.cajaTextoContrasenia.getText();
+    	if (clinica.getSecretariaUsuario(nombreUsuario) != null && clinica.getSecretariaUsuario(nombreUsuario).esContrasenia(contrasenia)) {
+    		VentanaPortalSecretarias ventanaPortalSecretarias = new VentanaPortalSecretarias(this.clinica, nombreUsuario);
+        	ventanaPortalSecretarias.setVisible(true);
             this.dispose();
-        //Si no esta registrado
-//            Registro ventanaRegistro = new Registro();
-//            ventanaRegistro.setVisible(true);
-//            this.dispose();
-    }                                             
-
-    private void CajaTextoContraseñaActionPerformed(ActionEvent evt) {                                                    
-        
+    	} else if (clinica.getMedicoUsuario(nombreUsuario) != null && clinica.getMedicoUsuario(nombreUsuario).esContrasenia(contrasenia)) {
+    		VentanaPortalMedicos ventanaPortalMedicos = new VentanaPortalMedicos(this.clinica, nombreUsuario);
+    		ventanaPortalMedicos.setVisible(true);
+            this.dispose();
+    	} else {
+    		cajaTextoUsuario.setBorder(new LineBorder(Color.RED));
+    		cajaTextoContrasenia.setBorder(new LineBorder(Color.RED));
+    		JOptionPane.showMessageDialog(null, "El usuario o contrasenia no son correctos");
+    	}
     }
 }

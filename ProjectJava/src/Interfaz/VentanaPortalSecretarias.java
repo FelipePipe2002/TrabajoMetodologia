@@ -42,7 +42,7 @@ public class VentanaPortalSecretarias extends JFrame {
     JCheckBox jCheckBox6;
     JCheckBox jCheckBox7;
 
-	public VentanaPortalSecretarias(Clinica clinica, String dni) {
+	public VentanaPortalSecretarias(Clinica clinica, String nombreUsuario) {
 		try {
 			UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
 		} catch (ClassNotFoundException e) {
@@ -55,7 +55,7 @@ public class VentanaPortalSecretarias extends JFrame {
 			e.printStackTrace();
 		}
 		this.clinica = clinica;
-		this.secretaria = clinica.getSecretaria(dni);
+		this.secretaria = clinica.getSecretariaUsuario(nombreUsuario);
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -469,7 +469,7 @@ public class VentanaPortalSecretarias extends JFrame {
             .addGroup(Heap2Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(EtiNombreClinica2, GroupLayout.PREFERRED_SIZE, 713, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 349, Short.MAX_VALUE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 349, Short.MAX_VALUE)
                 .addComponent(BotonCerrarSesion2)
                 .addGap(35, 35, 35))
         );
