@@ -386,7 +386,6 @@ public class VentanaPortalPacientes extends JFrame {
     	int fila = this.tablaDeTurnos.getSelectedRow();	
     	if (fila != -1) {
     		this.paciente.eliminarTurno(this.paciente.getTurnos().get(fila));
-	    	System.out.println(this.modeloTablaTurnos.getRowCount()); //Error >> Muestra la tabla completa pero no reconoce el valor total del turnos del paciente
 	    	this.modeloTablaTurnos.removeRow(fila);
 	    	this.tablaDeTurnos.setModel(this.modeloTablaTurnos);
 	    	ReadPacientes pacientes = new ReadPacientes();

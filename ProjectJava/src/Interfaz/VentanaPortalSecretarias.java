@@ -64,7 +64,7 @@ public class VentanaPortalSecretarias extends JFrame {
 
     	JTabbedPane TablaPortal = new JTabbedPane();
     	FondoPanel panelAsignarHorarios = new FondoPanel("/FondoLogin1.jpg");
-    	JButton BotonBuscar = new JButton();
+    	JButton botVerHorarios = new JButton();
     	JPanel Heap1 = new JPanel();
     	JLabel EtiNombreClinica1 = new JLabel();
     	JButton BotonCerrarSesion1 = new JButton();
@@ -81,13 +81,13 @@ public class VentanaPortalSecretarias extends JFrame {
         JCheckBox jCheckBox5 = new JCheckBox();
         JCheckBox jCheckBox6 = new JCheckBox();
         JCheckBox jCheckBox7 = new JCheckBox();
-        JLabel jLabel2 = new JLabel();
-        JTextField jTextField2 = new JTextField();
-        JLabel jLabel3 = new JLabel();
-        JTextField jTextField3 = new JTextField();
-        JButton jButton1 = new JButton();
-        JLabel jLabel4 = new JLabel();
-        JTextField jTextField4 = new JTextField();
+        JLabel etiHoraInicio = new JLabel();
+        JTextField cajaTextoHoraCierre = new JTextField();
+        JLabel etiHoraCierre = new JLabel();
+        JTextField cajaTextoHoraInicio = new JTextField();
+        JButton botAsignarHorario = new JButton();
+        JLabel etiDuracionTurno = new JLabel();
+        JTextField cajaTextoDuracionTurno = new JTextField();
         FondoPanel panelAdministrarTurnosMedicos = new FondoPanel("/FondoLogin1.jpg");
         JPanel Heap2 = new JPanel();
         JLabel EtiNombreClinica2 = new JLabel();
@@ -113,11 +113,11 @@ public class VentanaPortalSecretarias extends JFrame {
 
         panelAsignarHorarios.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
 
-        BotonBuscar.setFont(new Font("Book Antiqua", 0, 14));
-        BotonBuscar.setText("Ver Horarios");
-        BotonBuscar.addActionListener(new ActionListener() {
+        botVerHorarios.setFont(new Font("Book Antiqua", 0, 14));
+        botVerHorarios.setText("Ver Horarios");
+        botVerHorarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                BotonBuscarActionPerformed(evt);
+                botVerHorariosActionPerformed(evt);
             }
         });
 
@@ -237,11 +237,6 @@ public class VentanaPortalSecretarias extends JFrame {
             }
         });
         TablaDeMedicos.setToolTipText("");
-        TablaDeMedicos.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                TablaDeMedicosMouseClicked(evt);
-            }
-        });
         TablaMedicos.setViewportView(TablaDeMedicos);
 
         jLabel1.setFont(new Font("Book Antiqua", 0, 18));
@@ -252,80 +247,50 @@ public class VentanaPortalSecretarias extends JFrame {
 
         jCheckBox1.setFont(new Font("Book Antiqua", 0, 14));
         jCheckBox1.setText("Lunes");
-        jCheckBox1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
-            }
-        });
 
         jCheckBox2.setFont(new Font("Book Antiqua", 0, 14));
         jCheckBox2.setText("Martes");
-        jCheckBox2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
-            }
-        });
 
         jCheckBox3.setFont(new Font("Book Antiqua", 0, 14));
         jCheckBox3.setText("Miercoles");
-        jCheckBox3.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
-            }
-        });
 
         jCheckBox4.setFont(new Font("Book Antiqua", 0, 14));
         jCheckBox4.setText("Jueves");
-        jCheckBox4.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jCheckBox4ActionPerformed(evt);
-            }
-        });
 
         jCheckBox5.setFont(new Font("Book Antiqua", 0, 14));
         jCheckBox5.setText("Viernes");
-        jCheckBox5.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jCheckBox5ActionPerformed(evt);
-            }
-        });
-
+        
         jCheckBox6.setFont(new Font("Book Antiqua", 0, 14));
         jCheckBox6.setText("Sabado");
-        jCheckBox6.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jCheckBox6ActionPerformed(evt);
-            }
-        });
 
         jCheckBox7.setFont(new Font("Book Antiqua", 0, 14));
         jCheckBox7.setText("Domingo");
-        jCheckBox7.addActionListener(new ActionListener() {
+        
+        etiHoraInicio.setFont(new Font("Book Antiqua", 0, 14));
+        etiHoraInicio.setHorizontalAlignment(SwingConstants.CENTER);
+        etiHoraInicio.setText("Hora de inicio:");
+
+        cajaTextoHoraCierre.setHorizontalAlignment(JTextField.CENTER);
+
+        etiHoraCierre.setFont(new Font("Book Antiqua", 0, 14));
+        etiHoraCierre.setHorizontalAlignment(SwingConstants.CENTER);
+        etiHoraCierre.setText("Hora de cierre:");
+
+        cajaTextoHoraInicio.setHorizontalAlignment(JTextField.CENTER);
+
+        botAsignarHorario.setFont(new Font("Book Antiqua", 0, 18));
+        botAsignarHorario.setText("Asignar horario");
+        botAsignarHorario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                jCheckBox7ActionPerformed(evt);
+            	botAsignarHorarioActionPerformed(evt);
             }
         });
+        
+        etiDuracionTurno.setFont(new Font("Book Antiqua", 0, 14));
+        etiDuracionTurno.setHorizontalAlignment(SwingConstants.CENTER);
+        etiDuracionTurno.setText("Duracion Turnos:");
 
-        jLabel2.setFont(new Font("Book Antiqua", 0, 14)); // NOI18N
-        jLabel2.setHorizontalAlignment(SwingConstants.CENTER);
-        jLabel2.setText("Hora de inicio:");
-
-        jTextField2.setHorizontalAlignment(JTextField.CENTER);
-
-        jLabel3.setFont(new Font("Book Antiqua", 0, 14)); // NOI18N
-        jLabel3.setHorizontalAlignment(SwingConstants.CENTER);
-        jLabel3.setText("Hora de cierre:");
-
-        jTextField3.setHorizontalAlignment(JTextField.CENTER);
-
-        jButton1.setFont(new Font("Book Antiqua", 0, 18)); // NOI18N
-        jButton1.setText("Asignar horario");
-
-        jLabel4.setFont(new Font("Book Antiqua", 0, 14)); // NOI18N
-        jLabel4.setHorizontalAlignment(SwingConstants.CENTER);
-        jLabel4.setText("Duracion Turnos:");
-
-        jTextField4.setHorizontalAlignment(JTextField.CENTER);
+        cajaTextoDuracionTurno.setHorizontalAlignment(JTextField.CENTER);
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -346,21 +311,21 @@ public class VentanaPortalSecretarias extends JFrame {
                                 .addGap(110, 110, 110)
                                 .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jLabel2, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextField3, GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
-                                    .addComponent(jLabel4, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))
+                                        .addComponent(etiHoraInicio, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cajaTextoHoraInicio, GroupLayout.Alignment.LEADING)
+                                        .addComponent(etiHoraCierre, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                                    .addComponent(etiDuracionTurno, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                     .addComponent(jCheckBox6, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jCheckBox7, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
                                 .addGap(142, 142, 142)
                                 .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField2)
-                                    .addComponent(jTextField4)))))
+                                    .addComponent(cajaTextoHoraCierre)
+                                    .addComponent(cajaTextoDuracionTurno)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(159, 159, 159)
-                        .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 215, GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(botAsignarHorario, GroupLayout.PREFERRED_SIZE, 215, GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(119, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -384,20 +349,20 @@ public class VentanaPortalSecretarias extends JFrame {
                         .addComponent(jCheckBox7, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
-                        .addComponent(jLabel2)
+                        .addComponent(etiHoraInicio)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cajaTextoHoraInicio, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
+                        .addComponent(etiHoraCierre)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cajaTextoHoraCierre, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
+                        .addComponent(etiDuracionTurno)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cajaTextoDuracionTurno, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(40, 40, 40)
-                .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                .addComponent(botAsignarHorario, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
 
@@ -414,7 +379,7 @@ public class VentanaPortalSecretarias extends JFrame {
                     .addComponent(TablaMedicos, GroupLayout.PREFERRED_SIZE, 385, GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelAsignarHorariosLayout.createSequentialGroup()
                         .addGap(135, 135, 135)
-                        .addComponent(BotonBuscar, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(botVerHorarios, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, 275, GroupLayout.PREFERRED_SIZE))
                 .addGap(113, 113, 113)
                 .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -433,7 +398,7 @@ public class VentanaPortalSecretarias extends JFrame {
                         .addGap(30, 30, 30)
                         .addComponent(TablaMedicos, GroupLayout.PREFERRED_SIZE, 311, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BotonBuscar)
+                        .addComponent(botVerHorarios)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE))
                     .addGroup(GroupLayout.Alignment.TRAILING, panelAsignarHorariosLayout.createSequentialGroup()
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -449,10 +414,10 @@ public class VentanaPortalSecretarias extends JFrame {
         Heap2.setBackground(new Color(3, 123, 139));
         Heap2.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0, 0, 0)));
 
-        EtiNombreClinica2.setFont(new Font("Book Antiqua", 1, 36)); // NOI18N
+        EtiNombreClinica2.setFont(new Font("Book Antiqua", 1, 36));
         EtiNombreClinica2.setText("Nombre Clinica");
 
-        BotonCerrarSesion2.setFont(new Font("Book Antiqua", 1, 18)); // NOI18N
+        BotonCerrarSesion2.setFont(new Font("Book Antiqua", 1, 18));
         BotonCerrarSesion2.setText("Cerrar Sesion >>");
         BotonCerrarSesion2.setBorderPainted(false);
         BotonCerrarSesion2.setContentAreaFilled(false);
@@ -496,7 +461,7 @@ public class VentanaPortalSecretarias extends JFrame {
             .addGap(0, 183, Short.MAX_VALUE)
         );
 
-        etiDesde.setFont(new Font("Book Antiqua", 0, 14)); // NOI18N
+        etiDesde.setFont(new Font("Book Antiqua", 0, 14));
         etiDesde.setHorizontalAlignment(SwingConstants.RIGHT);
         etiDesde.setText("Desde:");
 
@@ -506,7 +471,7 @@ public class VentanaPortalSecretarias extends JFrame {
             }
         });
 
-        etiHasta.setFont(new Font("Book Antiqua", 0, 14)); // NOI18N
+        etiHasta.setFont(new Font("Book Antiqua", 0, 14));
         etiHasta.setHorizontalAlignment(SwingConstants.RIGHT);
         etiHasta.setText("Hasta:");
 
@@ -517,18 +482,7 @@ public class VentanaPortalSecretarias extends JFrame {
         });
 
         radioBotManiana.setText("Mañana");
-        radioBotManiana.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                radioBotManianaActionPerformed(evt);
-            }
-        });
-
         radioBotTarde.setText("Tarde");
-        radioBotTarde.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                radioBotTardeActionPerformed(evt);
-            }
-        });
 
         botFiltrar.setText("Filtrar");
         botFiltrar.addActionListener(new ActionListener() {
@@ -576,11 +530,11 @@ public class VentanaPortalSecretarias extends JFrame {
         tablaTurno.setShowGrid(false);
         jScrollPane1.setViewportView(tablaTurno);
 
-        etiNombre.setFont(new Font("Book Antiqua", 0, 18)); // NOI18N
+        etiNombre.setFont(new Font("Book Antiqua", 0, 18));
         etiNombre.setHorizontalAlignment(SwingConstants.RIGHT);
         etiNombre.setText("Nombre:");
 
-        botAsignarTurno.setFont(new Font("Book Antiqua", 0, 18)); // NOI18N
+        botAsignarTurno.setFont(new Font("Book Antiqua", 0, 18));
         botAsignarTurno.setText("Asignar turno");
         botAsignarTurno.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -588,7 +542,7 @@ public class VentanaPortalSecretarias extends JFrame {
             }
         });
 
-        botReagendarTurno.setFont(new Font("Book Antiqua", 0, 18)); // NOI18N
+        botReagendarTurno.setFont(new Font("Book Antiqua", 0, 18));
         botReagendarTurno.setText("Reagendar turno");
         botReagendarTurno.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -596,7 +550,7 @@ public class VentanaPortalSecretarias extends JFrame {
             }
         });
 
-        botCancelarTurno.setFont(new Font("Book Antiqua", 0, 18)); // NOI18N
+        botCancelarTurno.setFont(new Font("Book Antiqua", 0, 18));
         botCancelarTurno.setText("Cancelar turno");
         botCancelarTurno.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -713,14 +667,6 @@ public class VentanaPortalSecretarias extends JFrame {
         
     }
 
-    private void radioBotTardeActionPerformed(ActionEvent evt) {
-        
-    }
-
-    private void radioBotManianaActionPerformed(ActionEvent evt) {
-        
-    }
-
     private void cajaTextoFechaHastaActionPerformed(ActionEvent evt) {
         
     }
@@ -735,45 +681,18 @@ public class VentanaPortalSecretarias extends JFrame {
         this.dispose();
     }
 
-    private void jCheckBox7ActionPerformed(ActionEvent evt) {
-        
-    }
-
-    private void jCheckBox6ActionPerformed(ActionEvent evt) {
-        
-    }
-
-    private void jCheckBox5ActionPerformed(ActionEvent evt) {
-        
-    }
-
-    private void jCheckBox4ActionPerformed(ActionEvent evt) {
-        
-    }
-
-    private void jCheckBox3ActionPerformed(ActionEvent evt) {
-        
-    }
-
-    private void jCheckBox2ActionPerformed(ActionEvent evt) {
-        
-    }
-
-    private void jCheckBox1ActionPerformed(ActionEvent evt) {
-        
-    }
-
-    private void TablaDeMedicosMouseClicked(MouseEvent evt) {
-        
-    }
-
     private void BotonCerrarSesion1ActionPerformed(ActionEvent evt) {
     	VentanaLogin ventanaLogin = new VentanaLogin(this.clinica);
         ventanaLogin.setVisible(true);
         this.dispose();
     }
 
-    private void BotonBuscarActionPerformed(ActionEvent evt) {
+    private void botVerHorariosActionPerformed(ActionEvent evt) {
         
     }
+    
+    private void botAsignarHorarioActionPerformed(ActionEvent evt) {
+        
+    }
+    
 }
