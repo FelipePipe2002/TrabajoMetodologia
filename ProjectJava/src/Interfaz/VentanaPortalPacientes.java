@@ -371,7 +371,6 @@ public class VentanaPortalPacientes extends JFrame {
     	int fila = this.tablaDeMedicos.getSelectedRow();
         String dni = (String) this.tablaDeMedicos.getValueAt(fila, 2);
     	Medico medico = this.clinica.getMedico(dni);
-    	System.out.println(medico.getTurnos());
     	VentanaTurnosMedico ventanaTurno = new VentanaTurnosMedico(this.clinica,medico,this.paciente, this);
     	ventanaTurno.setVisible(true);
     }
