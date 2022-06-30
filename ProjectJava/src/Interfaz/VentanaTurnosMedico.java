@@ -45,7 +45,7 @@ public class VentanaTurnosMedico extends JFrame {
 	JTextField cajaTextoFechaHasta;
 	JButton botBuscar;
 	DefaultTableModel modeloTabla;
-	JScrollPane jScrollPane1;
+	JScrollPane scrollTabla;
 
     public VentanaTurnosMedico(Clinica clinica, Medico medico, Paciente paciente, VentanaPortalPacientes ventanaPaciente) {
         this.clinica = clinica;
@@ -59,7 +59,7 @@ public class VentanaTurnosMedico extends JFrame {
     private void initComponents() {
 
     	FondoPanel panelTurnos = new FondoPanel("/FondoLogin1.jpg");
-    	JScrollPane jScrollPane1 = new JScrollPane();
+    	JScrollPane scrollTabla = new JScrollPane();
     	JButton botConfirmar = new JButton();
     	JPanel heap2 = new JPanel();
     	JLabel etiNombreClinica2 = new JLabel();
@@ -96,7 +96,7 @@ public class VentanaTurnosMedico extends JFrame {
         this.tablaTurnos.setMinimumSize(new Dimension(100, 300));
         this.tablaTurnos.setPreferredSize(new Dimension(225, 600));
         this.tablaTurnos.setShowGrid(false);
-        jScrollPane1.setViewportView(this.tablaTurnos);
+        scrollTabla.setViewportView(this.tablaTurnos);
 
         botConfirmar.setFont(new Font("Book Antiqua", 0, 18));
         botConfirmar.setText("Confirmar turno");
@@ -161,7 +161,7 @@ public class VentanaTurnosMedico extends JFrame {
             panelTurnosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(GroupLayout.Alignment.TRAILING, panelTurnosLayout.createSequentialGroup()
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollTabla, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
                 .addGap(97, 97, 97))
             .addGroup(panelTurnosLayout.createSequentialGroup()
                 .addGroup(panelTurnosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -214,7 +214,7 @@ public class VentanaTurnosMedico extends JFrame {
                         .addGroup(panelTurnosLayout.createSequentialGroup()
                             .addComponent(radioBotTarde)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(scrollTabla, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
                     .addComponent(botConfirmar, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
                     .addGap(23, 23, 23))
@@ -273,8 +273,6 @@ public class VentanaTurnosMedico extends JFrame {
     	boolean Desde = matcher.find();
     	boolean Hasta = matcher2.find();
     	
-    	System.out.println(Desde);
-    	
     	if(!Desde && !this.cajaTextoFechaDesde.getText().isEmpty())
     		this.cajaTextoFechaDesde.setBorder(new LineBorder(Color.RED));
     	if(!Hasta && !this.cajaTextoFechaHasta.getText().isEmpty())
@@ -323,8 +321,5 @@ public class VentanaTurnosMedico extends JFrame {
     		modeloTabla.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getYear() + "-" + t.getFecha().getMonthValue() + "-" + t.getFecha().getDayOfMonth() ,t.getFecha().getHour() + ":" + t.getFecha().getMinute()});
         }
     	this.tablaTurnos.setModel(modeloTabla);
-    	
-    	
-
     } 
 }

@@ -199,13 +199,13 @@ public class Clinica {
 	}
 	
  	public ArrayList<Turno> devolverTurnosMedico(Medico m,CriterioTurnos c) {
- 		ArrayList<Turno> turnosmedico = new ArrayList<Turno>();
- 		ArrayList<Turno> aux = m.getTurnos();
+ 		ArrayList<Turno> turnosMedico = new ArrayList<Turno>();
+ 		ArrayList<Turno> aux = m.getTurnosDisponibles();
 		for (Turno t : aux) {
-			if (t.cumple(c) && t.getdisponible())
-				turnosmedico.add(t);
+			if (t.cumple(c))
+				turnosMedico.add(t);
 		}
 		
-		return turnosmedico;	
+		return turnosMedico;	
 	}
 }

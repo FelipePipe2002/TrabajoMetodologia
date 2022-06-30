@@ -7,8 +7,6 @@ import TPE.Read.*;
 public class Main {
 
 	public static void main(String[] args) {
-		
-		Usuario usuario = null;
 
 		Clinica clinica = new Clinica("Clinica Chacabuco", new Direccion("Chacabuco", "340"));
     	
@@ -26,14 +24,5 @@ public class Main {
 		//Codigo
 		VentanaLogin login = new VentanaLogin(clinica);
 		login.setVisible(true);
-		
-		System.out.println("Pacientes:");
-		System.out.println(clinica.getPacientes());
-		System.out.println("Medico:");
-		System.out.println(clinica.getMedicos());
-		System.out.println("Secretaria:");
-		System.out.println(clinica.getSecretarias());
-		System.out.println("Turnos:");
-		System.out.println(clinica.getTurnos());
 	}
 }

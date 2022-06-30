@@ -1,6 +1,8 @@
 package TPE;
 import java.util.ArrayList;
 
+import TPE.CriterioTurnos.CriterioTurnos;
+
 public class Secretaria extends Usuario {
 	private String nombreUsuario;
 	private String contrasenia;
@@ -31,7 +33,7 @@ public class Secretaria extends Usuario {
 		this.contrasenia = contrasenia;
 	}
 
-	public ArrayList<Medico> getMedico() {
+	public ArrayList<Medico> getMedicos() {
 		ArrayList<Medico> aux = new ArrayList<>(this.medicos);
 		return aux;
 	}
@@ -50,6 +52,18 @@ public class Secretaria extends Usuario {
 				aux += this.medicos.get(i).getDni() + " ";
 		}
 		return aux;
+	}
+	
+	public ArrayList<Turno> devolverTurnosDeMedicos(CriterioTurnos c) {
+ 		ArrayList<Turno> turnosDeMedicos = new ArrayList<Turno>();
+ 		for (Medico m: this.medicos) {
+			for (Turno t : m.getTurnosDisponibles()) {
+				if (t.cumple(c))
+					turnosDeMedicos.add(t);
+			}
+		}
+		
+		return turnosDeMedicos;	
 	}
 	
 //	public void sacarTurnoAPaciente(Clinica c) {
