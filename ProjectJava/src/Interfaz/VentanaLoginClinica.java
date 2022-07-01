@@ -75,7 +75,7 @@ public class VentanaLoginClinica extends JFrame {
 
         EtiIngreseSuDNI1.setFont(new Font("Book Antiqua", 0, 18));
         EtiIngreseSuDNI1.setHorizontalAlignment(SwingConstants.CENTER);
-        EtiIngreseSuDNI1.setText("Contraseña:");
+        EtiIngreseSuDNI1.setText("Contraseï¿½a:");
 
         GroupLayout panelLoginLayout = new GroupLayout(panelLogin);
         panelLogin.setLayout(panelLoginLayout);

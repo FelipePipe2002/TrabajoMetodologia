@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -31,6 +33,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.WindowConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableModel;
 
 import TPE.*;
@@ -42,6 +45,11 @@ import TPE.CriterioTurnos.CriterioTurnosMenor;
 import TPE.CriterioTurnos.CriterioTurnosNot;
 import TPE.CriterioTurnos.CriterioTurnosRango;
 import TPE.CriterioTurnos.CriterioTurnosVerdadero;
+import TPE.Read.ReadPacientes;
+import TPE.Read.ReadTurnos;
+import TPE.Write.WriteCSV;
+import TPE.Write.WritePacientes;
+import TPE.Write.WriteTurnos;
 
 public class VentanaPortalSecretarias extends JFrame {
 	
@@ -49,8 +57,8 @@ public class VentanaPortalSecretarias extends JFrame {
 	Secretaria secretaria;
 	Medico medico;
 	JTable tablaDeMedicos;
-	DefaultTableModel modeloTablaMedicos;
 	JTable tablaDeTurnos;
+	DefaultTableModel modeloTablaMedicos;
 	DefaultTableModel modeloTablaTurnos;
 	JScrollPane tablaTurnos;
 	JCheckBox jCheckBox1;
@@ -64,11 +72,16 @@ public class VentanaPortalSecretarias extends JFrame {
     JRadioButton radioBotTarde;
     JTextField cajaTextoFechaDesde;
 	JTextField cajaTextoFechaHasta;
+	JTextField cajaTextoHoraInicio;
+	JTextField cajaTextoHoraCierre;
+	JTextField cajaTextoDuracionTurno;
+	JTextField cajaTextoNombre;
 	JButton botFiltrar;
 	JButton botAsignarTurno;
     JButton botReagendarTurno;
     JButton botCancelarTurno;
-
+    JButton botAsignarHorario;
+    
 	public VentanaPortalSecretarias(Clinica clinica, String nombreUsuario) {
 		try {
 			UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
@@ -88,53 +101,52 @@ public class VentanaPortalSecretarias extends JFrame {
     }
 	
 	private void initComponents() {
-
     	JTabbedPane TablaPortal = new JTabbedPane();
     	FondoPanel panelAsignarHorarios = new FondoPanel("/FondoLogin1.jpg");
-    	JButton botVerHorarios = new JButton();
-    	JPanel Heap1 = new JPanel();
-    	JLabel EtiNombreClinica1 = new JLabel();
-    	JButton BotonCerrarSesion1 = new JButton();
-    	JPanel PieDePagina1 = new JPanel();
     	JScrollPane tablaMedicos = new JScrollPane();
-    	this.tablaDeMedicos = new JTable();
     	JTextField jTextField1 = new JTextField();
-        JLabel jLabel1 = new JLabel();
-        JPanel jPanel1 = new JPanel();
-        JCheckBox jCheckBox1 = new JCheckBox();
-        JCheckBox jCheckBox2 = new JCheckBox();
-        JCheckBox jCheckBox3 = new JCheckBox();
-        JCheckBox jCheckBox4 = new JCheckBox();
-        JCheckBox jCheckBox5 = new JCheckBox();
-        JCheckBox jCheckBox6 = new JCheckBox();
-        JCheckBox jCheckBox7 = new JCheckBox();
-        JLabel etiHoraInicio = new JLabel();
-        JTextField cajaTextoHoraCierre = new JTextField();
-        JLabel etiHoraCierre = new JLabel();
-        JTextField cajaTextoHoraInicio = new JTextField();
-        JButton botAsignarHorario = new JButton();
-        JLabel etiDuracionTurno = new JLabel();
-        JTextField cajaTextoDuracionTurno = new JTextField();
         FondoPanel panelAdministrarTurnosMedicos = new FondoPanel("/FondoLogin1.jpg");
+        JPanel PieDePagina1 = new JPanel();
+        JPanel jPanel1 = new JPanel();
+        JPanel Heap1 = new JPanel();
         JPanel Heap2 = new JPanel();
-        JLabel EtiNombreClinica2 = new JLabel();
+        JButton botVerHorarios = new JButton();
+        JButton BotonCerrarSesion1 = new JButton();
         JButton BotonCerrarSesion2 = new JButton();
+        JLabel EtiNombreClinica1 = new JLabel();
+        JLabel jLabel1 = new JLabel();
+        JLabel etiHoraInicio = new JLabel();
+        JLabel etiHoraCierre = new JLabel();
+        JLabel etiDuracionTurno = new JLabel();
+        JLabel EtiNombreClinica2 = new JLabel();
         JPanel PieDePagina2 = new JPanel();
         JLabel etiDesde = new JLabel();
-        JTextField cajaTextoFechaDesde = new JTextField();
         JLabel etiHasta = new JLabel();
-        JTextField cajaTextoFechaHasta = new JTextField();
+        JLabel etiNombre = new JLabel();
+        this.botAsignarHorario = new JButton();
+        this.cajaTextoHoraCierre = new JTextField();
+        this.cajaTextoHoraInicio = new JTextField();
+        this.cajaTextoDuracionTurno = new JTextField();
+        this.tablaDeMedicos = new JTable();
+        this.jCheckBox1 = new JCheckBox();
+        this.jCheckBox2 = new JCheckBox();
+        this.jCheckBox3 = new JCheckBox();
+        this.jCheckBox4 = new JCheckBox();
+        this.jCheckBox5 = new JCheckBox();
+        this.jCheckBox6 = new JCheckBox();
+        this.jCheckBox7 = new JCheckBox();
+        this.cajaTextoFechaDesde = new JTextField();
+        this.cajaTextoFechaHasta = new JTextField();
         this.radioBotManiana = new JRadioButton();
         this.radioBotTarde = new JRadioButton();
         this.botFiltrar = new JButton();
         this.tablaTurnos = new JScrollPane();
         this.tablaDeTurnos = new JTable();
-        JLabel etiNombre = new JLabel();
-        JTextField cajaTextoNombre = new JTextField();
+        this.cajaTextoNombre = new JTextField();
         this.botAsignarTurno = new JButton();
         this.botReagendarTurno = new JButton();
         this.botCancelarTurno = new JButton();
-
+        	
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(800, 600));
 
@@ -224,24 +236,31 @@ public class VentanaPortalSecretarias extends JFrame {
 
         jCheckBox1.setFont(new Font("Book Antiqua", 0, 14));
         jCheckBox1.setText("Lunes");
-
+        jCheckBox1.setBackground(new ColorUIResource(96, 96, 96));
+        	
         jCheckBox2.setFont(new Font("Book Antiqua", 0, 14));
         jCheckBox2.setText("Martes");
-
+        jCheckBox2.setBackground(new ColorUIResource(96, 96, 96));
+        
         jCheckBox3.setFont(new Font("Book Antiqua", 0, 14));
         jCheckBox3.setText("Miercoles");
-
+        jCheckBox3.setBackground(new ColorUIResource(96, 96, 96));
+        
         jCheckBox4.setFont(new Font("Book Antiqua", 0, 14));
         jCheckBox4.setText("Jueves");
-
+        jCheckBox4.setBackground(new ColorUIResource(96, 96, 96));
+        
         jCheckBox5.setFont(new Font("Book Antiqua", 0, 14));
         jCheckBox5.setText("Viernes");
+        jCheckBox5.setBackground(new ColorUIResource(96, 96, 96));
         
         jCheckBox6.setFont(new Font("Book Antiqua", 0, 14));
         jCheckBox6.setText("Sabado");
-
+        jCheckBox6.setBackground(new ColorUIResource(96, 96, 96));
+        
         jCheckBox7.setFont(new Font("Book Antiqua", 0, 14));
         jCheckBox7.setText("Domingo");
+        jCheckBox7.setBackground(new ColorUIResource(96, 96, 96));
         
         etiHoraInicio.setFont(new Font("Book Antiqua", 0, 14));
         etiHoraInicio.setHorizontalAlignment(SwingConstants.CENTER);
@@ -296,7 +315,7 @@ public class VentanaPortalSecretarias extends JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                     .addComponent(jCheckBox6, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jCheckBox7, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
-                                .addGap(142, 142, 142)
+                                .addGap(110, 110, 110)
                                 .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                     .addComponent(cajaTextoHoraCierre)
                                     .addComponent(cajaTextoDuracionTurno)))))
@@ -310,9 +329,9 @@ public class VentanaPortalSecretarias extends JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addGap(55, 55, 55)
                         .addComponent(jCheckBox1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCheckBox2, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCheckBox3, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
@@ -477,11 +496,16 @@ public class VentanaPortalSecretarias extends JFrame {
         this.modeloTablaTurnos.addColumn("Medico");
         this.modeloTablaTurnos.addColumn("Dia");
         this.modeloTablaTurnos.addColumn("Hora");
+        this.modeloTablaTurnos.addColumn("Disponibilidad");
         
         for (Medico m: this.secretaria.getMedicos()) {
-	        for (Turno t: m.getTurnosDisponibles())
-	        	this.modeloTablaTurnos.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getDayOfMonth() + "/" + t.getFecha().getMonthValue() + "/" + t.getFecha().getYear(),t.getFecha().getHour() + ":" + t.getFecha().getMinute()});
-        }
+	        for (Turno t: m.getTurnos()) {
+	        	String Disponibilidad = "Libre";
+    			if (!t.isDisponible())
+    				Disponibilidad = "Ocupado";
+	        	this.modeloTablaTurnos.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getDayOfMonth() + "/" + t.getFecha().getMonthValue() + "/" + t.getFecha().getYear(),t.getFecha().getHour() + ":" + t.getFecha().getMinute(),Disponibilidad});
+	        }
+	    }
 	    this.tablaDeTurnos.setModel(modeloTablaTurnos);  
         this.tablaDeTurnos.setMaximumSize(new Dimension(225, 600));
         this.tablaDeTurnos.setMinimumSize(new Dimension(100, 300));
@@ -608,8 +632,7 @@ public class VentanaPortalSecretarias extends JFrame {
         );
 
         pack();
-    }
-
+    }	
 	//Panel asignar horarios
 	private void botVerHorariosActionPerformed(ActionEvent evt) {
 		
@@ -617,8 +640,118 @@ public class VentanaPortalSecretarias extends JFrame {
 	
 	private void botAsignarHorarioActionPerformed(ActionEvent evt) {
 		
+		//instancio variables
+		int Dif = 8-LocalDateTime.now().getDayOfWeek().getValue();
+		
+		int fila = this.tablaDeMedicos.getSelectedRow();	
+		String dni = (String) this.tablaDeMedicos.getValueAt(fila, 2);
+	    this.medico = clinica.getMedico(dni); 
+		
+		LocalDateTime HorarioIL = LocalDateTime.of(0,1,1,0,0);
+		LocalDateTime HorarioCL = LocalDateTime.of(0,1,1,0,0);
+		LocalDateTime HorarioDL = LocalDateTime.of(0,1,1,0,0);
+		
+		ColorUIResource ColorDefault = new ColorUIResource(96, 96, 96);
+		
+		Color Rojo = Color.red;
+		
+		ArrayList<JCheckBox> CheckBox = new ArrayList<>();
+		
+		CheckBox.add(jCheckBox1);
+		CheckBox.add(jCheckBox2);
+		CheckBox.add(jCheckBox3);
+		CheckBox.add(jCheckBox4);
+		CheckBox.add(jCheckBox5);
+		CheckBox.add(jCheckBox6);
+		CheckBox.add(jCheckBox7);
+		
+		Pattern pattern = Pattern.compile("^(0[0-9]|[0-9]|[1][0-9]|2[0-3]):(0[0-9]|[1-5][0-9])$"); // (1:01 o 01:01 23:59)
+        
+		Matcher Hora = pattern.matcher(this.cajaTextoHoraInicio.getText());
+        Matcher Hora2 = pattern.matcher(this.cajaTextoHoraCierre.getText());
+        Matcher DuracionH = pattern.matcher(this.cajaTextoDuracionTurno.getText());
+        
+		boolean BoolInicio = false;
+		boolean BoolCierre = false;
+		boolean BoolDuracion = false;
+		boolean BoolHorarioImC = false;
+		
+		
+		
+		//cargo los booleanos
+		try {
+			String [] HorarioI = this.cajaTextoHoraInicio.getText().split(":");
+        	HorarioIL = LocalDateTime.of(0,1,1,Integer.parseInt(HorarioI[0]),Integer.parseInt(HorarioI[1]));
+			BoolInicio = !this.cajaTextoHoraInicio.getText().isEmpty() && Hora.find() && HorarioIL.compareTo(LocalDateTime.of(0,1,1,0,0))>0;
+		} catch (Exception e) {}
+		
+		try {
+			String [] HorarioC = this.cajaTextoHoraCierre.getText().split(":");
+        	HorarioCL = LocalDateTime.of(0,1,1,Integer.parseInt(HorarioC[0]),Integer.parseInt(HorarioC[1]));
+			BoolCierre = !this.cajaTextoHoraCierre.getText().isEmpty() && Hora2.find() && HorarioCL.compareTo(LocalDateTime.of(0,1,1,0,0))>0;
+		}catch (Exception e) {}
+		
+		try {
+			String [] HorarioD = this.cajaTextoDuracionTurno.getText().split(":");
+        	HorarioDL = LocalDateTime.of(0,1,1,Integer.parseInt(HorarioD[0]),Integer.parseInt(HorarioD[1]));
+			BoolDuracion = !this.cajaTextoDuracionTurno.getText().isEmpty() && DuracionH.find() && HorarioDL.compareTo(LocalDateTime.of(0,1,1,0,5))>0; // los turnos tienen que durar mas de 5 min
+		} catch (Exception e) {}
+		
+		boolean Boolcheck = CheckBox.get(0).isSelected() || CheckBox.get(1).isSelected() || CheckBox.get(2).isSelected() || CheckBox.get(3).isSelected() || CheckBox.get(4).isSelected() ||CheckBox.get(5).isSelected() || CheckBox.get(6).isSelected();
+		
+		
+		//checkeo que cada capo este cargado y correctamente si no se marca con rojo los campos mal cargados
+		for (JCheckBox j: CheckBox) {
+			if (Boolcheck)
+				j.setBackground(ColorDefault);
+			else
+				j.setBackground(Rojo);
+		}
+		
+		if (BoolInicio) {
+			this.cajaTextoHoraInicio.setBackground(ColorDefault);
+		}else {
+			this.cajaTextoHoraInicio.setBackground(Rojo);
+		}
+		
+		if (BoolCierre) {
+			this.cajaTextoHoraCierre.setBackground(ColorDefault);
+		}else {
+			this.cajaTextoHoraCierre.setBackground(Rojo);
+		}
+		
+		if (HorarioIL.compareTo(HorarioCL)<0) {
+			this.cajaTextoHoraInicio.setBackground(ColorDefault);
+			this.cajaTextoHoraCierre.setBackground(ColorDefault);
+			BoolHorarioImC = true;
+		}else {
+			this.cajaTextoHoraInicio.setBackground(Rojo);
+			this.cajaTextoHoraCierre.setBackground(Rojo);
+		}
+        
+		if (fila != -1) {
+			this.tablaDeMedicos.setBackground(ColorDefault);
+	    }
+		else
+			this.tablaDeMedicos.setBackground(Rojo);
+		
+		LocalDateTime DuracionIC = LocalDateTime.of(0,1,1,HorarioCL.minusHours(HorarioIL.getHour()).getHour(),HorarioCL.minusMinutes(HorarioIL.getMinute()).getMinute());
+		
+		if (HorarioDL.compareTo(DuracionIC) <=0 && BoolDuracion)
+			this.cajaTextoDuracionTurno.setBackground(ColorDefault);
+		else
+			this.cajaTextoDuracionTurno.setBackground(Rojo);
+		
+		System.out.println(BoolDuracion);
+		System.out.println(HorarioDL);
+		System.out.println(DuracionIC);
+		//cargo los turnos y valido cosas
+		//tener una cofiguracion guardada para que automaticamente se generen turnos por dia a 1 semana adelantada, a menos que la secretaria quiera modificarlo
+		if (Boolcheck && BoolInicio && BoolCierre && BoolDuracion && BoolHorarioImC && fila !=-1 && HorarioDL.compareTo(DuracionIC) <0) {
+        	LocalDateTime FechaUltima = LocalDateTime.of(LocalDateTime.now().getYear(), LocalDateTime.now().getMonthValue(), LocalDateTime.now().getDayOfMonth(),HorarioIL.getHour(),HorarioIL.getMinute()).plusDays(7);
+        	ArrayList<Turno> aux = medico.getTurnos();
+        }
 	}
-	
 	private void BotonCerrarSesion1ActionPerformed(ActionEvent evt) {
 		VentanaLogin ventanaLogin = new VentanaLogin(this.clinica);
 		ventanaLogin.setVisible(true);
@@ -651,7 +784,7 @@ public class VentanaPortalSecretarias extends JFrame {
     }
     
     private void botFiltrarActionPerformed(ActionEvent evt) {
-    	Pattern pattern = Pattern.compile("^((20|2[0-9])[0-9]{2})-(0[1-9]|[1-9]|1[012])-(0[1-9]|[1-9]|[12][0-9]|3[01])$"); // (2001-01-01)
+    	Pattern pattern = Pattern.compile("^(0[1-9]|[1-9]|[12][0-9]|3[01])/(0[1-9]|[1-9]|[12][0-9]|3[01])/((20|2[0-9])[0-9]{2})$"); // (1/1/2001)
         Matcher matcher = pattern.matcher(this.cajaTextoFechaDesde.getText());
         Matcher matcher2 = pattern.matcher(this.cajaTextoFechaHasta.getText());
         
@@ -662,6 +795,7 @@ public class VentanaPortalSecretarias extends JFrame {
     	
     	CriterioTurnos Fecha = new CriterioTurnosVerdadero();
     	CriterioTurnos Horario = new CriterioTurnosVerdadero();
+    	CriterioTurnos NombreApellido = new CriterioTurnosVerdadero();
     	
     	boolean Desde = matcher.find();
     	boolean Hasta = matcher2.find();
@@ -675,25 +809,25 @@ public class VentanaPortalSecretarias extends JFrame {
     	if (Desde && Hasta) {
     		this.cajaTextoFechaDesde.setBorder(new LineBorder(Color.black));
     		this.cajaTextoFechaHasta.setBorder(new LineBorder(Color.black));
-        	String [] FechaDesde = this.cajaTextoFechaDesde.getText().split("-");
-        	LocalDateTime FechaDesdeL = LocalDateTime.of(Integer.parseInt(FechaDesde[0]),Integer.parseInt(FechaDesde[1]),Integer.parseInt(FechaDesde[2]),0,0);
+        	String [] FechaDesde = this.cajaTextoFechaDesde.getText().split("/");
+        	LocalDateTime FechaDesdeL = LocalDateTime.of(Integer.parseInt(FechaDesde[2]),Integer.parseInt(FechaDesde[1]),Integer.parseInt(FechaDesde[0]),0,0);
         	
-        	String [] FechaHasta = this.cajaTextoFechaHasta.getText().split("-");
-        	LocalDateTime FechaHastaL = LocalDateTime.of(Integer.parseInt(FechaHasta[0]),Integer.parseInt(FechaHasta[1]),Integer.parseInt(FechaHasta[2]),0,0);
+        	String [] FechaHasta = this.cajaTextoFechaHasta.getText().split("/");
+        	LocalDateTime FechaHastaL = LocalDateTime.of(Integer.parseInt(FechaHasta[2]),Integer.parseInt(FechaHasta[1]),Integer.parseInt(FechaHasta[0]),0,0);
         	
         	Fecha = new CriterioTurnosRango(FechaDesdeL,FechaHastaL);
     		
     	} else if (Desde && this.cajaTextoFechaHasta.getText().isEmpty()) {
     		this.cajaTextoFechaDesde.setBorder(new LineBorder(Color.black));
-    		String [] FechaDesde = this.cajaTextoFechaDesde.getText().split("-");
-        	LocalDateTime FechaDesdeL = LocalDateTime.of(Integer.parseInt(FechaDesde[0]),Integer.parseInt(FechaDesde[1]),Integer.parseInt(FechaDesde[2]),0,0);
+    		String [] FechaDesde = this.cajaTextoFechaDesde.getText().split("/");
+        	LocalDateTime FechaDesdeL = LocalDateTime.of(Integer.parseInt(FechaDesde[2]),Integer.parseInt(FechaDesde[1]),Integer.parseInt(FechaDesde[0]),0,0);
         	
         	Fecha = new CriterioTurnosMayor(FechaDesdeL);
     		
     	} else if (this.cajaTextoFechaDesde.getText().isEmpty() && Hasta) {
     		this.cajaTextoFechaHasta.setBorder(new LineBorder(Color.black));
-    		String [] FechaHasta = this.cajaTextoFechaHasta.getText().split("-");
-        	LocalDateTime FechaHastaL = LocalDateTime.of(Integer.parseInt(FechaHasta[0]),Integer.parseInt(FechaHasta[1]),Integer.parseInt(FechaHasta[2]),0,0);
+    		String [] FechaHasta = this.cajaTextoFechaHasta.getText().split("/");
+        	LocalDateTime FechaHastaL = LocalDateTime.of(Integer.parseInt(FechaHasta[2]),Integer.parseInt(FechaHasta[1]),Integer.parseInt(FechaHasta[0]),0,0);
         	
         	Fecha = new CriterioTurnosMenor(FechaHastaL);
     	}
@@ -706,13 +840,22 @@ public class VentanaPortalSecretarias extends JFrame {
     	
     	CriterioTurnos general = new CriterioTurnosAnd(Fecha,Horario);
     	
+    	String NombreS = this.cajaTextoNombre.getText().toLowerCase();
+    	
     	ArrayList<Turno> turnos = this.secretaria.devolverTurnosDeMedicos(general);
     	
     	this.modeloTablaTurnos.setRowCount(0);
     	for (Turno t: turnos) {
-    		modeloTablaTurnos.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getYear() + "-" + t.getFecha().getMonthValue() + "-" + t.getFecha().getDayOfMonth() ,t.getFecha().getHour() + ":" + t.getFecha().getMinute()});
-        }
+    		if ((NombreS.equals(t.getMedico().getNombre().toLowerCase())) || NombreS.isEmpty()) {
+    			String Disponibilidad = "Libre";
+    			if (!t.isDisponible()) 
+    				Disponibilidad = "Ocupado";
+    			modeloTablaTurnos.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getDayOfMonth() + "/" + t.getFecha().getMonthValue() + "/" + t.getFecha().getYear(),t.getFecha().getHour() + ":" + t.getFecha().getMinute(),Disponibilidad});
+    		}
+    	}
     	this.tablaDeTurnos.setModel(modeloTablaTurnos);
+    	
+    	//habria que agregar un boton que sea guardar config para guardar la configuracion de turnos
     }
     
     private void BotonCerrarSesion2ActionPerformed(ActionEvent evt) {
