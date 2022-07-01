@@ -24,10 +24,6 @@ public class Turno {
 	public void setDisponible(boolean disponible) {
 		this.disponible = disponible;
 	}
-
-	public boolean getdisponible() {
-		return disponible;
-	}
 	
 	public Medico getMedico() {
 		return medico;

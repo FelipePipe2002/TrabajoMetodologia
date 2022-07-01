@@ -57,7 +57,7 @@ public class Secretaria extends Usuario {
 	public ArrayList<Turno> devolverTurnosDeMedicos(CriterioTurnos c) {
  		ArrayList<Turno> turnosDeMedicos = new ArrayList<Turno>();
  		for (Medico m: this.medicos) {
-			for (Turno t : m.getTurnosDisponibles()) {
+			for (Turno t : m.getTurnos()) {
 				if (t.cumple(c))
 					turnosDeMedicos.add(t);
 			}

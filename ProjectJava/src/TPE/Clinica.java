@@ -75,7 +75,7 @@ public class Clinica {
 	
 	public Medico getMedicoUsuario(String nombreUsuario) {
 		for (int i=0; i < this.medicos.size(); i++) {
-			if (this.medicos.get(i).getDni().equals(nombreUsuario))
+			if (this.medicos.get(i).getNombreUsuario().equals(nombreUsuario))
 				return this.medicos.get(i);
 		}
 		return null;

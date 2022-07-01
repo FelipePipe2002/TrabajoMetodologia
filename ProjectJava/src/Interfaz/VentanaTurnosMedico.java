@@ -88,7 +88,7 @@ public class VentanaTurnosMedico extends JFrame {
         modeloTabla.addColumn("Dia");
         modeloTabla.addColumn("Hora");
         for (Turno t: turnos) {
-        	modeloTabla.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getYear() + "-" + t.getFecha().getMonthValue() + "-" + t.getFecha().getDayOfMonth(),t.getFecha().getHour() + ":" + t.getFecha().getMinute()});
+        	modeloTabla.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getDayOfMonth() + "/" + t.getFecha().getMonthValue() + "/" + t.getFecha().getYear(),t.getFecha().getHour() + ":" + t.getFecha().getMinute()});
         }
         this.tablaTurnos.setModel(modeloTabla);
         
@@ -258,7 +258,7 @@ public class VentanaTurnosMedico extends JFrame {
     }
     
     private void botBuscarActionPerformed(ActionEvent evt) {                                          
-    	Pattern pattern = Pattern.compile("^((20|2[0-9])[0-9]{2})-(0[1-9]|[1-9]|1[012])-(0[1-9]|[1-9]|[12][0-9]|3[01])$"); // (2001-01-01)
+    	Pattern pattern = Pattern.compile("^(0[1-9]|[1-9]|[12][0-9]|3[01])/(0[1-9]|[1-9]|[12][0-9]|3[01])/((20|2[0-9])[0-9]{2})$"); // (1/1/2001)
         Matcher matcher = pattern.matcher(this.cajaTextoFechaDesde.getText());
         Matcher matcher2 = pattern.matcher(this.cajaTextoFechaHasta.getText());
         
@@ -282,25 +282,25 @@ public class VentanaTurnosMedico extends JFrame {
     	if (Desde && Hasta) {
     		this.cajaTextoFechaDesde.setBorder(new LineBorder(Color.black));
     		this.cajaTextoFechaHasta.setBorder(new LineBorder(Color.black));
-        	String [] FechaDesde = this.cajaTextoFechaDesde.getText().split("-");
-        	LocalDateTime FechaDesdeL = LocalDateTime.of(Integer.parseInt(FechaDesde[0]),Integer.parseInt(FechaDesde[1]),Integer.parseInt(FechaDesde[2]),0,0);
+        	String [] FechaDesde = this.cajaTextoFechaDesde.getText().split("/");
+        	LocalDateTime FechaDesdeL = LocalDateTime.of(Integer.parseInt(FechaDesde[2]),Integer.parseInt(FechaDesde[1]),Integer.parseInt(FechaDesde[0]),0,0);
         	
-        	String [] FechaHasta = this.cajaTextoFechaHasta.getText().split("-");
-        	LocalDateTime FechaHastaL = LocalDateTime.of(Integer.parseInt(FechaHasta[0]),Integer.parseInt(FechaHasta[1]),Integer.parseInt(FechaHasta[2]),0,0);
+        	String [] FechaHasta = this.cajaTextoFechaHasta.getText().split("/");
+        	LocalDateTime FechaHastaL = LocalDateTime.of(Integer.parseInt(FechaHasta[2]),Integer.parseInt(FechaHasta[1]),Integer.parseInt(FechaHasta[0]),0,0);
         	
         	Fecha = new CriterioTurnosRango(FechaDesdeL,FechaHastaL);
     		
     	} else if (Desde && this.cajaTextoFechaHasta.getText().isEmpty()) {
     		this.cajaTextoFechaDesde.setBorder(new LineBorder(Color.black));
-    		String [] FechaDesde = this.cajaTextoFechaDesde.getText().split("-");
-        	LocalDateTime FechaDesdeL = LocalDateTime.of(Integer.parseInt(FechaDesde[0]),Integer.parseInt(FechaDesde[1]),Integer.parseInt(FechaDesde[2]),0,0);
+    		String [] FechaDesde = this.cajaTextoFechaDesde.getText().split("/");
+        	LocalDateTime FechaDesdeL = LocalDateTime.of(Integer.parseInt(FechaDesde[2]),Integer.parseInt(FechaDesde[1]),Integer.parseInt(FechaDesde[0]),0,0);
         	
         	Fecha = new CriterioTurnosMayor(FechaDesdeL);
     		
     	} else if (this.cajaTextoFechaDesde.getText().isEmpty() && Hasta) {
     		this.cajaTextoFechaHasta.setBorder(new LineBorder(Color.black));
-    		String [] FechaHasta = this.cajaTextoFechaHasta.getText().split("-");
-        	LocalDateTime FechaHastaL = LocalDateTime.of(Integer.parseInt(FechaHasta[0]),Integer.parseInt(FechaHasta[1]),Integer.parseInt(FechaHasta[2]),0,0);
+    		String [] FechaHasta = this.cajaTextoFechaHasta.getText().split("/");
+        	LocalDateTime FechaHastaL = LocalDateTime.of(Integer.parseInt(FechaHasta[2]),Integer.parseInt(FechaHasta[1]),Integer.parseInt(FechaHasta[0]),0,0);
         	
         	Fecha = new CriterioTurnosMenor(FechaHastaL);
     	}
@@ -318,7 +318,7 @@ public class VentanaTurnosMedico extends JFrame {
     	ArrayList<Turno> turnos = this.clinica.devolverTurnosMedico(medico,general);
     	this.modeloTabla.setRowCount(0);
     	for (Turno t: turnos) {
-    		modeloTabla.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getYear() + "-" + t.getFecha().getMonthValue() + "-" + t.getFecha().getDayOfMonth() ,t.getFecha().getHour() + ":" + t.getFecha().getMinute()});
+    		modeloTabla.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getDayOfMonth() + "/" + t.getFecha().getMonthValue() + "/" + t.getFecha().getYear(),t.getFecha().getHour() + ":" + t.getFecha().getMinute()});
         }
     	this.tablaTurnos.setModel(modeloTabla);
     } 
