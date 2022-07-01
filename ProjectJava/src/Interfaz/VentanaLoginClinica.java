@@ -142,11 +142,12 @@ public class VentanaLoginClinica extends JFrame {
         
     	String nombreUsuario = this.cajaTextoUsuario.getText();
     	String contrasenia = this.cajaTextoContrasenia.getText();
-    	if (clinica.getSecretariaUsuario(nombreUsuario) != null && clinica.getSecretariaUsuario(nombreUsuario).esContrasenia(contrasenia)) {
+    	
+    	if ( Login.verificarCuentaSecretaria(nombreUsuario, contrasenia, clinica) ) {
     		VentanaPortalSecretarias ventanaPortalSecretarias = new VentanaPortalSecretarias(this.clinica, nombreUsuario);
         	ventanaPortalSecretarias.setVisible(true);
             this.dispose();
-    	} else if (clinica.getMedicoUsuario(nombreUsuario) != null && clinica.getMedicoUsuario(nombreUsuario).esContrasenia(contrasenia)) {
+    	} else if ( Login.verificarCuentaMedico(nombreUsuario, contrasenia, clinica) ) {
     		VentanaPortalMedicos ventanaPortalMedicos = new VentanaPortalMedicos(this.clinica, nombreUsuario);
     		ventanaPortalMedicos.setVisible(true);
             this.dispose();
@@ -155,5 +156,5 @@ public class VentanaLoginClinica extends JFrame {
     		cajaTextoContrasenia.setBorder(new LineBorder(Color.RED));
     		JOptionPane.showMessageDialog(null, "El usuario o contrasenia no son correctos");
     	}
-    }
+    } 
 }

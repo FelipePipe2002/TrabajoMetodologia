@@ -60,6 +60,14 @@ public class Login {
 
         return false;
     }
+	
+	public static boolean verificarCuentaSecretaria(String usuario, String contrasenia, Clinica clinica) {
+		return clinica.getSecretariaUsuario(usuario) != null && clinica.getSecretariaUsuario(usuario).esContrasenia(contrasenia);
+	}
+	
+	public static boolean verificarCuentaMedico(String usuario, String contrasenia, Clinica clinica) {
+		return clinica.getMedicoUsuario(usuario) != null && clinica.getMedicoUsuario(usuario).esContrasenia(contrasenia);
+	}
 
 //    public static void loguearPaciente(Usuario u, Clinica c) {
 //
