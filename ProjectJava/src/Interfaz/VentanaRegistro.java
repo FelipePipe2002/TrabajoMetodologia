@@ -318,7 +318,7 @@ public class VentanaRegistro extends JFrame {
     	        String fecha = turno.getFecha().format(formatoFecha);
     	        fecha = fecha.substring(0, 1).toUpperCase() + fecha.substring(1);
 
-	    			SendEmail.send(paciente.getEmail(), pacient, doctor, clinica.getDireccion(), fecha);
+	    			SendEmail.sendConfirmacion(paciente.getEmail(), pacient, doctor, clinica.getDireccion(), fecha);
 	    			JOptionPane.showMessageDialog(null, "Turno Confirmado");
     		}
     		ReadPacientes pacientes = new ReadPacientes();
