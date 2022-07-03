@@ -158,12 +158,12 @@ public class VentanaRegistro extends JFrame {
         etiRegistrar.setFont(new Font("Book Antiqua", 1, 48));
         etiRegistrar.setHorizontalAlignment(SwingConstants.CENTER);
         etiRegistrar.setForeground(Color.white);
-        if (this.funcion.equals("Registrar")) {
+        if (this.funcion.equals("Confirmar")) {
         	etiRegistrar.setText(this.funcion);
-        	botonRegistrar.setIcon(new ImageIcon(getClass().getResource("/BotonRegistrar.png")));
-        } else {
-        	etiRegistrar.setText("Confirmar Datos");
         	botonRegistrar.setIcon(new ImageIcon(getClass().getResource("/BotonConfirmar.png")));
+        } else {
+        	etiRegistrar.setText(this.funcion);
+        	botonRegistrar.setIcon(new ImageIcon(getClass().getResource("/BotonRegistrar.png")));	
         }
         etiRegistrar.setHorizontalTextPosition(SwingConstants.CENTER);
 
@@ -327,9 +327,11 @@ public class VentanaRegistro extends JFrame {
     		ReadTurnos turnos = new ReadTurnos();
     		WriteCSV archivoTurnos = new WriteTurnos(clinica);
     		archivoTurnos.generarArchivoCSV(turnos.getCsvFile());
-    		VentanaPortalPacientes ventanaPortalPaciente = new VentanaPortalPacientes(this.clinica, this.dni);
-            ventanaPortalPaciente.setVisible(true);
-            this.dispose();
+    		if (!this.funcion.equals("Secretaria")) {
+    			VentanaPortalPacientes ventanaPortalPaciente = new VentanaPortalPacientes(this.clinica, this.dni);
+    			ventanaPortalPaciente.setVisible(true);
+    			this.dispose();
+    		}
     	} else {
     		JOptionPane.showMessageDialog(null, "Los campos no son correctos");
     	}

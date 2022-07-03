@@ -23,7 +23,7 @@ import javax.swing.WindowConstants;
 public class VentanaLogin extends JFrame {
 	
 	Clinica clinica;
-	JTextField CajaTextoLogin = new JTextField();
+	JTextField CajaTextoLogin;
 	
     public VentanaLogin(Clinica clinica) {
         this.clinica = clinica;

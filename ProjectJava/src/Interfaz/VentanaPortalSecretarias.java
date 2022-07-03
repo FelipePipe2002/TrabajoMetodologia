@@ -760,7 +760,18 @@ public class VentanaPortalSecretarias extends JFrame {
 	
 	//Panel administrar turnos medicos
     private void botAsignarTurnoActionPerformed(ActionEvent evt) {
-    	
+    //Buscar la manera de conseguir el turno de la tabla de turnos
+    //Posible idea...
+    //buscar medico y armar la fecha con los datos de la tabla. Luego generar metodo que dado un medico y una fecha te devuelva el turno
+    	//int fila = this.tablaDeTurnos.getSelectedRow();
+        //String dni = (String) this.tablaDeTurnos.getValueAt(fila, 0);
+    	//Medico medico = this.clinica.getMedico(dni);
+    	//String fecha = (String) this.tablaDeTurnos.getValueAt(fila, 1);
+    	//String hora = (String) this.tablaDeTurnos.getValueAt(fila, 2);
+    	//Generar fechacompleta con formato anio/mes/dia/hora/minutos
+    	//Turno turno = medico.getTurno(fechacompleta);
+    	//VentanaSolicitudDniPaciente ventanaSolicitarDni = new VentanaSolicitudDniPaciente(this.clinica, turno);
+    	//ventanaSolicitarDni.setVisible(true);
     }
     
     private void botReagendarTurnoActionPerformed(ActionEvent evt) {
