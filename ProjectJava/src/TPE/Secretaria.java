@@ -49,7 +49,7 @@ public class Secretaria extends Usuario {
 			if (i == this.medicos.size() - 1)
 				aux += this.medicos.get(i).getDni();
 			else 
-				aux += this.medicos.get(i).getDni() + " ";
+				aux += this.medicos.get(i).getDni() + ",";
 		}
 		return aux;
 	}
