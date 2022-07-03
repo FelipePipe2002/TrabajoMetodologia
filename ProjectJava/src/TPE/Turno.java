@@ -45,6 +45,11 @@ public class Turno {
 	public boolean cumple(CriterioTurnos f) {
 		return f.cumple(this.getFecha());
 	}
+	
+	public boolean IgualesEnFecha(LocalDateTime fecha,String Dni) { // se fija si el medico tiene un turno en esa fecha, es como el equals pero el equals normal se fija si toda la fecha es la misma y puede pasar que si tenga un turno en esa fecha pero la hora y minuto no coincidan
+		return this.fecha.getYear() == fecha.getYear() && this.fecha.getMonth() == fecha.getMonth() && this.fecha.getDayOfMonth() == fecha.getDayOfMonth() && this.medico.getDni().equals(Dni);
+	}
+	
 	@Override
 	public String toString() {
 		if (disponible == true)

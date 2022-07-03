@@ -1,5 +1,7 @@
 package TPE.Read;
 
+import java.time.LocalDateTime;
+
 import TPE.*;
 
 public class ReadMedico extends ReadCSV{
@@ -22,6 +24,22 @@ public class ReadMedico extends ReadCSV{
 	        	nuevo.addObraSocial(i);
 	        }
         }
+        
+        nuevo.setDiasDeLaburo(items[7]);
+        
+        String [] arrayFecha1 = items[8].split("-");
+        LocalDateTime inicio = LocalDateTime.of(0,1,1,Integer.parseInt(arrayFecha1[2].substring(3, 5)),Integer.parseInt(arrayFecha1[2].substring(6, 8)));
+        
+        String [] arrayFecha2 = items[9].split("-");
+        LocalDateTime cierre = LocalDateTime.of(0,1,1,Integer.parseInt(arrayFecha2[2].substring(3, 5)),Integer.parseInt(arrayFecha2[2].substring(6, 8)));
+        
+        String [] arrayFecha3= items[10].split("-");
+        LocalDateTime duracion = LocalDateTime.of(0,1,1,Integer.parseInt(arrayFecha3[2].substring(3, 5)),Integer.parseInt(arrayFecha3[2].substring(6, 8)));
+        
+        nuevo.setHoraDeInicio(inicio);
+        nuevo.setHoraDeCierre(cierre);
+        nuevo.setDuracionDeTurno(duracion);
+        
 		clinica.addMedico(nuevo);
 	}
 }

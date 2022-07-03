@@ -3,6 +3,7 @@ package TPE;
 //import java.util.ArrayList;//import java.time.LocalDateTime;
 import Interfaz.*;
 import TPE.Read.*;
+import TPE.Write.*;
 
 public class Main {
 
@@ -24,5 +25,18 @@ public class Main {
 		//Codigo
 		VentanaLogin login = new VentanaLogin(clinica);
 		login.setVisible(true);
+		
+		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+	        public void run() {
+	        	WriteCSV archivoPacientes = new WritePacientes(clinica);
+	    		archivoPacientes.generarArchivoCSV(pacientes.getCsvFile());
+	    		WriteCSV archivoMedicos = new WriteMedicos(clinica);
+	    		archivoMedicos.generarArchivoCSV(medicos.getCsvFile());
+	    		WriteCSV archivoSecretarias = new WriteSecretarias(clinica);
+	    		archivoSecretarias.generarArchivoCSV(secretarias.getCsvFile());
+	    		WriteCSV archivoTurnos = new WriteTurnos(clinica);
+	    		archivoTurnos.generarArchivoCSV(turnos.getCsvFile());
+	        }
+	    }, "Shutdown-thread"));
 	}
 }

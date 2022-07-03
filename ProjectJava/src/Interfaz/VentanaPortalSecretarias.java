@@ -635,18 +635,65 @@ public class VentanaPortalSecretarias extends JFrame {
     }	
 	//Panel asignar horarios
 	private void botVerHorariosActionPerformed(ActionEvent evt) {
-		
+		int fila = this.tablaDeMedicos.getSelectedRow();	
+		if (fila != -1) {
+			String dni = (String) this.tablaDeMedicos.getValueAt(fila, 2);
+		    Medico m= clinica.getMedico(dni); 
+
+		    String DiasDeLaburo = m.getDiasDeLaburo();
+
+		    if ( DiasDeLaburo.charAt(0) == '1' )
+		    	jCheckBox1.setSelected(true);
+		    else
+		    	jCheckBox1.setSelected(false);
+		    if ( DiasDeLaburo.charAt(1) == '1' )
+			    jCheckBox2.setSelected(true);
+		    else
+		    	jCheckBox2.setSelected(false);
+		    if ( DiasDeLaburo.charAt(2) == '1' )
+		    	jCheckBox3.setSelected(true);
+		    else
+		    	jCheckBox3.setSelected(false);
+		    if ( DiasDeLaburo.charAt(3) == '1' )
+			    jCheckBox4.setSelected(true);
+		    else
+		    	jCheckBox4.setSelected(false);
+		    if ( DiasDeLaburo.charAt(4) == '1' )
+		    	jCheckBox5.setSelected(true);
+		    else
+		    	jCheckBox5.setSelected(false);
+		    if ( DiasDeLaburo.charAt(5) == '1' )
+			    jCheckBox6.setSelected(true);
+		    else
+		    	jCheckBox6.setSelected(false);
+		    if ( DiasDeLaburo.charAt(6) == '1' )
+		    	jCheckBox7.setSelected(true);
+		    else
+		    	jCheckBox7.setSelected(false);
+		    
+		    LocalDateTime Inicio = m.getHoraDeInicio();
+		    this.cajaTextoHoraInicio.setText(Inicio.toString().substring(11, 16));
+		    
+		    LocalDateTime Cierre = m.getHoraDeCierre();
+		    this.cajaTextoHoraCierre.setText(Cierre.toString().substring(11, 16));
+		    
+		    LocalDateTime Duracion = m.getDuracionDeTurno();
+		    this.cajaTextoDuracionTurno.setText(Duracion.toString().substring(11, 16));
+		}
 	}
 	
 	private void botAsignarHorarioActionPerformed(ActionEvent evt) {
-		
 		//instancio variables
 		int Dif = 8-LocalDateTime.now().getDayOfWeek().getValue();
 		
 		int fila = this.tablaDeMedicos.getSelectedRow();	
-		String dni = (String) this.tablaDeMedicos.getValueAt(fila, 2);
-	    this.medico = clinica.getMedico(dni); 
+		Medico m= null;
 		
+		if (fila != -1) {
+			String dni = (String) this.tablaDeMedicos.getValueAt(fila, 2);
+			m = clinica.getMedico(dni); 
+		}
+	   
 		LocalDateTime HorarioIL = LocalDateTime.of(0,1,1,0,0);
 		LocalDateTime HorarioCL = LocalDateTime.of(0,1,1,0,0);
 		LocalDateTime HorarioDL = LocalDateTime.of(0,1,1,0,0);
@@ -742,16 +789,50 @@ public class VentanaPortalSecretarias extends JFrame {
 		else
 			this.cajaTextoDuracionTurno.setBackground(Rojo);
 		
-		System.out.println(BoolDuracion);
-		System.out.println(HorarioDL);
-		System.out.println(DuracionIC);
 		//cargo los turnos y valido cosas
-		//tener una cofiguracion guardada para que automaticamente se generen turnos por dia a 1 semana adelantada, a menos que la secretaria quiera modificarlo
-		if (Boolcheck && BoolInicio && BoolCierre && BoolDuracion && BoolHorarioImC && fila !=-1 && HorarioDL.compareTo(DuracionIC) <0) {
-        	LocalDateTime FechaUltima = LocalDateTime.of(LocalDateTime.now().getYear(), LocalDateTime.now().getMonthValue(), LocalDateTime.now().getDayOfMonth(),HorarioIL.getHour(),HorarioIL.getMinute()).plusDays(7);
-        	ArrayList<Turno> aux = medico.getTurnos();
-        }
-	}
+		if (Boolcheck && BoolInicio && BoolCierre && BoolDuracion && BoolHorarioImC && m !=null && HorarioDL.compareTo(DuracionIC) <0) {        	
+    		String DiasDeLaburo = "0000000";
+    		String AuxD = "0000000";
+    		
+    		for (int i=0; i<7 ; i++) { //creo un string de 1 y 0 de un tamanio 7 de los dias que labura
+    			if ( CheckBox.get(i).isSelected() ) {
+        		    AuxD = DiasDeLaburo.substring(0,i) + "1" + DiasDeLaburo.substring(i+1,7);
+        		    DiasDeLaburo = AuxD;
+        		}
+    		}
+    		    
+    		m.setDiasDeLaburo(DiasDeLaburo);    		    
+    		m.setHoraDeInicio(HorarioIL);    		    
+    		m.setHoraDeCierre(HorarioCL);    		    
+    		m.setDuracionDeTurno(HorarioDL);
+    		
+    		LocalDateTime FechaTurno = LocalDateTime.of(LocalDateTime.now().getYear(), LocalDateTime.now().getMonth(),LocalDateTime.now().getDayOfMonth(),HorarioIL.getHour(),HorarioIL.getMinute()).plusDays(8);
+    		if (CheckBox.get(FechaTurno.getDayOfWeek().getValue()-1).isSelected()) {
+    				ArrayList<Turno> aux = m.getTurnos();
+    				boolean boolDiaLibre = true; // puede pasar que el mismo dia la secretaria cambia la configuracion, si lo hace tomara efecto al dia siguiente, ya que si no lo verifico va a tener varios turnos el mismo dia intercalados
+    				for (Turno t : aux) { //verifico que este dia no tenga turnos por lo anterior
+    					boolDiaLibre = !t.IgualesEnFecha(FechaTurno, m.getDni());
+    					if (!boolDiaLibre) {
+    						break;
+    					}
+    				}
+    				
+    				if (boolDiaLibre) {
+	    				LocalDateTime HoraIni = FechaTurno;
+	        			LocalDateTime HoraCierre = LocalDateTime.of(LocalDateTime.now().getYear(), LocalDateTime.now().getMonth(),LocalDateTime.now().getDayOfMonth(),HorarioCL.getHour(),HorarioCL.getMinute()).plusDays(8);
+	        			
+	        			while (HoraIni.compareTo(HoraCierre)<=0) {
+	        				Turno tnuevo = new Turno(m, HoraIni);  
+	        				m.addTurno(tnuevo);
+	        				HoraIni = HoraIni.plusHours(HorarioDL.getHour()).plusMinutes(HorarioDL.getMinute());
+	        			}
+	        			ArrayList<Turno> aux2 = m.getTurnos();
+	        			System.out.println(aux2);
+    				}
+    			}
+    		}
+    }
+	
 	private void BotonCerrarSesion1ActionPerformed(ActionEvent evt) {
 		VentanaLogin ventanaLogin = new VentanaLogin(this.clinica);
 		ventanaLogin.setVisible(true);
