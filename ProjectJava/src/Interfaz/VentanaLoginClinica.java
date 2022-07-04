@@ -27,6 +27,7 @@ public class VentanaLoginClinica extends JFrame {
 	Clinica clinica;
 	JTextField cajaTextoUsuario;
 	JPasswordField cajaTextoContrasenia;
+	JButton botContrasenia;
 	
 	public VentanaLoginClinica(Clinica clinica) {
 		this.clinica = clinica;
@@ -42,6 +43,7 @@ public class VentanaLoginClinica extends JFrame {
         JButton BotonIngresar = new JButton();
         JLabel EtiDesign = new JLabel();
         JLabel EtiIngreseSuDNI1 = new JLabel();
+        this.botContrasenia = new JButton();
         this.cajaTextoUsuario = new JTextField();
         this.cajaTextoContrasenia = new JPasswordField();
 
@@ -76,6 +78,18 @@ public class VentanaLoginClinica extends JFrame {
         EtiIngreseSuDNI1.setFont(new Font("Book Antiqua", 0, 18));
         EtiIngreseSuDNI1.setHorizontalAlignment(SwingConstants.CENTER);
         EtiIngreseSuDNI1.setText("Contrasenia:");
+        
+        this.botContrasenia.setFont(new Font("Book Antiqua", 0, 12));
+        this.botContrasenia.setForeground(new Color(51, 51, 255));
+        this.botContrasenia.setText("Cambiar contrasenia");
+        this.botContrasenia.setBorder(null);
+        this.botContrasenia.setBorderPainted(false);
+        this.botContrasenia.setContentAreaFilled(false);
+        this.botContrasenia.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                botContraseniaActionPerformed(evt);
+            }
+        });
 
         GroupLayout panelLoginLayout = new GroupLayout(panelLogin);
         panelLogin.setLayout(panelLoginLayout);
@@ -99,7 +113,10 @@ public class VentanaLoginClinica extends JFrame {
                         .addComponent(cajaTextoContrasenia, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE))
                     .addGroup(GroupLayout.Alignment.TRAILING, panelLoginLayout.createSequentialGroup()
                         .addComponent(BotonIngresar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addGap(181, 181, 181))))
+                        .addGap(181, 181, 181))
+                    .addGroup(GroupLayout.Alignment.TRAILING, panelLoginLayout.createSequentialGroup()
+                            .addComponent(botContrasenia, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+                            .addGap(210, 210, 210))))
         );
         panelLoginLayout.setVerticalGroup(
             panelLoginLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -114,7 +131,9 @@ public class VentanaLoginClinica extends JFrame {
                 .addComponent(EtiIngreseSuDNI1)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cajaTextoContrasenia, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(4, 4, 4)
+                .addComponent(botContrasenia, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BotonIngresar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
                 .addComponent(EtiDesign, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
@@ -136,6 +155,16 @@ public class VentanaLoginClinica extends JFrame {
         );
 
         pack();
+    }
+    
+    private void botContraseniaActionPerformed(ActionEvent evt) {  
+    	String nombreUsuario = this.cajaTextoUsuario.getText();
+    	if (clinica.existeUsuario(nombreUsuario)) {
+    		VentanaCambiarContrasenia ventanaContrasenia = new VentanaCambiarContrasenia(clinica, nombreUsuario);
+    		ventanaContrasenia.setVisible(true);
+    	} else {
+    		JOptionPane.showMessageDialog(null, "El nombre de usuario ingresado no existe");
+    	}
     }
     
     private void BotonIngresarActionPerformed(ActionEvent evt) {
