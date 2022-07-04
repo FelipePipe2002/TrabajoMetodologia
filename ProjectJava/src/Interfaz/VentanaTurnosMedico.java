@@ -84,18 +84,15 @@ public class VentanaTurnosMedico extends JFrame {
         ArrayList<Turno> turnos = new ArrayList<>();
         turnos = medico.getTurnosDisponibles();
         
-        modeloTabla.addColumn("Medico");
-        modeloTabla.addColumn("Dia");
-        modeloTabla.addColumn("Hora");
+        this.modeloTabla.addColumn("Medico");
+        this.modeloTabla.addColumn("Dia");
+        this.modeloTabla.addColumn("Hora");
         for (Turno t: turnos) {
-        	modeloTabla.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getDayOfMonth() + "/" + t.getFecha().getMonthValue() + "/" + t.getFecha().getYear(),t.getFecha().getHour() + ":" + t.getFecha().getMinute()});
+        	this.modeloTabla.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getDayOfMonth() + "/" + t.getFecha().getMonthValue() + "/" + t.getFecha().getYear(),t.getFecha().getHour() + ":" + t.getFecha().getMinute()});
         }
-        this.tablaTurnos.setModel(modeloTabla);
+        this.tablaTurnos.setModel(this.modeloTabla);
         
         this.tablaTurnos.setMaximumSize(new Dimension(225, 600));
-        this.tablaTurnos.setMinimumSize(new Dimension(100, 300));
-        this.tablaTurnos.setPreferredSize(new Dimension(225, 600));
-        this.tablaTurnos.setShowGrid(false);
         scrollTabla.setViewportView(this.tablaTurnos);
 
         botConfirmar.setFont(new Font("Book Antiqua", 0, 18));
@@ -134,22 +131,22 @@ public class VentanaTurnosMedico extends JFrame {
         etiHasta.setHorizontalAlignment(SwingConstants.RIGHT);
         etiHasta.setText("Hasta:");
 
-        radioBotManiana.setText("Maniana");
-        radioBotManiana.addActionListener(new ActionListener() {
+        this.radioBotManiana.setText("Maniana");
+        this.radioBotManiana.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 radioBotManianaActionPerformed(evt);
             }
         });
 
-        radioBotTarde.setText("Tarde");
-        radioBotTarde.addActionListener(new ActionListener() {
+        this.radioBotTarde.setText("Tarde");
+        this.radioBotTarde.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 radioBotTardeActionPerformed(evt);
             }
         });
         
-        botBuscar.setText("Buscar");
-        botBuscar.addActionListener(new ActionListener() {
+        this.botBuscar.setText("Buscar");
+        this.botBuscar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 botBuscarActionPerformed(evt);
             }
@@ -178,15 +175,15 @@ public class VentanaTurnosMedico extends JFrame {
                         .addComponent(etiHasta, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(panelTurnosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(cajaTextoFechaDesde, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cajaTextoFechaHasta, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(this.cajaTextoFechaDesde, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(this.cajaTextoFechaHasta, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
                     .addGap(47, 47, 47)
                     .addGroup(panelTurnosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addComponent(radioBotTarde, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
                         .addGroup(panelTurnosLayout.createSequentialGroup()
-                            .addComponent(radioBotManiana, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(this.radioBotManiana, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
                             .addGap(28, 28, 28)
-                            .addComponent(botBuscar)))
+                            .addComponent(this.botBuscar)))
                     .addGap(0, 163, Short.MAX_VALUE))
         );
         panelTurnosLayout.setVerticalGroup(
@@ -197,22 +194,22 @@ public class VentanaTurnosMedico extends JFrame {
                             .addComponent(heap2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addGroup(panelTurnosLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(cajaTextoFechaDesde)
+                                .addComponent(this.cajaTextoFechaDesde)
                                 .addComponent(etiDesde, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(radioBotManiana))
+                                .addComponent(this.radioBotManiana))
                             .addGap(18, 18, 18))
                         .addGroup(GroupLayout.Alignment.TRAILING, panelTurnosLayout.createSequentialGroup()
                             .addGap(0, 0, Short.MAX_VALUE)
-                            .addComponent(botBuscar)
+                            .addComponent(this.botBuscar)
                             .addGap(3, 3, 3)))
                     .addGroup(panelTurnosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(panelTurnosLayout.createSequentialGroup()
                             .addGroup(panelTurnosLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(cajaTextoFechaHasta)
+                                .addComponent(this.cajaTextoFechaHasta)
                                 .addComponent(etiHasta, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE))
                             .addGap(12, 12, 12))
                         .addGroup(panelTurnosLayout.createSequentialGroup()
-                            .addComponent(radioBotTarde)
+                            .addComponent(this.radioBotTarde)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(scrollTabla, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
@@ -237,7 +234,7 @@ public class VentanaTurnosMedico extends JFrame {
     private void botConfirmarActionPerformed(ActionEvent evt) {                                             
     	int fila = this.tablaTurnos.getSelectedRow();
     	if (fila != -1) {
-	    	Turno turno = medico.getTurnosDisponibles().get(fila);
+	    	Turno turno = this.medico.getTurnosDisponibles().get(fila);
 	    	VentanaRegistro ventanaRegistro = new VentanaRegistro(this.clinica, this.paciente, turno, "Confirmar");
 	    	ventanaRegistro.setVisible(true);
 	    	this.ventanaPaciente.dispose();
@@ -315,11 +312,11 @@ public class VentanaTurnosMedico extends JFrame {
     	
     	CriterioTurnos general = new CriterioTurnosAnd(Fecha,Horario);
     	
-    	ArrayList<Turno> turnos = this.clinica.devolverTurnosMedico(medico,general);
+    	ArrayList<Turno> turnos = this.clinica.devolverTurnosMedico(this.medico,general);
     	this.modeloTabla.setRowCount(0);
     	for (Turno t: turnos) {
-    		modeloTabla.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getDayOfMonth() + "/" + t.getFecha().getMonthValue() + "/" + t.getFecha().getYear(),t.getFecha().getHour() + ":" + t.getFecha().getMinute()});
+    		this.modeloTabla.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getDayOfMonth() + "/" + t.getFecha().getMonthValue() + "/" + t.getFecha().getYear(),t.getFecha().getHour() + ":" + t.getFecha().getMinute()});
         }
-    	this.tablaTurnos.setModel(modeloTabla);
+    	this.tablaTurnos.setModel(this.modeloTabla);
     } 
 }

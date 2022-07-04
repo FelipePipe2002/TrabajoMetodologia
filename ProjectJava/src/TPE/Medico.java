@@ -8,6 +8,10 @@ public class Medico extends Usuario{
 	private ArrayList<String> especialidades;
 	private ArrayList<String> obrasSociales;
 	private ArrayList<Turno> turnos;
+	private String DiasDeLaburo;
+	private LocalDateTime HoraDeInicio;
+	private LocalDateTime HoraDeCierre;
+	private LocalDateTime DuracionDeTurno;
 	
 	public Medico(String nombre, String apellido, String dni, String nombreUsuario, String contrasenia) {
 		this.nombre = nombre;
@@ -18,6 +22,10 @@ public class Medico extends Usuario{
 		this.especialidades = new ArrayList<>();
 		this.obrasSociales = new ArrayList<>();
 		this.turnos = new ArrayList<>();
+		this.DiasDeLaburo = null;
+		this.HoraDeInicio = null;
+		this.HoraDeCierre = null;
+		this.DuracionDeTurno = null;
 	}
 
 	public String getNombreUsuario() {
@@ -45,7 +53,50 @@ public class Medico extends Usuario{
 		if (!obrasSociales.contains(obraSocial))
 			this.obrasSociales.add(obraSocial);
 	}
+	
+	public String getDiasDeLaburo() {
+		return DiasDeLaburo;
+	}
 
+	public void setDiasDeLaburo(String diasDeLaburo) {
+		DiasDeLaburo = diasDeLaburo;
+	}
+
+	public LocalDateTime getHoraDeInicio() {
+		LocalDateTime aux = LocalDateTime.of(0,1,1,this.HoraDeInicio.getHour(),this.HoraDeInicio.getMinute());
+		return aux;
+	}
+
+	public void setHoraDeInicio(LocalDateTime horaDeInicio) {
+		HoraDeInicio = LocalDateTime.of(0,1,1,horaDeInicio.getHour(),horaDeInicio.getMinute());
+	}
+
+	public LocalDateTime getHoraDeCierre() {
+		LocalDateTime aux = LocalDateTime.of(0,1,1,this.HoraDeCierre.getHour(),this.HoraDeCierre.getMinute());
+		return aux;
+	}
+
+	public void setHoraDeCierre(LocalDateTime horaDeCierre) {
+		HoraDeCierre =  LocalDateTime.of(0,1,1,horaDeCierre.getHour(),horaDeCierre.getMinute());
+	}
+
+	public LocalDateTime getDuracionDeTurno() {
+		LocalDateTime aux = LocalDateTime.of(0,1,1,this.DuracionDeTurno.getHour(),this.DuracionDeTurno.getMinute());
+		return aux;
+	}
+
+	public void setDuracionDeTurno(LocalDateTime duracionDeTurno) {
+		DuracionDeTurno = LocalDateTime.of(0,1,1,duracionDeTurno.getHour(),duracionDeTurno.getMinute());
+	}
+
+	public Turno getTurno(LocalDateTime fecha) {
+		for (Turno turno:this.turnos) {
+			if (turno.getFecha().equals(fecha))
+				return turno;
+		}
+		return null;
+	}
+	
 	public ArrayList<Turno> getTurnos() {
 		ArrayList<Turno> aux = new ArrayList<>(this.turnos);
 		return aux;
@@ -98,7 +149,7 @@ public class Medico extends Usuario{
 	
 	@Override
 	public String toString() {
-		return  super.toString() + "," + nombreUsuario + "," + contrasenia + "," + devolverEspecialidades() + "," + devolverObrasSociales();
+		return  super.toString() + "," + nombreUsuario + "," + contrasenia + "," + devolverEspecialidades() + "," + devolverObrasSociales() + "," + getDiasDeLaburo() + "," + getHoraDeInicio() + "," + getHoraDeCierre() + "," + getDuracionDeTurno();
 	}
 	
 	

@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
@@ -120,14 +121,17 @@ public class VentanaSolicitudDniPaciente extends JFrame {
 	    if (Login.verificarDNI(dni)) {
 	    	if (this.clinica.getPaciente(dni) != null) {
 	    		//asignar turno al paciente
-	    		VentanaRegistro ventanaRegistro = new VentanaRegistro(this.clinica, this.clinica.getPaciente(dni), this.turno, "Confirmar");
+	    		VentanaRegistro ventanaRegistro = new VentanaRegistro(this.clinica, this.clinica.getPaciente(dni), this.turno, "Secretaria");
 		    	ventanaRegistro.setVisible(true);
+		    	this.dispose();
 	        //Si no esta registrado
 	    	} else {
-	    		VentanaRegistro ventanaRegistro = new VentanaRegistro(this.clinica, dni,"Secretaria");
+	    		VentanaRegistro ventanaRegistro = new VentanaRegistro(this.clinica, dni, this.turno, "Secretaria");
 	    		ventanaRegistro.setVisible(true);
 	    		this.dispose();
 	    	}
+	    } else {
+	    	JOptionPane.showMessageDialog(null, "El DNI ingresado no es valido");
 	    }
     }
 }

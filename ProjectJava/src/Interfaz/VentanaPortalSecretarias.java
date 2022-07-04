@@ -20,6 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -60,6 +61,7 @@ public class VentanaPortalSecretarias extends JFrame {
 	JTable tablaDeTurnos;
 	DefaultTableModel modeloTablaMedicos;
 	DefaultTableModel modeloTablaTurnos;
+	JScrollPane tablaMedicos;
 	JScrollPane tablaTurnos;
 	JCheckBox jCheckBox1;
     JCheckBox jCheckBox2;
@@ -103,7 +105,6 @@ public class VentanaPortalSecretarias extends JFrame {
 	private void initComponents() {
     	JTabbedPane TablaPortal = new JTabbedPane();
     	FondoPanel panelAsignarHorarios = new FondoPanel("/FondoLogin1.jpg");
-    	JScrollPane tablaMedicos = new JScrollPane();
     	JTextField jTextField1 = new JTextField();
         FondoPanel panelAdministrarTurnosMedicos = new FondoPanel("/FondoLogin1.jpg");
         JPanel PieDePagina1 = new JPanel();
@@ -140,6 +141,7 @@ public class VentanaPortalSecretarias extends JFrame {
         this.radioBotManiana = new JRadioButton();
         this.radioBotTarde = new JRadioButton();
         this.botFiltrar = new JButton();
+        this.tablaMedicos = new JScrollPane();
         this.tablaTurnos = new JScrollPane();
         this.tablaDeTurnos = new JTable();
         this.cajaTextoNombre = new JTextField();
@@ -226,7 +228,7 @@ public class VentanaPortalSecretarias extends JFrame {
         this.tablaDeMedicos.setModel(modeloTablaMedicos);
         
         this.tablaDeMedicos.setToolTipText("");
-        tablaMedicos.setViewportView(this.tablaDeMedicos);
+        this.tablaMedicos.setViewportView(this.tablaDeMedicos);
 
         jLabel1.setFont(new Font("Book Antiqua", 0, 18));
         jLabel1.setText("Nombre:");
@@ -234,49 +236,49 @@ public class VentanaPortalSecretarias extends JFrame {
         jPanel1.setBackground(new Color(3, 123, 139));
         jPanel1.setBorder(BorderFactory.createTitledBorder(null, "Medico", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Book Antiqua", 0, 36)));
 
-        jCheckBox1.setFont(new Font("Book Antiqua", 0, 14));
-        jCheckBox1.setText("Lunes");
-        jCheckBox1.setBackground(new ColorUIResource(96, 96, 96));
+        this.jCheckBox1.setFont(new Font("Book Antiqua", 0, 14));
+        this.jCheckBox1.setText("Lunes");
+        this.jCheckBox1.setBackground(new ColorUIResource(96, 96, 96));
         	
-        jCheckBox2.setFont(new Font("Book Antiqua", 0, 14));
-        jCheckBox2.setText("Martes");
-        jCheckBox2.setBackground(new ColorUIResource(96, 96, 96));
+        this.jCheckBox2.setFont(new Font("Book Antiqua", 0, 14));
+        this.jCheckBox2.setText("Martes");
+        this.jCheckBox2.setBackground(new ColorUIResource(96, 96, 96));
         
-        jCheckBox3.setFont(new Font("Book Antiqua", 0, 14));
-        jCheckBox3.setText("Miercoles");
-        jCheckBox3.setBackground(new ColorUIResource(96, 96, 96));
+        this.jCheckBox3.setFont(new Font("Book Antiqua", 0, 14));
+        this.jCheckBox3.setText("Miercoles");
+        this.jCheckBox3.setBackground(new ColorUIResource(96, 96, 96));
         
-        jCheckBox4.setFont(new Font("Book Antiqua", 0, 14));
-        jCheckBox4.setText("Jueves");
-        jCheckBox4.setBackground(new ColorUIResource(96, 96, 96));
+        this.jCheckBox4.setFont(new Font("Book Antiqua", 0, 14));
+        this.jCheckBox4.setText("Jueves");
+        this.jCheckBox4.setBackground(new ColorUIResource(96, 96, 96));
         
-        jCheckBox5.setFont(new Font("Book Antiqua", 0, 14));
-        jCheckBox5.setText("Viernes");
-        jCheckBox5.setBackground(new ColorUIResource(96, 96, 96));
+        this.jCheckBox5.setFont(new Font("Book Antiqua", 0, 14));
+        this.jCheckBox5.setText("Viernes");
+        this.jCheckBox5.setBackground(new ColorUIResource(96, 96, 96));
         
-        jCheckBox6.setFont(new Font("Book Antiqua", 0, 14));
-        jCheckBox6.setText("Sabado");
-        jCheckBox6.setBackground(new ColorUIResource(96, 96, 96));
+        this.jCheckBox6.setFont(new Font("Book Antiqua", 0, 14));
+        this.jCheckBox6.setText("Sabado");
+        this.jCheckBox6.setBackground(new ColorUIResource(96, 96, 96));
         
-        jCheckBox7.setFont(new Font("Book Antiqua", 0, 14));
-        jCheckBox7.setText("Domingo");
-        jCheckBox7.setBackground(new ColorUIResource(96, 96, 96));
+        this.jCheckBox7.setFont(new Font("Book Antiqua", 0, 14));
+        this.jCheckBox7.setText("Domingo");
+        this.jCheckBox7.setBackground(new ColorUIResource(96, 96, 96));
         
         etiHoraInicio.setFont(new Font("Book Antiqua", 0, 14));
         etiHoraInicio.setHorizontalAlignment(SwingConstants.CENTER);
         etiHoraInicio.setText("Hora de inicio:");
 
-        cajaTextoHoraCierre.setHorizontalAlignment(JTextField.CENTER);
+        this.cajaTextoHoraCierre.setHorizontalAlignment(JTextField.CENTER);
 
         etiHoraCierre.setFont(new Font("Book Antiqua", 0, 14));
         etiHoraCierre.setHorizontalAlignment(SwingConstants.CENTER);
         etiHoraCierre.setText("Hora de cierre:");
 
-        cajaTextoHoraInicio.setHorizontalAlignment(JTextField.CENTER);
+        this.cajaTextoHoraInicio.setHorizontalAlignment(JTextField.CENTER);
 
-        botAsignarHorario.setFont(new Font("Book Antiqua", 0, 18));
-        botAsignarHorario.setText("Asignar horario");
-        botAsignarHorario.addActionListener(new ActionListener() {
+        this.botAsignarHorario.setFont(new Font("Book Antiqua", 0, 18));
+        this.botAsignarHorario.setText("Asignar horario");
+        this.botAsignarHorario.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
             	botAsignarHorarioActionPerformed(evt);
             }
@@ -286,7 +288,7 @@ public class VentanaPortalSecretarias extends JFrame {
         etiDuracionTurno.setHorizontalAlignment(SwingConstants.CENTER);
         etiDuracionTurno.setText("Duracion Turnos:");
 
-        cajaTextoDuracionTurno.setHorizontalAlignment(JTextField.CENTER);
+        this.cajaTextoDuracionTurno.setHorizontalAlignment(JTextField.CENTER);
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -465,21 +467,21 @@ public class VentanaPortalSecretarias extends JFrame {
         etiHasta.setHorizontalAlignment(SwingConstants.RIGHT);
         etiHasta.setText("Hasta:");
 
-        radioBotManiana.setText("Maniana");
-        radioBotManiana.addActionListener(new ActionListener() {
+        this.radioBotManiana.setText("Maniana");
+        this.radioBotManiana.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 radioBotManianaActionPerformed(evt);
             }
         });
-        radioBotTarde.setText("Tarde");
-        radioBotTarde.addActionListener(new ActionListener() {
+        this.radioBotTarde.setText("Tarde");
+        this.radioBotTarde.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 radioBotTardeActionPerformed(evt);
             }
         });
 
-        botFiltrar.setText("Filtrar");
-        botFiltrar.addActionListener(new ActionListener() {
+        this.botFiltrar.setText("Filtrar");
+        this.botFiltrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 botFiltrarActionPerformed(evt);
             }
@@ -494,48 +496,46 @@ public class VentanaPortalSecretarias extends JFrame {
         };
         
         this.modeloTablaTurnos.addColumn("Medico");
+        this.modeloTablaTurnos.addColumn("DNI");
         this.modeloTablaTurnos.addColumn("Dia");
         this.modeloTablaTurnos.addColumn("Hora");
         this.modeloTablaTurnos.addColumn("Disponibilidad");
         
         for (Medico m: this.secretaria.getMedicos()) {
 	        for (Turno t: m.getTurnos()) {
-	        	String Disponibilidad = "Libre";
+	        	String disponibilidad = "Libre";
     			if (!t.isDisponible())
-    				Disponibilidad = "Ocupado";
-	        	this.modeloTablaTurnos.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getDayOfMonth() + "/" + t.getFecha().getMonthValue() + "/" + t.getFecha().getYear(),t.getFecha().getHour() + ":" + t.getFecha().getMinute(),Disponibilidad});
+    				disponibilidad = "Ocupado";
+	        	this.modeloTablaTurnos.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(), t.getMedico().getDni(),t.getFecha().getDayOfMonth() + "/" + t.getFecha().getMonthValue() + "/" + t.getFecha().getYear(),t.getFecha().getHour() + ":" + t.getFecha().getMinute(),disponibilidad});
 	        }
 	    }
 	    this.tablaDeTurnos.setModel(modeloTablaTurnos);  
         this.tablaDeTurnos.setMaximumSize(new Dimension(225, 600));
-        this.tablaDeTurnos.setMinimumSize(new Dimension(100, 300));
-        this.tablaDeTurnos.setPreferredSize(new Dimension(225, 600));
-        this.tablaDeTurnos.setShowGrid(false);
-        tablaTurnos.setViewportView(this.tablaDeTurnos);
+        this.tablaTurnos.setViewportView(this.tablaDeTurnos);
 
         etiNombre.setFont(new Font("Book Antiqua", 0, 18));
         etiNombre.setHorizontalAlignment(SwingConstants.RIGHT);
         etiNombre.setText("Nombre:");
 
-        botAsignarTurno.setFont(new Font("Book Antiqua", 0, 18));
-        botAsignarTurno.setText("Asignar turno");
-        botAsignarTurno.addActionListener(new ActionListener() {
+        this.botAsignarTurno.setFont(new Font("Book Antiqua", 0, 18));
+        this.botAsignarTurno.setText("Asignar turno");
+        this.botAsignarTurno.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 botAsignarTurnoActionPerformed(evt);
             }
         });
 
-        botReagendarTurno.setFont(new Font("Book Antiqua", 0, 18));
-        botReagendarTurno.setText("Reagendar turno");
-        botReagendarTurno.addActionListener(new ActionListener() {
+        this.botReagendarTurno.setFont(new Font("Book Antiqua", 0, 18));
+        this.botReagendarTurno.setText("Reagendar turno");
+        this.botReagendarTurno.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 botReagendarTurnoActionPerformed(evt);
             }
         });
 
-        botCancelarTurno.setFont(new Font("Book Antiqua", 0, 18));
-        botCancelarTurno.setText("Cancelar turno");
-        botCancelarTurno.addActionListener(new ActionListener() {
+        this.botCancelarTurno.setFont(new Font("Book Antiqua", 0, 18));
+        this.botCancelarTurno.setText("Cancelar turno");
+        this.botCancelarTurno.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 botCancelarTurnoActionPerformed(evt);
             }
@@ -551,7 +551,7 @@ public class VentanaPortalSecretarias extends JFrame {
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(etiNombre, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cajaTextoNombre, GroupLayout.PREFERRED_SIZE, 275, GroupLayout.PREFERRED_SIZE)
+                .addComponent(this.cajaTextoNombre, GroupLayout.PREFERRED_SIZE, 275, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(panelAdministrarTurnosMedicosLayout.createSequentialGroup()
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -562,25 +562,25 @@ public class VentanaPortalSecretarias extends JFrame {
                             .addComponent(etiHasta, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelAdministrarTurnosMedicosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(cajaTextoFechaDesde, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cajaTextoFechaHasta, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(this.cajaTextoFechaDesde, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(this.cajaTextoFechaHasta, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
                         .addGap(47, 47, 47)
                         .addGroup(panelAdministrarTurnosMedicosLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addComponent(radioBotManiana, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(radioBotTarde, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(this.radioBotManiana, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(this.radioBotTarde, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botFiltrar, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(this.botFiltrar, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
                         .addGap(405, 405, 405))
                     .addGroup(GroupLayout.Alignment.TRAILING, panelAdministrarTurnosMedicosLayout.createSequentialGroup()
                         .addGroup(panelAdministrarTurnosMedicosLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                             .addGroup(GroupLayout.Alignment.LEADING, panelAdministrarTurnosMedicosLayout.createSequentialGroup()
                                 .addGap(8, 8, 8)
-                                .addComponent(botAsignarTurno, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(this.botAsignarTurno, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
                                 .addGap(31, 31, 31)
-                                .addComponent(botReagendarTurno, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(this.botReagendarTurno, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
-                                .addComponent(botCancelarTurno, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE))
-                            .addComponent(tablaTurnos, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(this.botCancelarTurno, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(this.tablaTurnos, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE))
                         .addGap(347, 347, 347))))
         );
         panelAdministrarTurnosMedicosLayout.setVerticalGroup(
@@ -589,31 +589,31 @@ public class VentanaPortalSecretarias extends JFrame {
                 .addComponent(Heap2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addGroup(panelAdministrarTurnosMedicosLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(cajaTextoNombre, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(this.cajaTextoNombre, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
                     .addComponent(etiNombre, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(tablaTurnos, GroupLayout.PREFERRED_SIZE, 290, GroupLayout.PREFERRED_SIZE)
+                .addComponent(this.tablaTurnos, GroupLayout.PREFERRED_SIZE, 290, GroupLayout.PREFERRED_SIZE)
                 .addGroup(panelAdministrarTurnosMedicosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(panelAdministrarTurnosMedicosLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(panelAdministrarTurnosMedicosLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(cajaTextoFechaDesde)
+                            .addComponent(this.cajaTextoFechaDesde)
                             .addComponent(etiDesde, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(radioBotManiana))
+                            .addComponent(this.radioBotManiana))
                         .addGap(18, 18, 18)
                         .addGroup(panelAdministrarTurnosMedicosLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(cajaTextoFechaHasta)
+                            .addComponent(this.cajaTextoFechaHasta)
                             .addComponent(etiHasta, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(radioBotTarde))
+                            .addComponent(this.radioBotTarde))
                         .addGap(30, 30, 30))
                     .addGroup(panelAdministrarTurnosMedicosLayout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addComponent(botFiltrar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(this.botFiltrar, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(panelAdministrarTurnosMedicosLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(botAsignarTurno, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botCancelarTurno, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botReagendarTurno, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(this.botAsignarTurno, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(this.botCancelarTurno, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(this.botReagendarTurno, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(PieDePagina2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
@@ -635,18 +635,65 @@ public class VentanaPortalSecretarias extends JFrame {
     }	
 	//Panel asignar horarios
 	private void botVerHorariosActionPerformed(ActionEvent evt) {
-		
+		int fila = this.tablaDeMedicos.getSelectedRow();	
+		if (fila != -1) {
+			String dni = (String) this.tablaDeMedicos.getValueAt(fila, 2);
+		    Medico m= clinica.getMedico(dni); 
+
+		    String DiasDeLaburo = m.getDiasDeLaburo();
+
+		    if ( DiasDeLaburo.charAt(0) == '1' )
+		    	jCheckBox1.setSelected(true);
+		    else
+		    	jCheckBox1.setSelected(false);
+		    if ( DiasDeLaburo.charAt(1) == '1' )
+			    jCheckBox2.setSelected(true);
+		    else
+		    	jCheckBox2.setSelected(false);
+		    if ( DiasDeLaburo.charAt(2) == '1' )
+		    	jCheckBox3.setSelected(true);
+		    else
+		    	jCheckBox3.setSelected(false);
+		    if ( DiasDeLaburo.charAt(3) == '1' )
+			    jCheckBox4.setSelected(true);
+		    else
+		    	jCheckBox4.setSelected(false);
+		    if ( DiasDeLaburo.charAt(4) == '1' )
+		    	jCheckBox5.setSelected(true);
+		    else
+		    	jCheckBox5.setSelected(false);
+		    if ( DiasDeLaburo.charAt(5) == '1' )
+			    jCheckBox6.setSelected(true);
+		    else
+		    	jCheckBox6.setSelected(false);
+		    if ( DiasDeLaburo.charAt(6) == '1' )
+		    	jCheckBox7.setSelected(true);
+		    else
+		    	jCheckBox7.setSelected(false);
+		    
+		    LocalDateTime Inicio = m.getHoraDeInicio();
+		    this.cajaTextoHoraInicio.setText(Inicio.toString().substring(11, 16));
+		    
+		    LocalDateTime Cierre = m.getHoraDeCierre();
+		    this.cajaTextoHoraCierre.setText(Cierre.toString().substring(11, 16));
+		    
+		    LocalDateTime Duracion = m.getDuracionDeTurno();
+		    this.cajaTextoDuracionTurno.setText(Duracion.toString().substring(11, 16));
+		}
 	}
 	
 	private void botAsignarHorarioActionPerformed(ActionEvent evt) {
-		
 		//instancio variables
 		int Dif = 8-LocalDateTime.now().getDayOfWeek().getValue();
 		
 		int fila = this.tablaDeMedicos.getSelectedRow();	
-		String dni = (String) this.tablaDeMedicos.getValueAt(fila, 2);
-	    this.medico = clinica.getMedico(dni); 
+		Medico m= null;
 		
+		if (fila != -1) {
+			String dni = (String) this.tablaDeMedicos.getValueAt(fila, 2);
+			m = clinica.getMedico(dni); 
+		}
+	   
 		LocalDateTime HorarioIL = LocalDateTime.of(0,1,1,0,0);
 		LocalDateTime HorarioCL = LocalDateTime.of(0,1,1,0,0);
 		LocalDateTime HorarioDL = LocalDateTime.of(0,1,1,0,0);
@@ -742,16 +789,50 @@ public class VentanaPortalSecretarias extends JFrame {
 		else
 			this.cajaTextoDuracionTurno.setBackground(Rojo);
 		
-		System.out.println(BoolDuracion);
-		System.out.println(HorarioDL);
-		System.out.println(DuracionIC);
 		//cargo los turnos y valido cosas
-		//tener una cofiguracion guardada para que automaticamente se generen turnos por dia a 1 semana adelantada, a menos que la secretaria quiera modificarlo
-		if (Boolcheck && BoolInicio && BoolCierre && BoolDuracion && BoolHorarioImC && fila !=-1 && HorarioDL.compareTo(DuracionIC) <0) {
-        	LocalDateTime FechaUltima = LocalDateTime.of(LocalDateTime.now().getYear(), LocalDateTime.now().getMonthValue(), LocalDateTime.now().getDayOfMonth(),HorarioIL.getHour(),HorarioIL.getMinute()).plusDays(7);
-        	ArrayList<Turno> aux = medico.getTurnos();
-        }
-	}
+		if (Boolcheck && BoolInicio && BoolCierre && BoolDuracion && BoolHorarioImC && m !=null && HorarioDL.compareTo(DuracionIC) <0) {        	
+    		String DiasDeLaburo = "0000000";
+    		String AuxD = "0000000";
+    		
+    		for (int i=0; i<7 ; i++) { //creo un string de 1 y 0 de un tamanio 7 de los dias que labura
+    			if ( CheckBox.get(i).isSelected() ) {
+        		    AuxD = DiasDeLaburo.substring(0,i) + "1" + DiasDeLaburo.substring(i+1,7);
+        		    DiasDeLaburo = AuxD;
+        		}
+    		}
+    		    
+    		m.setDiasDeLaburo(DiasDeLaburo);    		    
+    		m.setHoraDeInicio(HorarioIL);    		    
+    		m.setHoraDeCierre(HorarioCL);    		    
+    		m.setDuracionDeTurno(HorarioDL);
+    		
+    		LocalDateTime FechaTurno = LocalDateTime.of(LocalDateTime.now().getYear(), LocalDateTime.now().getMonth(),LocalDateTime.now().getDayOfMonth(),HorarioIL.getHour(),HorarioIL.getMinute()).plusDays(8);
+    		if (CheckBox.get(FechaTurno.getDayOfWeek().getValue()-1).isSelected()) {
+    				ArrayList<Turno> aux = m.getTurnos();
+    				boolean boolDiaLibre = true; // puede pasar que el mismo dia la secretaria cambia la configuracion, si lo hace tomara efecto al dia siguiente, ya que si no lo verifico va a tener varios turnos el mismo dia intercalados
+    				for (Turno t : aux) { //verifico que este dia no tenga turnos por lo anterior
+    					boolDiaLibre = !t.IgualesEnFecha(FechaTurno, m.getDni());
+    					if (!boolDiaLibre) {
+    						break;
+    					}
+    				}
+    				
+    				if (boolDiaLibre) {
+	    				LocalDateTime HoraIni = FechaTurno;
+	        			LocalDateTime HoraCierre = LocalDateTime.of(LocalDateTime.now().getYear(), LocalDateTime.now().getMonth(),LocalDateTime.now().getDayOfMonth(),HorarioCL.getHour(),HorarioCL.getMinute()).plusDays(8);
+	        			
+	        			while (HoraIni.compareTo(HoraCierre)<=0) {
+	        				Turno tnuevo = new Turno(m, HoraIni);  
+	        				m.addTurno(tnuevo);
+	        				HoraIni = HoraIni.plusHours(HorarioDL.getHour()).plusMinutes(HorarioDL.getMinute());
+	        			}
+	        			ArrayList<Turno> aux2 = m.getTurnos();
+	        			System.out.println(aux2);
+    				}
+    			}
+    		}
+    }
+	
 	private void BotonCerrarSesion1ActionPerformed(ActionEvent evt) {
 		VentanaLogin ventanaLogin = new VentanaLogin(this.clinica);
 		ventanaLogin.setVisible(true);
@@ -760,18 +841,25 @@ public class VentanaPortalSecretarias extends JFrame {
 	
 	//Panel administrar turnos medicos
     private void botAsignarTurnoActionPerformed(ActionEvent evt) {
-    //Buscar la manera de conseguir el turno de la tabla de turnos
-    //Posible idea...
-    //buscar medico y armar la fecha con los datos de la tabla. Luego generar metodo que dado un medico y una fecha te devuelva el turno
-    	//int fila = this.tablaDeTurnos.getSelectedRow();
-        //String dni = (String) this.tablaDeTurnos.getValueAt(fila, 0);
-    	//Medico medico = this.clinica.getMedico(dni);
-    	//String fecha = (String) this.tablaDeTurnos.getValueAt(fila, 1);
-    	//String hora = (String) this.tablaDeTurnos.getValueAt(fila, 2);
-    	//Generar fechacompleta con formato anio/mes/dia/hora/minutos
-    	//Turno turno = medico.getTurno(fechacompleta);
-    	//VentanaSolicitudDniPaciente ventanaSolicitarDni = new VentanaSolicitudDniPaciente(this.clinica, turno);
-    	//ventanaSolicitarDni.setVisible(true);
+
+    	int fila = this.tablaDeTurnos.getSelectedRow();
+        String disponible = (String) this.tablaDeTurnos.getValueAt(fila, 4);
+        if (disponible.equals("Libre")) {
+	    	String dni = (String) this.tablaDeTurnos.getValueAt(fila, 1);
+	    	Medico medico = this.clinica.getMedico(dni);
+	    	
+	    	String fecha = (String) this.tablaDeTurnos.getValueAt(fila, 2);
+	    	String [] arregloFecha = fecha.split("/");
+	    	String hora = (String) this.tablaDeTurnos.getValueAt(fila, 3);
+	    	String [] arregloHora = hora.split(":");
+	    	LocalDateTime fechacompleta = LocalDateTime.of(Integer.parseInt(arregloFecha[2]),Integer.parseInt(arregloFecha[1]),Integer.parseInt(arregloFecha[0]),Integer.parseInt(arregloHora[0]),Integer.parseInt(arregloHora[1]));
+	    	
+	    	Turno turno = medico.getTurno(fechacompleta);
+	    	VentanaSolicitudDniPaciente ventanaSolicitarDni = new VentanaSolicitudDniPaciente(this.clinica, turno);
+	    	ventanaSolicitarDni.setVisible(true);
+        } else {
+        	JOptionPane.showMessageDialog(null, "El turno no se encuentra disponible");
+        }
     }
     
     private void botReagendarTurnoActionPerformed(ActionEvent evt) {
@@ -861,7 +949,7 @@ public class VentanaPortalSecretarias extends JFrame {
     			String Disponibilidad = "Libre";
     			if (!t.isDisponible()) 
     				Disponibilidad = "Ocupado";
-    			modeloTablaTurnos.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(),t.getFecha().getDayOfMonth() + "/" + t.getFecha().getMonthValue() + "/" + t.getFecha().getYear(),t.getFecha().getHour() + ":" + t.getFecha().getMinute(),Disponibilidad});
+    			modeloTablaTurnos.addRow(new Object[] {t.getMedico().getNombre()+ " " + t.getMedico().getApellido(), t.getMedico().getDni(), t.getFecha().getDayOfMonth() + "/" + t.getFecha().getMonthValue() + "/" + t.getFecha().getYear(),t.getFecha().getHour() + ":" + t.getFecha().getMinute(),Disponibilidad});
     		}
     	}
     	this.tablaDeTurnos.setModel(modeloTablaTurnos);

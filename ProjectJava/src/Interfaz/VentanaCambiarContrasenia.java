@@ -41,6 +41,7 @@ public class VentanaCambiarContrasenia extends JFrame {
 	
     public VentanaCambiarContrasenia(Clinica clinica, String nombreUsuario) {
     	this.clinica = clinica;
+
     	this.nombreUsuario = nombreUsuario;
         initComponents();
         this.setLocationRelativeTo(null);
@@ -170,7 +171,7 @@ public class VentanaCambiarContrasenia extends JFrame {
         	cajaTextoContraseniaNueva.setBorder(new LineBorder(Color.RED));
     		JOptionPane.showMessageDialog(null, "La contrasenia nueva no coincide con su reingreso.");
     	} else if ( !Login.verificarContrasenia(contraseniaNueva) ) {
-    		JOptionPane.showMessageDialog(null, "La contrasenia nueva no es correcta. La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. ");
+    		JOptionPane.showMessageDialog(null, "La contrasenia nueva no es correcta. La contraseï¿½a debe tener al entre 8 y 16 caracteres, al menos un dï¿½gito, al menos una minï¿½scula y al menos una mayï¿½scula. ");
     	} else {
     		cajaTextoContraseniaActual.setBorder(new LineBorder(Color.GREEN));
     		cajaTextoReingresarContrasenia.setBorder(new LineBorder(Color.GREEN));
@@ -191,6 +192,5 @@ public class VentanaCambiarContrasenia extends JFrame {
         	JOptionPane.showMessageDialog(null, "Cambios guardados con exito.");
         	this.dispose();
     	}
-    	
     }
 }
