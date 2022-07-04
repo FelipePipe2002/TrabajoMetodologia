@@ -121,11 +121,7 @@ public class VentanaSolicitudDniPaciente extends JFrame {
 	    if (Login.verificarDNI(dni)) {
 	    	if (this.clinica.getPaciente(dni) != null) {
 	    		//asignar turno al paciente
-<<<<<<< HEAD
 	    		VentanaRegistro ventanaRegistro = new VentanaRegistro(this.clinica, this.clinica.getPaciente(dni), this.turno, "Secretaria");
-=======
-	    		VentanaRegistro ventanaRegistro = new VentanaRegistro(this.clinica, this.clinica.getPaciente(dni), this.turno, "Confirmar");
->>>>>>> c58fa05869681f73622306bfcb369ecce41c77cb
 		    	ventanaRegistro.setVisible(true);
 		    	this.dispose();
 	        //Si no esta registrado
