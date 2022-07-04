@@ -65,7 +65,27 @@ public class VentanaRegistro extends JFrame {
         this.setLocationRelativeTo(null);
     }
 	
-	public VentanaRegistro(Clinica clinica, Paciente paciente, Turno turno,String funcion) {
+	public VentanaRegistro(Clinica clinica, String dni, Turno turno, String funcion) {
+        
+		this.clinica = clinica;
+		this.funcion = funcion;
+		this.turno = turno;
+		this.dni = dni;
+		this.cajaTextoNombre = new JTextField("");
+        this.cajaTextoApellido = new JTextField("");
+        this.cajaTextoCalle = new JTextField("");
+        this.cajaTextoNumero = new JTextField("");
+        this.cajaTextoPiso = new JTextField("");
+        this.cajaTextoDepto = new JTextField("");
+        this.cajaTextoTelefono = new JTextField("");
+        this.cajaTextoEmail = new JTextField("");
+        this.cajaTextoObraSocial = new JTextField("");
+        this.cajaTextoNroAfiliado = new JTextField("");
+		initComponents();
+        this.setLocationRelativeTo(null);
+    }
+
+	public VentanaRegistro(Clinica clinica, Paciente paciente, Turno turno, String funcion) {
         
 		this.clinica = clinica;
 		this.funcion = funcion;
@@ -158,12 +178,12 @@ public class VentanaRegistro extends JFrame {
         etiRegistrar.setFont(new Font("Book Antiqua", 1, 48));
         etiRegistrar.setHorizontalAlignment(SwingConstants.CENTER);
         etiRegistrar.setForeground(Color.white);
-        if (this.funcion.equals("Confirmar")) {
+        if (this.funcion.equals("Registrar")) {
         	etiRegistrar.setText(this.funcion);
-        	botonRegistrar.setIcon(new ImageIcon(getClass().getResource("/BotonConfirmar.png")));
+        	botonRegistrar.setIcon(new ImageIcon(getClass().getResource("/BotonRegistrar.png")));
         } else {
         	etiRegistrar.setText(this.funcion);
-        	botonRegistrar.setIcon(new ImageIcon(getClass().getResource("/BotonRegistrar.png")));	
+        	botonRegistrar.setIcon(new ImageIcon(getClass().getResource("/BotonConfirmar.png")));	
         }
         etiRegistrar.setHorizontalTextPosition(SwingConstants.CENTER);
 
@@ -298,7 +318,7 @@ public class VentanaRegistro extends JFrame {
     	dp[10] = this.cajaTextoNroAfiliado.getText();
     	
     	if( !Login.verificarExistencia(this.clinica, dp[2] ,dp[10]) && Login.verificarCampoNotificacion(dp[7], dp[8]) || Login.verificarCampos(dp) ) {
-    		if (turno == null) {
+    		if (this.turno == null) {
     			Paciente paciente = new Paciente(dp[0],dp[1],dp[2], new Direccion(dp[3], dp[4], dp[5], dp[6]), dp[7],dp[8],dp[9],dp[10]);
     			this.clinica.addPaciente(paciente);
     		} else {
@@ -330,6 +350,8 @@ public class VentanaRegistro extends JFrame {
     		if (!this.funcion.equals("Secretaria")) {
     			VentanaPortalPacientes ventanaPortalPaciente = new VentanaPortalPacientes(this.clinica, this.dni);
     			ventanaPortalPaciente.setVisible(true);
+    			this.dispose();
+    		} else {
     			this.dispose();
     		}
     	} else {

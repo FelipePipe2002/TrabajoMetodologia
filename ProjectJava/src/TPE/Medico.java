@@ -46,6 +46,14 @@ public class Medico extends Usuario{
 			this.obrasSociales.add(obraSocial);
 	}
 
+	public Turno getTurno(LocalDateTime fecha) {
+		for (Turno turno:this.turnos) {
+			if (turno.getFecha().equals(fecha))
+				return turno;
+		}
+		return null;
+	}
+	
 	public ArrayList<Turno> getTurnos() {
 		ArrayList<Turno> aux = new ArrayList<>(this.turnos);
 		return aux;
