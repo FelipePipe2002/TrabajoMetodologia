@@ -1,5 +1,6 @@
 package TPE;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -98,6 +99,7 @@ public class Paciente extends Usuario {
 		this.direccion.setCalle(calle);
 		
 	}
+	
 
 	@Override
 	public String toString() {
