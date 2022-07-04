@@ -1,5 +1,6 @@
 package Interfaz;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -30,22 +31,23 @@ public class VentanaSolicitudDniPaciente extends JFrame {
     	this.clinica = clinica;
     	this.turno = turno;
         initComponents();
+        this.setLocationRelativeTo(null);
     }
                     
     private void initComponents() {
     	
-    	JPanel panel = new JPanel();
+    	FondoPanel panelFondo = new FondoPanel("/FondoLogin1.jpg");
     	JButton botBuscar = new JButton();
     	JLabel etiIngresarDNI = new JLabel();
     	JLabel etiLogo = new JLabel();
-    	cajaTextoDNI = new JTextField();
+    	this.cajaTextoDNI = new JTextField();
 
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-        setMaximumSize(new Dimension(400, 500));
-        setMinimumSize(new Dimension(400, 500));
-        setPreferredSize(new Dimension(400, 500));
+        setMaximumSize(new Dimension(500, 450));
+        setMinimumSize(new Dimension(500, 450));
+        setPreferredSize(new Dimension(500, 450));
 
-        panel.setPreferredSize(new Dimension(400, 500));
+        panelFondo.setPreferredSize(new Dimension(500, 450));
 
         botBuscar.setFont(new Font("Book Antiqua", 0, 14));
         botBuscar.setText("Buscar");
@@ -55,16 +57,17 @@ public class VentanaSolicitudDniPaciente extends JFrame {
             }
         });
 
-        cajaTextoDNI.setHorizontalAlignment(JTextField.CENTER);
+        this.cajaTextoDNI.setHorizontalAlignment(JTextField.CENTER);
 
         etiIngresarDNI.setFont(new Font("Book Antiqua", 0, 14));
         etiIngresarDNI.setHorizontalAlignment(SwingConstants.CENTER);
-        etiIngresarDNI.setText("Por favor ingrese el DNI paciente:");
+        etiIngresarDNI.setForeground(Color.black);
+        etiIngresarDNI.setText("Ingrese el DNI del paciente:");
 
         etiLogo.setIcon(new ImageIcon(getClass().getResource("/logo.png")));
 
-        GroupLayout panelLayout = new GroupLayout(panel);
-        panel.setLayout(panelLayout);
+        GroupLayout panelLayout = new GroupLayout(panelFondo);
+        panelFondo.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
@@ -75,7 +78,7 @@ public class VentanaSolicitudDniPaciente extends JFrame {
                     .addGroup(panelLayout.createSequentialGroup()
                         .addGap(132, 132, 132)
                         .addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(cajaTextoDNI, GroupLayout.PREFERRED_SIZE, 233, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(this.cajaTextoDNI, GroupLayout.PREFERRED_SIZE, 233, GroupLayout.PREFERRED_SIZE)
                             .addComponent(etiIngresarDNI, GroupLayout.PREFERRED_SIZE, 233, GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelLayout.createSequentialGroup()
                         .addGap(214, 214, 214)
@@ -90,7 +93,7 @@ public class VentanaSolicitudDniPaciente extends JFrame {
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(etiIngresarDNI, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cajaTextoDNI, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                .addComponent(this.cajaTextoDNI, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botBuscar)
                 .addContainerGap(32, Short.MAX_VALUE))
@@ -100,11 +103,11 @@ public class VentanaSolicitudDniPaciente extends JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(panel, GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+            .addComponent(panelFondo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(panel, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelFondo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -112,13 +115,12 @@ public class VentanaSolicitudDniPaciente extends JFrame {
     
     private void botBuscarActionPerformed(ActionEvent evt) {
         //buscar si existe el dni ingresado en la clinica
-    	
     	String dni = this.cajaTextoDNI.getText();
         //Si esta registrado
 	    if (Login.verificarDNI(dni)) {
-	    	if (clinica.getPaciente(dni) != null) {
+	    	if (this.clinica.getPaciente(dni) != null) {
 	    		//asignar turno al paciente
-	    		VentanaRegistro ventanaRegistro = new VentanaRegistro(this.clinica, clinica.getPaciente(dni), turno, "Confirmar");
+	    		VentanaRegistro ventanaRegistro = new VentanaRegistro(this.clinica, this.clinica.getPaciente(dni), this.turno, "Confirmar");
 		    	ventanaRegistro.setVisible(true);
 	        //Si no esta registrado
 	    	} else {
