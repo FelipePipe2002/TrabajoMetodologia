@@ -77,13 +77,7 @@ public class Login {
 		return matcher.find();
 	}
 
-	public static boolean verificarContrasenia(String contrasenia) {
 
-		Pattern pattern = Pattern.compile("^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,16}$");
-		Matcher matcher = pattern.matcher(contrasenia);
-
-		return matcher.find();
-	}
 	
 //    public static void loguearPaciente(Usuario u, Clinica c) {
 //
