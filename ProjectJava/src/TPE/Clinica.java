@@ -39,6 +39,20 @@ public class Clinica {
 			this.secretarias.add(secretaria);
 	}
 	
+	public boolean existeUsuario(String nombreUsuario) {
+		for(Secretaria s: this.secretarias) {
+			if (s.getNombreUsuario().equals(nombreUsuario)) {
+				return true;
+			}
+		}
+		for(Medico m: this.medicos) {
+			if (m.getNombreUsuario().equals(nombreUsuario)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public ArrayList<Paciente> getPacientes() {
 		ArrayList<Paciente> aux = new ArrayList<>(this.pacientes);
 		return aux;

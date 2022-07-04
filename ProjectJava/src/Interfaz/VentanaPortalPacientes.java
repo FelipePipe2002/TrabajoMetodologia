@@ -162,7 +162,7 @@ public class VentanaPortalPacientes extends JFrame {
         this.tablaDeMedicos.setModel(modeloTablaMedicos);
         
         this.tablaDeMedicos.setToolTipText("");
-        tablaDeMedicos.addMouseListener(new MouseAdapter() {
+        this.tablaDeMedicos.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 TablaDeMedicosMouseClicked(evt);
             }

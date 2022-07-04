@@ -89,6 +89,14 @@ public class Medico extends Usuario{
 		DuracionDeTurno = LocalDateTime.of(0,1,1,duracionDeTurno.getHour(),duracionDeTurno.getMinute());
 	}
 
+	public Turno getTurno(LocalDateTime fecha) {
+		for (Turno turno:this.turnos) {
+			if (turno.getFecha().equals(fecha))
+				return turno;
+		}
+		return null;
+	}
+	
 	public ArrayList<Turno> getTurnos() {
 		ArrayList<Turno> aux = new ArrayList<>(this.turnos);
 		return aux;
