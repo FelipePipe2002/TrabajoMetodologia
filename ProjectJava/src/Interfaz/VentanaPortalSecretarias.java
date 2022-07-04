@@ -747,7 +747,7 @@ public class VentanaPortalSecretarias extends JFrame {
 		boolean Boolcheck = CheckBox.get(0).isSelected() || CheckBox.get(1).isSelected() || CheckBox.get(2).isSelected() || CheckBox.get(3).isSelected() || CheckBox.get(4).isSelected() ||CheckBox.get(5).isSelected() || CheckBox.get(6).isSelected();
 		
 		
-		//checkeo que cada capo este cargado y correctamente si no se marca con rojo los campos mal cargados
+		//checkeo que cada campo este cargado correctamente si no se marca con rojo los campos mal cargados
 		for (JCheckBox j: CheckBox) {
 			if (Boolcheck)
 				j.setBackground(ColorDefault);
@@ -831,6 +831,7 @@ public class VentanaPortalSecretarias extends JFrame {
     				}
     			}
     		}
+		JOptionPane.showMessageDialog(null, "Se asignaron los horarios correctamente.");
     }
 	
 	private void BotonCerrarSesion1ActionPerformed(ActionEvent evt) {

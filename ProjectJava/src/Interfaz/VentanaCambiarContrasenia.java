@@ -78,7 +78,7 @@ public class VentanaCambiarContrasenia extends JFrame {
         etiReingresarContrasenia.setHorizontalAlignment(SwingConstants.CENTER);
         etiReingresarContrasenia.setText("Vuelva a ingresar la contrasenia nueva:");
 
-        botConfirmar.setIcon(new ImageIcon(getClass().getResource("/BotonRegistrar.png")));
+        botConfirmar.setIcon(new ImageIcon(getClass().getResource("/BotonConfirmar.png")));
         botConfirmar.setBorderPainted(false);
         botConfirmar.setContentAreaFilled(false);
         botConfirmar.addActionListener(new ActionListener() {
