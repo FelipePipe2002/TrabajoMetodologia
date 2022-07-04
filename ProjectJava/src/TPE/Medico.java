@@ -147,6 +147,11 @@ public class Medico extends Usuario{
 		return aux;
 	}
 	
+	public void eliminarTurno(Turno turno) {
+		this.turnos.remove(turno);
+		turno.setDisponible(true);
+	}
+	
 	@Override
 	public String toString() {
 		return  super.toString() + "," + nombreUsuario + "," + contrasenia + "," + devolverEspecialidades() + "," + devolverObrasSociales() + "," + getDiasDeLaburo() + "," + getHoraDeInicio() + "," + getHoraDeCierre() + "," + getDuracionDeTurno();

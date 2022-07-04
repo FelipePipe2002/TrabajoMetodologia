@@ -66,6 +66,7 @@ public class Secretaria extends Usuario {
 		return turnosDeMedicos;	
 	}
 	
+	
 //	public void sacarTurnoAPaciente(Clinica c) {
 //		Paciente usuario = null;
 //		//Login.loguearPaciente(usuario, c);

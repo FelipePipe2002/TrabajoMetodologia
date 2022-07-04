@@ -864,11 +864,26 @@ public class VentanaPortalSecretarias extends JFrame {
     }
     
     private void botReagendarTurnoActionPerformed(ActionEvent evt) {
-        
     }
 
     private void botCancelarTurnoActionPerformed(ActionEvent evt) {
+        int fila = this.tablaDeTurnos.getSelectedRow();
         
+        String eliminar = (String) this.tablaDeTurnos.getValueAt(fila, 4);
+        if (!eliminar.equals("Libre")){
+	    	String dni = (String) this.tablaDeTurnos.getValueAt(fila, 1);
+	    	Medico medico = this.clinica.getMedico(dni);
+
+	    	String fecha = (String) this.tablaDeTurnos.getValueAt(fila, 2);
+	    	String [] arregloFecha = fecha.split("/");
+	    	String hora = (String) this.tablaDeTurnos.getValueAt(fila, 3);
+	    	String [] arregloHora = hora.split(":");
+	    	LocalDateTime fechacompleta = LocalDateTime.of(Integer.parseInt(arregloFecha[2]),Integer.parseInt(arregloFecha[1]),Integer.parseInt(arregloFecha[0]),Integer.parseInt(arregloHora[0]),Integer.parseInt(arregloHora[1]));
+	    	
+	    	Turno turno = medico.getTurno(fechacompleta);
+	    	medico.eliminarTurno(turno);
+	    	// informar paciente 
+        }
     }
 
     private void radioBotManianaActionPerformed(ActionEvent evt) {
