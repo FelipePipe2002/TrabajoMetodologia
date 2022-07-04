@@ -1,5 +1,6 @@
 package Interfaz;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,16 +10,30 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
+import javax.swing.border.LineBorder;
 
 import TPE.Clinica;
+import TPE.Login;
+import TPE.Medico;
+import TPE.Secretaria;
+import TPE.Usuario;
+import TPE.Read.ReadMedico;
+import TPE.Read.ReadPacientes;
+import TPE.Read.ReadSecretaria;
+import TPE.Write.WriteCSV;
+import TPE.Write.WriteMedicos;
+import TPE.Write.WritePacientes;
+import TPE.Write.WriteSecretarias;
 
 public class VentanaCambiarContrasenia extends JFrame {
 	
 	Clinica clinica;
+	String nombreUsuario;
 	JTextField cajaTextoContraseniaActual;
 	JTextField cajaTextoContraseniaNueva;
 	JTextField cajaTextoReingresarContrasenia;
@@ -26,6 +41,7 @@ public class VentanaCambiarContrasenia extends JFrame {
 	
     public VentanaCambiarContrasenia(Clinica clinica, String nombreUsuario) {
     	this.clinica = clinica;
+    	this.nombreUsuario = nombreUsuario;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -140,6 +156,41 @@ public class VentanaCambiarContrasenia extends JFrame {
     	//corroborar que contrasenia actual sea valida y corroborar que la contrasenia nueva cumpla con los caracteres minimos
     	//y que la contrasenia ingresada sea igual a la que volvio a escribir
     	
+    	Medico m = clinica.getMedicoUsuario(nombreUsuario);
+    	Secretaria s = clinica.getSecretariaUsuario(nombreUsuario);
+    	String contraseniaActual = this.cajaTextoContraseniaActual.getText();
+    	String contraseniaNueva = this.cajaTextoContraseniaNueva.getText();
+    	String reingresarContrasenia = this.cajaTextoReingresarContrasenia.getText();
+
+    	if ( !((m != null && m.esContrasenia(contraseniaActual)) || ( s != null && s.esContrasenia(contraseniaActual)))) {
+    		cajaTextoContraseniaActual.setBorder(new LineBorder(Color.RED));
+    		JOptionPane.showMessageDialog(null, "La contrasenia actual no coincide.");
+    	} else if ( !contraseniaNueva.equals(reingresarContrasenia) ) {
+    		cajaTextoReingresarContrasenia.setBorder(new LineBorder(Color.RED));
+        	cajaTextoContraseniaNueva.setBorder(new LineBorder(Color.RED));
+    		JOptionPane.showMessageDialog(null, "La contrasenia nueva no coincide con su reingreso.");
+    	} else if ( !Login.verificarContrasenia(contraseniaNueva) ) {
+    		JOptionPane.showMessageDialog(null, "La contrasenia nueva no es correcta. La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. ");
+    	} else {
+    		cajaTextoContraseniaActual.setBorder(new LineBorder(Color.GREEN));
+    		cajaTextoReingresarContrasenia.setBorder(new LineBorder(Color.GREEN));
+        	cajaTextoContraseniaNueva.setBorder(new LineBorder(Color.GREEN));
+        	
+        	if ( s == null ) {
+        		m.setContrasenia(contraseniaNueva);
+        		ReadMedico medicos = new ReadMedico();
+        		WriteCSV archivoMedicos = new WriteMedicos(this.clinica);
+        		archivoMedicos.generarArchivoCSV(medicos.getCsvFile());
+        	} else {
+        		s.setContrasenia(contraseniaNueva);     
+        		ReadSecretaria secretarias = new ReadSecretaria();
+        		WriteCSV archivoSecretarias = new WriteSecretarias(this.clinica);
+        		archivoSecretarias.generarArchivoCSV(secretarias.getCsvFile());
+        	}
+        	
+        	JOptionPane.showMessageDialog(null, "Cambios guardados con exito.");
+        	this.dispose();
+    	}
     	
     }
 }
