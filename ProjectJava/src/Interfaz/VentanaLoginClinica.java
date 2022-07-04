@@ -80,7 +80,7 @@ public class VentanaLoginClinica extends JFrame {
         EtiIngreseSuDNI1.setText("Contrasenia:");
         
         this.botContrasenia.setFont(new Font("Book Antiqua", 0, 12));
-        this.botContrasenia.setForeground(new Color(51, 51, 255));
+        this.botContrasenia.setForeground(new Color(64, 186, 181));
         this.botContrasenia.setText("Cambiar contrasenia");
         this.botContrasenia.setBorder(null);
         this.botContrasenia.setBorderPainted(false);
