@@ -10,7 +10,9 @@ import java.awt.event.MouseEvent;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -851,13 +853,20 @@ public class VentanaPortalSecretarias extends JFrame {
 	    	VentanaSolicitudDniPaciente ventanaSolicitarDni = new VentanaSolicitudDniPaciente(this.clinica, turno);
 	    	ventanaSolicitarDni.setVisible(true);
         } else {
-        	JOptionPane.showMessageDialog(null, "El turno no se encuentra disponible");
+        	JOptionPane.showMessageDialog(null, "El turno no se encuentra disponible.");
         }
     }
     
     private void botReagendarTurnoActionPerformed(ActionEvent evt) {
     	int fila = this.tablaDeTurnos.getSelectedRow();
-    	
+    	Turno turno = this.obtenerTurnoMedico(fila);
+    	if (!turno.isDisponible()) {
+    		VentanaReagendarTurno ventana = new VentanaReagendarTurno(this.clinica, turno);
+    		ventana.setVisible(true);
+    		
+    	} else {
+    		JOptionPane.showMessageDialog(null, "El turno no se puede reagendar devido a que se encuentra disponible.");
+    	}
     }
     
 	private Turno obtenerTurnoMedico(int fila) {
@@ -884,7 +893,16 @@ public class VentanaPortalSecretarias extends JFrame {
 	    	this.tablaDeTurnos.setValueAt("Libre", fila, 4);
 	    	this.tablaDeTurnos.setModel(this.modeloTablaTurnos);
 	    	// INFORMAR PACIENTE POR MAIL
-			
+	    	
+	    	String doctor = "Dr. " + turno.getMedico().getApellido() + " " + turno.getMedico().getNombre() ;
+			String pacient = paciente.getApellido() + " " + paciente.getNombre();   
+	        DateTimeFormatter formatoFecha = DateTimeFormatter .ofPattern("EEEE dd 'de' MMMM 'de' yyyy 'a las' hh:mm:ss").withLocale(new Locale("es", "ES"));
+	        
+	        String fecha = turno.getFecha().format(formatoFecha);
+	        fecha = fecha.substring(0, 1).toUpperCase() + fecha.substring(1);
+	    	SendEmail.sendCancelacion(paciente.getEmail(), pacient, doctor, this.clinica.getDireccion(), fecha);
+        	JOptionPane.showMessageDialog(null, "El turno a sido cancelado, y el paciente fue notificado.");
+        	
         } else {
         	JOptionPane.showMessageDialog(null, "El turno se encuentra disponible, seleccione otro");
         }
