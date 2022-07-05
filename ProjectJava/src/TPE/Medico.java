@@ -147,10 +147,7 @@ public class Medico extends Usuario{
 		return aux;
 	}
 	
-	public void eliminarTurno(Turno turno) {
-		this.turnos.remove(turno);
-		turno.setDisponible(true);
-	}
+
 	
 	@Override
 	public String toString() {
