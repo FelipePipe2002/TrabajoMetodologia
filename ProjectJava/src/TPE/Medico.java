@@ -147,8 +147,6 @@ public class Medico extends Usuario{
 		return aux;
 	}
 	
-
-	
 	@Override
 	public String toString() {
 		return  super.toString() + "," + nombreUsuario + "," + contrasenia + "," + devolverEspecialidades() + "," + devolverObrasSociales() + "," + getDiasDeLaburo() + "," + getHoraDeInicio() + "," + getHoraDeCierre() + "," + getDuracionDeTurno();
